@@ -1,0 +1,18 @@
+body{
+    background-color: #FF204E;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.printer{
+    width: 70vw;
+    height: 80vh;
+    background-color: #00224D;
+    margin-top: 10vh;
+    margin-left: 15vw;
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
