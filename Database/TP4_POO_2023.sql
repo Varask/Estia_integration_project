@@ -19,7 +19,7 @@ CREATE TABLE `Tasks` (
   `name` varchar(255),
   `id_type` integer,
   `id_state` integer,
-  `is_validated` bool,
+  `is_validated` boolean,
   `color` int,
   `date_debut` date,
   `date_fin` date,
@@ -45,6 +45,6 @@ CREATE TABLE `Assigned_Tasks` (
 
 CREATE TABLE `Security` (
   `id` integer PRIMARY KEY,
-  `id_employee` int,
+  `id_employee` integer,
   `password` varchar(255)
 ) ENGINE=InnoDB;
