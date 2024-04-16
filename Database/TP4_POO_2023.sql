@@ -38,11 +38,13 @@ CREATE TABLE `States` (
 ) ENGINE=InnoDB;
 
 CREATE TABLE `Assigned_Tasks` (
+  `id` integer PRIMARY KEY,
   `id_task` integer,
   `id_employee` integer
 ) ENGINE=InnoDB;
 
 CREATE TABLE `Security` (
+  `id` integer PRIMARY KEY,
   `id_employee` int,
   `password` varchar(255)
 ) ENGINE=InnoDB;
