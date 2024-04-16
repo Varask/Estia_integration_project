@@ -1,7 +1,25 @@
 = Mockup
 
-== Website Map
+== Login
+
+.Page de connection et inscription sans et avec erreur de connexion
+image::Image/Page de connexionConnection.png[]
 
 
-== Home
+== Home Page
 
+.Page d'accueil
+image::Image/Home_Page.png[]
+
+== Budget Preview
+
+.Page de prévisualisation du budget
+image::Image/Budget.png[]
+
+== Pop Up Task modification
+
+.Pop Up d'ajout de tâche
+image::Image/Ajouter_Tache.png[]
+
+.Pop Up de modification de tâche
+image::Image/Modifier_Tache.png[]
