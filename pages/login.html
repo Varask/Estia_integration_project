@@ -5,209 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/main.css">
     <script type="text/javascript" src="../JS/testcookie.js"></script>
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <body>
-    <div style={{width: 1440, height: 1174, position: 'relative', background: 'white'}}>
-  <div style={{width: 32.56, height: 23, left: 0, top: -3, position: 'absolute', opacity: 0.01, color: '#0000EE', fontSize: 16, fontFamily: 'Poppins', fontWeight: '300', textDecoration: 'underline', lineHeight: 18.40, wordWrap: 'break-word'}}>___</div>
-  <div style={{width: 1440, paddingTop: 72, paddingBottom: 99.91, left: 1, top: 91.50, position: 'absolute', justifyContent: 'center', alignItems: 'center', display: 'inline-flex'}}>
-    <div style={{flex: '1 1 0', height: 879.09, paddingTop: 24, paddingBottom: 24, paddingLeft: 96, paddingRight: 120, justifyContent: 'flex-start', alignItems: 'flex-start', gap: 96, display: 'inline-flex'}}>
-      <div style={{width: 564, height: 831.09, position: 'relative', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', display: 'flex'}}>
-        <div style={{width: 564, height: 897, position: 'relative', background: 'white', boxShadow: '0px 8px 24px rgba(29, 140, 242, 0.16)', borderRadius: 12}}>
-          <div style={{width: 261.09, height: 31, left: 48, top: 48, position: 'absolute', color: '#333333', fontSize: 22, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 32, wordWrap: 'break-word'}}>S’enregister</div>
-          <div style={{paddingLeft: 7, paddingRight: 7, left: 48, top: 112, position: 'absolute', justifyContent: 'center', alignItems: 'flex-start', gap: 14, display: 'inline-flex'}}>
-            <div style={{alignSelf: 'stretch', paddingBottom: 32, paddingLeft: 7, paddingRight: 7, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10, display: 'inline-flex'}}>
-              <div style={{paddingLeft: 3, paddingRight: 21.39, justifyContent: 'flex-start', alignItems: 'flex-start', gap: 8, display: 'inline-flex'}}>
-                <div style={{textAlign: 'center', color: '#323338', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>Nom</div>
-                <div style={{textAlign: 'center', color: '#FB275D', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>*</div>
-              </div>
-              <div style={{width: 206, height: 40, position: 'relative', background: 'white', borderRadius: 4, border: '1px #C5C7D0 solid'}} />
+    <div class="printer">
+        <form id="login-form" action="homepage.php" method="POST">
+            <h2>Connexion</h2>
+            <div class="form-group">
+              <label for="email">Email :</label>
+              <input type="email" id="email" name="email" required>
             </div>
-            <div style={{alignSelf: 'stretch', paddingBottom: 32, paddingLeft: 7, paddingRight: 7, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10, display: 'inline-flex'}}>
-              <div style={{paddingLeft: 7, justifyContent: 'flex-end', alignItems: 'flex-start', gap: 7.38, display: 'inline-flex'}}>
-                <div style={{textAlign: 'center', color: '#323338', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}> Prénom</div>
-                <div style={{textAlign: 'center', color: '#FB275D', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>*</div>
-              </div>
-              <div style={{width: 206, height: 40, position: 'relative', background: 'white', borderRadius: 4, border: '1px #C5C7D0 solid'}} />
+            <div class="form-group">
+              <label for="password">Mot de passe :</label>
+              <input type="password" id="password" name="password" required>
             </div>
-          </div>
-          <div style={{width: 468, height: 101, paddingLeft: 7, paddingRight: 7, left: 48, top: 213, position: 'absolute', justifyContent: 'center', alignItems: 'flex-start', gap: 14, display: 'inline-flex'}}>
-            <div style={{alignSelf: 'stretch', paddingBottom: 32, paddingLeft: 7, paddingRight: 7, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10, display: 'inline-flex'}}>
-              <div style={{paddingRight: 18.25, justifyContent: 'flex-start', alignItems: 'flex-start', gap: 7, display: 'inline-flex'}}>
-                <div style={{textAlign: 'center', color: '#323338', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>E-mail</div>
-                <div style={{textAlign: 'center', color: '#FB275D', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>*</div>
-              </div>
-              <div style={{paddingTop: 8.50, paddingBottom: 9.50, paddingLeft: 9, paddingRight: 9, background: 'white', borderRadius: 4, border: '1px #C5C7D0 solid', justifyContent: 'flex-start', alignItems: 'flex-start', display: 'inline-flex'}}>
-                <div style={{paddingBottom: 1, paddingRight: 30, justifyContent: 'flex-start', alignItems: 'flex-start', display: 'flex'}}>
-                  <div style={{color: '#757575', fontSize: 14, fontFamily: 'Poppins', fontWeight: '300', wordWrap: 'break-word'}}>name@company.com</div>
-                </div>
-              </div>
+            <button type="submit">Se connecter</button>
+        </form>
+        <form id="forget-form">
+            <h2>Mot de passe oublié?</h2>
+            <div class="form-group">
+              <label for="email">Email :</label>
+              <input type="email" id="email" name="email" required>
             </div>
-            <div style={{flex: '1 1 0', alignSelf: 'stretch', paddingBottom: 32, paddingLeft: 7, paddingRight: 7, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10, display: 'inline-flex'}}>
-              <div style={{textAlign: 'center', color: '#323338', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>Désignation service</div>
-              <div style={{width: 206, height: 40, position: 'relative', background: 'white', borderRadius: 4, border: '1px #C5C7D0 solid'}} />
-            </div>
-          </div>
-          <div style={{paddingBottom: 32, paddingLeft: 7, paddingRight: 7, left: 55, top: 314, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10, display: 'inline-flex'}}>
-            <div style={{paddingLeft: 3, justifyContent: 'flex-end', alignItems: 'flex-start', gap: 7.31, display: 'inline-flex'}}>
-              <div style={{textAlign: 'center', color: '#323338', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>Numéro de télèphone</div>
-              <div style={{textAlign: 'center', color: '#FB275D', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>*</div>
-            </div>
-            <div style={{paddingLeft: 35, justifyContent: 'flex-start', alignItems: 'flex-start', display: 'inline-flex'}}>
-              <div style={{width: 40, paddingTop: 15, paddingBottom: 14, paddingLeft: 9, paddingRight: 15, background: '#F5F5F5', borderTopLeftRadius: 3, borderTopRightRadius: 3, border: '1px #CACACA solid', justifyContent: 'flex-start', alignItems: 'center', display: 'flex'}}>
-                <div style={{width: 16, alignSelf: 'stretch', paddingTop: 3.50, paddingBottom: 3.50, paddingLeft: 20, backgroundImage: 'url(https://via.placeholder.com/16x11)', justifyContent: 'flex-end', alignItems: 'center', display: 'inline-flex'}}>
-                  <div style={{width: 6, height: 4, borderLeft: '3px #555555 solid', borderTop: '4px #555555 solid', borderRight: '3px #555555 solid'}} />
-                </div>
-              </div>
-              <div style={{width: 405, paddingTop: 10, paddingBottom: 10, paddingLeft: 17, paddingRight: 3, background: 'white', borderRadius: 5, border: '1px #CACACA solid', justifyContent: 'flex-end', alignItems: 'center', display: 'flex'}}>
-                <div style={{width: 385, alignSelf: 'stretch', paddingBottom: 1, paddingRight: 354, justifyContent: 'flex-start', alignItems: 'center', display: 'inline-flex'}}>
-                  <div style={{width: 31, height: 19, color: 'black', fontSize: 13, fontFamily: 'Poppins', fontWeight: '300', letterSpacing: 0.16, wordWrap: 'break-word'}}>+33</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div style={{paddingLeft: 7, paddingRight: 11, left: 48, top: 415, position: 'absolute', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 14, display: 'inline-flex'}}>
-            <div style={{alignSelf: 'stretch', paddingBottom: 32, paddingLeft: 7, paddingRight: 7, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10, display: 'inline-flex'}}>
-              <div style={{paddingRight: 10.23, justifyContent: 'flex-start', alignItems: 'flex-start', gap: 4, display: 'inline-flex'}}>
-                <div style={{textAlign: 'center', color: '#323338', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>Mot de passe</div>
-                <div style={{textAlign: 'center', color: '#FB275D', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>*</div>
-              </div>
-              <div style={{width: 290, height: 40, position: 'relative', background: 'white', borderRadius: 4, border: '1px #C5C7D0 solid'}} />
-            </div>
-            <div style={{alignSelf: 'stretch', paddingBottom: 32, paddingLeft: 7, paddingRight: 7, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10, display: 'inline-flex'}}>
-              <div style={{justifyContent: 'flex-end', alignItems: 'flex-start', gap: 3, display: 'inline-flex'}}>
-                <div style={{textAlign: 'center', color: '#323338', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>Badge entreprise</div>
-                <div style={{textAlign: 'center', color: '#FB275D', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>*</div>
-              </div>
-              <div style={{paddingTop: 9.50, paddingBottom: 9.50, paddingLeft: 13, paddingRight: 25, background: '#EFEFEF', borderRadius: 4, border: '1px #C5C7D0 solid', justifyContent: 'flex-start', alignItems: 'flex-start', display: 'inline-flex'}}>
-                <div style={{paddingTop: 1, paddingBottom: 1, justifyContent: 'flex-start', alignItems: 'flex-start', display: 'flex'}}>
-                  <div style={{color: '#808080', fontSize: 13, fontFamily: 'Poppins', fontWeight: '300', lineHeight: 19, wordWrap: 'break-word'}}>Selectionner</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div style={{paddingBottom: 32, paddingLeft: 7, paddingRight: 7, left: 55, top: 509, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10, display: 'inline-flex'}}>
-            <div style={{justifyContent: 'flex-end', alignItems: 'flex-start', gap: 4, display: 'inline-flex'}}>
-              <div style={{textAlign: 'center', color: '#323338', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>Confirmer mot de passe</div>
-              <div style={{textAlign: 'center', color: '#FB275D', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>*</div>
-            </div>
-            <div style={{width: 290, height: 40, position: 'relative', background: 'white', borderRadius: 4, border: '1px #C5C7D0 solid'}} />
-          </div>
-          <div style={{paddingBottom: 35.09, paddingLeft: 7, paddingRight: 7, left: 55, top: 610, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 11, display: 'inline-flex'}}>
-            <div style={{textAlign: 'center', color: '#323338', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>Ajouter un commentaire:</div>
-            <div style={{width: 440, height: 106, position: 'relative', background: 'white', borderRadius: 4, border: '1px #C5C7D0 solid'}} />
-          </div>
-          <div style={{paddingLeft: 32.38, paddingRight: 32.17, left: 98, top: 770.09, position: 'absolute', justifyContent: 'flex-start', alignItems: 'flex-start', display: 'inline-flex'}}>
-            <div style={{width: 303.45, textAlign: 'center'}}><span style="color: '#333333', fontSize: 13, fontFamily: 'Poppins', fontWeight: '300', lineHeight: 16, wordWrap: 'break-word'">En cliquant sur “Envoyer” vous acceptez les conditions d’utilisation </span><span style="color: '#0000EE', fontSize: 13, fontFamily: 'Poppins', fontWeight: '300', textDecoration: 'underline', lineHeight: 16, wordWrap: 'break-word'">Privacy policy</span></div>
-          </div>
-          <div style={{paddingTop: 16, paddingBottom: 16, paddingLeft: 31, paddingRight: 32.80, left: 212, top: 819, position: 'absolute', background: '#6161FF', borderRadius: 40, overflow: 'hidden', justifyContent: 'flex-start', alignItems: 'flex-start', display: 'inline-flex'}}>
-            <div style={{textAlign: 'center', color: 'white', fontSize: 16, fontFamily: 'Poppins', fontWeight: '300', lineHeight: 17, wordWrap: 'break-word'}}>Envoyer</div>
-          </div>
-        </div>
-        <div style={{width: 564, height: 901, opacity: 0.75, background: '#595AD4', borderRadius: 12}} />
-        <div style={{width: 575, height: 841, opacity: 0.75, background: '#595AD4', borderRadius: 12}} />
-        <div style={{width: 564, height: 907, opacity: 0.50, background: '#595AD4', borderRadius: 12}} />
-        <div style={{width: 586, height: 844, opacity: 0.50, background: '#595AD4', borderRadius: 12}} />
-      </div>
-      <div style={{width: 564, height: 831.09, position: 'relative', background: 'white', boxShadow: '0px 8px 24px rgba(29, 140, 242, 0.16)', borderRadius: 12, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', display: 'flex'}}>
-        <div style={{width: 261.09, height: 31, color: '#333333', fontSize: 22, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 32, wordWrap: 'break-word'}}>Se connecter</div>
-        <div style={{paddingLeft: 7, paddingRight: 241, justifyContent: 'flex-start', alignItems: 'center', display: 'inline-flex'}}>
-          <div style={{alignSelf: 'stretch', paddingBottom: 32, paddingLeft: 7, paddingRight: 7, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10, display: 'inline-flex'}}>
-            <div style={{paddingRight: 18.25, justifyContent: 'flex-start', alignItems: 'flex-start', gap: 7, display: 'inline-flex'}}>
-              <div style={{textAlign: 'center', color: '#323338', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>E-mail</div>
-              <div style={{textAlign: 'center', color: '#FB275D', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>*</div>
-            </div>
-            <div style={{paddingTop: 8.50, paddingBottom: 9.50, paddingLeft: 9, paddingRight: 9, background: 'white', borderRadius: 4, border: '1px #C5C7D0 solid', justifyContent: 'flex-start', alignItems: 'flex-start', display: 'inline-flex'}}>
-              <div style={{paddingBottom: 1, paddingRight: 30, justifyContent: 'flex-start', alignItems: 'flex-start', display: 'flex'}}>
-                <div style={{color: '#757575', fontSize: 14, fontFamily: 'Poppins', fontWeight: '300', wordWrap: 'break-word'}}>name@company.com</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div style={{paddingLeft: 7, paddingRight: 157, justifyContent: 'flex-start', alignItems: 'center', display: 'inline-flex'}}>
-          <div style={{alignSelf: 'stretch', paddingBottom: 32, paddingLeft: 7, paddingRight: 7, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10, display: 'inline-flex'}}>
-            <div style={{paddingRight: 9.23, justifyContent: 'flex-start', alignItems: 'flex-start', gap: 5, display: 'inline-flex'}}>
-              <div style={{textAlign: 'center', color: '#323338', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>Mot de passe</div>
-              <div style={{textAlign: 'center', color: '#FB275D', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>*</div>
-            </div>
-            <div style={{width: 290, height: 40, position: 'relative', background: 'white', borderRadius: 4, border: '1px #C5C7D0 solid'}} />
-          </div>
-        </div>
-        <div style={{paddingTop: 16, paddingBottom: 16, paddingLeft: 31, paddingRight: 32.80, background: '#6161FF', borderRadius: 40, overflow: 'hidden', justifyContent: 'flex-start', alignItems: 'flex-start', display: 'inline-flex'}}>
-          <div style={{textAlign: 'center', color: 'white', fontSize: 16, fontFamily: 'Poppins', fontWeight: '300', lineHeight: 17, wordWrap: 'break-word'}}>Envoyer</div>
-        </div>
-        <div style={{paddingBottom: 32, paddingLeft: 7, paddingRight: 7, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10, display: 'inline-flex'}}>
-          <div style={{paddingRight: 18.25, justifyContent: 'flex-start', alignItems: 'flex-start', gap: 7, display: 'inline-flex'}}>
-            <div style={{textAlign: 'center', color: '#323338', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>E-mail</div>
-            <div style={{textAlign: 'center', color: '#FB275D', fontSize: 14, fontFamily: 'Poppins', fontWeight: '400', lineHeight: 19, wordWrap: 'break-word'}}>*</div>
-          </div>
-          <div style={{paddingTop: 8.50, paddingBottom: 9.50, paddingLeft: 9, paddingRight: 9, background: 'white', borderRadius: 4, border: '1px #C5C7D0 solid', justifyContent: 'flex-start', alignItems: 'flex-start', display: 'inline-flex'}}>
-            <div style={{paddingBottom: 1, paddingRight: 30, justifyContent: 'flex-start', alignItems: 'flex-start', display: 'flex'}}>
-              <div style={{color: '#757575', fontSize: 14, fontFamily: 'Poppins', fontWeight: '300', wordWrap: 'break-word'}}>name@company.com</div>
-            </div>
-          </div>
-        </div>
-        <div style={{paddingTop: 16, paddingBottom: 16, paddingLeft: 31, paddingRight: 32.80, background: '#6161FF', borderRadius: 40, overflow: 'hidden', justifyContent: 'flex-start', alignItems: 'flex-start', display: 'inline-flex'}}>
-          <div style={{textAlign: 'center', color: 'white', fontSize: 16, fontFamily: 'Poppins', fontWeight: '300', lineHeight: 17, wordWrap: 'break-word'}}>Récuperer</div>
-        </div>
-      </div>
+            <button type="submit">Récupérer</button>
+        </form>
     </div>
-  </div>
-  <img style={{width: 1, height: 1, left: 0, top: 1776.19, position: 'absolute'}} src="https://via.placeholder.com/1x1" />
-  <div style={{width: 1440, height: 72, left: 0, top: 0, position: 'absolute', background: 'white'}}>
-    <div style={{width: 468, height: 64, paddingTop: 19.95, paddingBottom: 19.95, left: 216, top: -0.50, position: 'absolute', justifyContent: 'flex-start', alignItems: 'flex-start', display: 'inline-flex'}}>
-      <div style={{paddingTop: 7, paddingBottom: 8.09, paddingLeft: 10, paddingRight: 10, borderRadius: 8, justifyContent: 'center', alignItems: 'center', gap: 8.98, display: 'flex'}}>
-        <div style={{color: '#535768', fontSize: 14, fontFamily: 'Poppins', fontWeight: '300', lineHeight: 16.10, wordWrap: 'break-word'}}>Produits</div>
-        <div style={{width: 10, height: 7, justifyContent: 'center', alignItems: 'center', display: 'inline-flex'}}>
-          <div style={{flex: '1 1 0', alignSelf: 'stretch', paddingTop: 1.53, paddingBottom: 1.51, paddingLeft: 1.50, paddingRight: 1.50, justifyContent: 'center', alignItems: 'center', display: 'inline-flex'}}>
-            <div style={{width: 7, height: 3.96, background: '#323338', border: '0.03px #323338 solid'}}></div>
-          </div>
-        </div>
-      </div>
-      <div style={{paddingTop: 7, paddingBottom: 8, paddingLeft: 10, paddingRight: 6.98, borderRadius: 8, justifyContent: 'center', alignItems: 'center', gap: 3.02, display: 'flex'}}>
-        <div style={{color: '#535768', fontSize: 14, fontFamily: 'Poppins', fontWeight: '300', lineHeight: 16.10, wordWrap: 'break-word'}}>Notre équipe</div>
-        <div style={{width: 10, height: 7, justifyContent: 'center', alignItems: 'center', display: 'inline-flex'}}>
-          <div style={{flex: '1 1 0', alignSelf: 'stretch', paddingTop: 1.53, paddingBottom: 1.51, paddingLeft: 1.50, paddingRight: 1.50, justifyContent: 'center', alignItems: 'center', display: 'inline-flex'}}>
-            <div style={{width: 7, height: 3.96, background: '#323338', border: '0.03px #323338 solid'}}></div>
-          </div>
-        </div>
-      </div>
-      <div style={{paddingTop: 7, paddingBottom: 7, paddingLeft: 10, paddingRight: 19.98, borderRadius: 8, justifyContent: 'flex-start', alignItems: 'center', gap: 4.02, display: 'flex'}}>
-        <div style={{color: '#535768', fontSize: 14, fontFamily: 'Poppins', fontWeight: '300', lineHeight: 16.10, wordWrap: 'break-word'}}>Bidaiariak</div>
-        <div style={{width: 10, height: 7, justifyContent: 'center', alignItems: 'center', display: 'inline-flex'}}>
-          <div style={{flex: '1 1 0', alignSelf: 'stretch', paddingTop: 1.53, paddingBottom: 1.51, paddingLeft: 1.50, paddingRight: 1.50, justifyContent: 'center', alignItems: 'center', display: 'inline-flex'}}>
-            <div style={{width: 7, height: 3.96, background: '#323338', border: '0.03px #323338 solid'}}></div>
-          </div>
-        </div>
-      </div>
-      <div style={{paddingTop: 7, paddingBottom: 8.09, paddingLeft: 10, paddingRight: 10, borderRadius: 8, justifyContent: 'center', alignItems: 'center', gap: 3.42, display: 'flex'}}>
-        <div style={{color: '#535768', fontSize: 14, fontFamily: 'Poppins', fontWeight: '300', lineHeight: 16.10, wordWrap: 'break-word'}}>Resources</div>
-        <div style={{width: 10, height: 7, justifyContent: 'center', alignItems: 'center', display: 'inline-flex'}}>
-          <div style={{flex: '1 1 0', alignSelf: 'stretch', paddingTop: 1.53, paddingBottom: 1.51, paddingLeft: 1.50, paddingRight: 1.50, justifyContent: 'center', alignItems: 'center', display: 'inline-flex'}}>
-            <div style={{width: 7, height: 3.96, background: '#323338', border: '0.03px #323338 solid'}}></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div style={{width: 1211, paddingLeft: 802.84, left: 216, top: -0.50, position: 'absolute', justifyContent: 'flex-start', alignItems: 'center', gap: 15.84, display: 'inline-flex'}}>
-      <div style={{paddingTop: 26.95, paddingBottom: 28.05, paddingLeft: 10, paddingRight: 9.25, justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10, display: 'flex'}}>
-        <div style={{color: '#535768', fontSize: 14, fontFamily: 'Poppins', fontWeight: '300', lineHeight: 16.10, wordWrap: 'break-word'}}>Prix</div>
-        <div style={{color: '#535768', fontSize: 14, fontFamily: 'Poppins', fontWeight: '300', lineHeight: 16.10, wordWrap: 'break-word'}}>Nous contacter</div>
-        <div style={{color: '#535768', fontSize: 14, fontFamily: 'Poppins', fontWeight: '300', lineHeight: 16.10, wordWrap: 'break-word'}}>Se Connecter</div>
-      </div>
-      <div style={{paddingTop: 11.50, paddingBottom: 11.50, paddingLeft: 17.25, paddingRight: 15.27, background: '#6161FF', borderRadius: 40, overflow: 'hidden', justifyContent: 'flex-start', alignItems: 'flex-start', display: 'flex'}}>
-        <div style={{paddingRight: 4, justifyContent: 'flex-start', alignItems: 'center', gap: 5.48, display: 'flex'}}>
-          <div style={{textAlign: 'center', color: 'white', fontSize: 13, fontFamily: 'Poppins', fontWeight: '300', lineHeight: 17, wordWrap: 'break-word'}}>S’enregistrer</div>
-          <div style={{width: 12, height: 10, justifyContent: 'center', alignItems: 'center', display: 'inline-flex'}}>
-            <div style={{flex: '1 1 0', alignSelf: 'stretch', paddingTop: 0.99, paddingBottom: 0.49, justifyContent: 'center', alignItems: 'center', display: 'inline-flex'}}>
-              <div style={{width: 10.72, height: 8.52, background: 'white'}}></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <img style={{width: 82, height: 83, left: 16, top: 8.50, position: 'absolute'}} src="https://via.placeholder.com/82x83" />
-</div>
 </body>
 </html>
