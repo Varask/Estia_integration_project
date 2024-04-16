@@ -46,15 +46,3 @@ CREATE TABLE `Security` (
   `id_employee` int,
   `password` varchar(255)
 );
-
-ALTER TABLE `employee` ADD FOREIGN KEY (`id_role`) REFERENCES `Roles` (`id`);
-
-ALTER TABLE `Assigned_Tasks` ADD FOREIGN KEY (`id_task`) REFERENCES `Tasks` (`id`);
-
-ALTER TABLE `employee` ADD FOREIGN KEY (`id`) REFERENCES `Assigned_Tasks` (`id_employee`);
-
-ALTER TABLE `States` ADD FOREIGN KEY (`id`) REFERENCES `Tasks` (`id_state`);
-
-ALTER TABLE `Types` ADD FOREIGN KEY (`id`) REFERENCES `Tasks` (`id_type`);
-
-ALTER TABLE `employee` ADD FOREIGN KEY (`id`) REFERENCES `Security` (`id_employee`);
