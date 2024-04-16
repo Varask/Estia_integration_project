@@ -9,7 +9,7 @@ image::Image/Page de connexionConnection.png[]
 == Home Page
 
 .Page d'accueil
-image::Image/Home_Page.png[]
+image::Image/Home_Page.png[Acceuil_Page,height=20%]
 
 == Budget Preview
 
