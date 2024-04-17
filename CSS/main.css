@@ -2,7 +2,7 @@ body{
     background-color: #FFFF;
     font-family: 'Poppins', 'Roboto', sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 2em;
 }
 
 h2{
@@ -44,13 +44,6 @@ button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-.register_container{
-
-}
-
-.login_container{
-
-}
 
 
 
@@ -58,6 +51,13 @@ button[type="submit"]:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.verticalCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .grid4by4{
@@ -103,6 +103,8 @@ button[type="submit"]:hover {
     max-width: 90%;
     min-width: 400px;
     margin: 0 auto;
+    height: fit-content;
+    padding: auto;
 }
 
 .formShadow{
