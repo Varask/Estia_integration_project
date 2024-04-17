@@ -1,5 +1,7 @@
-= CCT 
+= CCT Gr3
+
 == Subject
+
 The subject that we have chosen is a *Project Manager* based on differents model:
 - Monday
 - Trello
@@ -40,8 +42,51 @@ As a Product Owner, I want to be able to create a new task, so that I can manage
 
 == Diagram Use Case
 
+.Use Case Diagram
+image::./Image/Use_case.png[]
+
+== CTT
+.CCT
+image::Image/Schema_cct.png[]
 
 
+== Architecture
+
+=== Frontend
+
+- Connection Page
+
+- Home Page
+
+- Project set Page
 
 
+=== Backend
+
+==== SQL Database
+
+- Project Table
+    - Project ID
+    - Project Name
+    - Project Description
+    - Project Start Date
+    - Project End Date
+    - Users List
+    - Tasks List
+
+- User Table
+    - User ID
+    - User Name
+    - User Email
+    - User Password
+    - User Role
+
+- Task Table
+    - Task ID
+    - Task Name
+    - Task Description
+    - Task Start Date
+    - Task End Date
+    - Task Status
+    - Task User
 
