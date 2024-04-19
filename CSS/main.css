@@ -34,7 +34,7 @@ button[type="submit"] {
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transitiANn: background-color 0.3s ease;
     margin: 0 auto;
     display: block;
     margin-top: 2px;
@@ -71,7 +71,7 @@ button[type="submit"]:hover {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    grid-gap: 4em;
+    grid-gap: 3em;
     margin-top: 1em;
 }
 .grid2b1{
