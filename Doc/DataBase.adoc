@@ -1,5 +1,7 @@
 = Database
 
+guillaume Benhamou / Lucas Brana / Matthieu Barut
+
 == Image de l'architercture de la base de données
 
 .Schéma de la base de données

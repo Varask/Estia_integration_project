@@ -1,5 +1,7 @@
 = Mockup
 
+guillaume Benhamou / Lucas Brana / Matthieu Barut
+
 == Login
 
 .Page de connection et inscription sans et avec erreur de connexion

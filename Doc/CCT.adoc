@@ -1,5 +1,7 @@
 = CCT Gr3
 
+guillaume Benhamou / Lucas Brana / Matthieu Barut
+
 == Subject
 
 The subject that we have chosen is a *Project Manager* based on differents model:
