@@ -1,0 +1,43 @@
+= Database
+
+== Image de l'architercture de la base de données
+
+.Schéma de la base de données
+image::Image/archi_bdd.png[]
+
+=== Employé
+Cette table contient les informations des employés de l'entreprise.
+
+image::Image/Employe.png[]
+
+
+=== Rôles
+Cette table definit les rôles des employés et leur taut horaire.
+
+image::Image/roles.png[]
+
+=== Security
+Cette table contient les informations de connexion des employés et permet d'isoler les informations sensibles.
+
+image::Image/security.png[]
+
+=== Tasks
+Cette table contient les informations des tâches à réaliser et réalisées.
+
+image::Image/tasks.png[]
+
+=== AssignedTasks
+Cette table est la table de liaison entre les employés et les tâches qui leur sont assignées.
+
+image::Image/assigned_tasks.png[]
+
+=== States (of tasks)
+Cette table contient les différents états des tâches.
+
+image::Image/states.png[]
+
+=== Type (of tasks)
+
+Cette table contient les différents types de tâches.
+
+image::Image/Types.png[]
