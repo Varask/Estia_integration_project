@@ -19,18 +19,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connexion échouée : " . $conn->connect_error);
     }
 
-    // Préparer la requête SQL pour vérifier les informations de connexion
+    // Préparer la requête SQL pour récupérer le mot de passe crypté
     $sql = "SELECT e.mail, s.password 
         FROM employee e 
         INNER JOIN security s ON e.id = s.id_employee 
-        WHERE e.mail = '$email' AND s.password = '$password'";
+        WHERE e.mail = '$email'";
     $result = $conn->query($sql);
 
     // Vérifier s'il y a des résultats
     if ($result->num_rows > 0) {
-        // Les informations de connexion sont correctes, rediriger vers la page d'accueil
-        header("Location: homepage.html");
-        exit;
+        // Récupérer le mot de passe crypté depuis la base de données
+        $row = $result->fetch_assoc();
+        $hashed_password = $row['password'];
+
+        // Vérifier si le mot de passe correspond en utilisant password_verify()
+        if (password_verify($password, $hashed_password)) {
+            // Les informations de connexion sont correctes, rediriger vers la page d'accueil
+            header("Location: homepage.html");
+            exit;
+        } else {
+            // Les informations de connexion sont incorrectes, rediriger vers la page de connexion avec un message d'erreur
+            echo "<script>alert('E-mail ou mot de passe incorrect'); window.location.href='login.html';</script>";
+            exit;
+        }
     } else {
         // Les informations de connexion sont incorrectes, rediriger vers la page de connexion avec un message d'erreur
         echo "<script>alert('E-mail ou mot de passe incorrect'); window.location.href='login.html';</script>";
