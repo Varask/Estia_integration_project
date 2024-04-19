@@ -1,18 +1,123 @@
 body{
-    background-color: #FF204E;
-    font-family: 'Roboto', sans-serif;
+    background-color: #FFFF;
+    font-family: 'Poppins', 'Roboto', sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 2em;
 }
 
-.printer{
-    width: 70vw;
-    height: 80vh;
-    background-color: #00224D;
-    margin-top: 10vh;
-    margin-left: 15vw;
-    border-radius: 10px;
-    padding: 20px;
-    color: white;
+h2{
     text-align: center;
+    font-size: 1em;
+    margin-top: 1em;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+label span {
+    color: red;
+}
+
+input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transitiANn: background-color 0.3s ease;
+    margin: 0 auto;
+    display: block;
+    margin-top: 2px;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.verticalCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.grid4by4{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 1em;
+    margin-top: 1em;
+}
+.grid1b2{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 3em;
+    margin-top: 1em;
+}
+.grid2b1{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1em;
+    margin-top: 1em;
+}
+.gridElement{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 1em;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.gridElement:hover{
+    background-color: #f33333;
+}
+
+.formContainer{
+    display: flex;
+    background-color: #FFFF;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 90%;
+    min-width: 400px;
+    margin: 0 auto;
+    height: fit-content;
+    padding: auto;
+}
+
+.formShadow{
+    -webkit-box-shadow: -9px 1px 15px -2px rgba(0,0,0,0.5); 
+    box-shadow: -9px 1px 15px -2px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    padding: 1em;
+}
+
+.form-group{
+    margin-bottom: 1em;
+}
+
+.blur{
+    filter: blur(5px);
 }
