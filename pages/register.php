@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->query($sql_employee) === TRUE && $conn->query($sql_security) === TRUE) {
         echo "<script>alert('Nouveau compte créé avec succès');</script>";
     } else {
-        echo "<script>alert('Erreur lors de la création du compte : " . $conn->error . "'); window.location.href='login.html';</script>";
+        echo "<script>alert('Erreur lors de la création du compte : " . addslashes($conn->error) . "'); window.location.href='login.html';</script>";
     }
 
     // Fermer la connexion
