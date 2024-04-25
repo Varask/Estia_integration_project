@@ -2,8 +2,20 @@ body{
     background-color: #FFFF;
     font-family: 'Poppins', 'Roboto', sans-serif;
     margin: 0;
-    padding: 2em;
+    padding: 0;
 }
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 600;
+    width: 100%;
+}
+
 
 h2{
     text-align: center;
@@ -18,7 +30,9 @@ label {
 label span {
     color: red;
 }
-
+form{
+    padding: 1 em;
+}
 input{
     width: 100%;
     padding: 10px;
@@ -44,7 +58,17 @@ button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-
+.logo_container{
+    position: absolute;
+    left: 1em;
+    top: 1em;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-image: url('..\\ressources\\Images\\image_100_100.png');
+    background-size: cover;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
 
 
 .center{
@@ -67,19 +91,14 @@ button[type="submit"]:hover {
     grid-gap: 1em;
     margin-top: 1em;
 }
-.grid1b2{
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-gap: 3em;
-    margin-top: 1em;
-}
+
 .grid2b1{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1em;
+    grid-gap: 8em;
     margin-top: 1em;
 }
+
 .gridElement{
     display: flex;
     justify-content: center;

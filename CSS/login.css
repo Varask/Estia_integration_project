@@ -1,0 +1,15 @@
+.parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 2em;
+    grid-row-gap: 2em;
+    }
+
+.parent > form{
+    border: 2px solid #000;
+}
+    
+.coloneGauche { grid-area: 1 / 1 / 4 / 2; }
+.item1_col_Droite { grid-area: 1 / 2 / 2 / 3; }
+.item2_col_Droite { grid-area: 2 / 2 / 3 / 3; }
