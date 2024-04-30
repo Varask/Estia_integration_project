@@ -35,20 +35,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Vérifier si le mot de passe correspond en utilisant password_verify()
         if (password_verify($password, $hashed_password)) {
             // Les informations de connexion sont correctes, rediriger vers la page d'accueil
-            header("Location: homepage.html");
+            header("Location: ../pages/homepage.html");
             exit;
         } else {
             // Les informations de connexion sont incorrectes, rediriger vers la page de connexion avec un message d'erreur
-            echo "<script>alert('E-mail ou mot de passe incorrect'); window.location.href='login.html';</script>";
+            echo "<script>alert('E-mail ou mot de passe incorrect'); window.location.href='../pages/login.html';</script>";
             exit;
         }
     } else {
         // Les informations de connexion sont incorrectes, rediriger vers la page de connexion avec un message d'erreur
-        echo "<script>alert('E-mail ou mot de passe incorrect'); window.location.href='login.html';</script>";
+        echo "<script>alert('E-mail ou mot de passe incorrect'); window.location.href='../pages/login.html';</script>";
         exit;
     }
 } else {
     // Rediriger vers la page de connexion si le formulaire n'a pas été soumis
-    header("Location: login.html");
+    header("Location: ../pages/login.html");
     exit;
 }
