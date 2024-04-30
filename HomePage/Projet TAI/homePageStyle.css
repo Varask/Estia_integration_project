@@ -1,0 +1,194 @@
+/* style.css */
+body{
+    background-color: #FFFF;
+    font-family: 'Poppins', 'Roboto', sans-serif;
+    margin: 0;
+    font-size: xx-large;
+}
+
+.header {
+    background-color: #a2d2ff;
+    padding: 10px 20px;
+    text-align: left;
+    size: 50em;
+    font-size: 2em;
+    padding-left: 10%;
+}
+
+.contenu {
+    display: flex;
+    flex-direction: column;
+}
+
+header p {
+    margin-left: 20%;
+    font-size: xx-small;
+    color: #a2d2ff;
+    text-decoration: #007bff;
+}
+
+.container {
+    width: 30%;
+    margin: auto;
+    margin-top: 50px;
+    padding: 5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.8px);
+    -webkit-backdrop-filter: blur(6.8px);
+    border: 1px solid rgba(255, 255, 255, 1);
+}
+
+#PetitCoquin.container {
+    min-width: 80%;
+    size: 80%;
+}
+
+button {
+    font-size: 2em;
+    margin: auto;
+    padding: 8%;
+    margin-bottom: 10%;
+    border-radius: 30px;
+    border: white;
+    color: white;
+    background-color: #03045e;
+    cursor: pointer;
+    transition: ease 500ms;
+}
+
+
+button:hover {
+    background-color: #a2d2ff;
+    box-shadow: 5px 4px 27px -3px rgba(0,0,0,0.69);
+    color: black;
+    border: black 1px;
+}
+
+.financial {
+    background-color: #eee;
+    color: #555;
+}
+
+.toDo {
+    background-color: #eee;
+    color: #555;
+}
+
+.alert {
+    color: #d9534f;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #f2dede;
+    border: 1px solid #d9534f;
+    border-radius: 5px;
+}
+
+.timeline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.timeline div {
+    background-color: #e9ecef;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    flex-basis: 21%; /* Adjusts the number of items in a row */
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chart { 
+	display: grid;
+
+	border: 2px solid #000;  
+	position: relative;  
+	overflow: hidden; 
+}
+
+.chart-row {  
+	display: grid; 
+	grid-template-columns: 50px 1fr; 
+	background-color: #DCDCDC;
+}
+
+.chart-period { 
+	color:  #fff;  
+	background-color:  #708090 !important;  
+	border-bottom: 2px solid #000;  
+	grid-template-columns: 50px repeat(12, 1fr);
+
+}
+
+.chart-period > span {
+	text-align: center;  
+	font-size: 15px;  
+	align-self: center;  
+	font-weight: bold;  
+	padding: 15px 0;   
+}
+
+.chart-lines { 
+	position: absolute;  
+	height: 100%;  
+	width: 100%;  
+	background-color: transparent;  
+	grid-template-columns: 100px repeat(12, 1fr);}
+
+.chart-lines > span {  
+	display: block;  border-right: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.chart-row-item { 
+	background-color: #808080;  
+	border: 1px solid #000;  
+	border-top: 0;  border-left: 0;  
+	padding: 20px 0;  font-size: 15px;  
+	font-weight: bold;  
+	text-align: center;
+}
+
+.chart-row-bars { 
+	list-style: none; 
+	display: grid;  padding: 15px 0;  
+	margin: 0;  
+	grid-template-columns: repeat(12, 1fr); 
+	grid-gap: 10px 0;  
+	border-bottom: 1px solid #000;
+}
+
+li {  
+    font-weight: 450;  
+    text-align: left;  
+    font-size: 15px;  min-height: 15px;  
+    background-color: #708090;  
+    padding: 5px 15px;  color: #fff;  
+    overflow: hidden;  
+    position: relative;  
+    cursor: pointer;  
+    border-radius: 15px;
+ } 
+ 
+ ul .chart-li-one { 
+ 	grid-column: 1/2;  
+        background-color: #588BAE;
+ }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .timeline div {
+        flex-basis: 48%; /* More space for each item on smaller screens */
+    }
+}
+
