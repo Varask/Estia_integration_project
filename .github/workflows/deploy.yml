@@ -1,0 +1,28 @@
+name: Deploy on Release using Password
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install sshpass
+      run: sudo apt-get install -y sshpass
+
+    - name: Rsync files using password and custom port
+      env:
+        SERVER_IP: ${{ secrets.FTP_SERVER_IP }}
+        SERVER_PORT: ${{ secrets.FTP_SERVER_PORT }}  # Variable for the port
+        USERNAME: ${{ secrets.FTP_USERNAME }}
+        PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        REMOTE_PATH: ${{ secrets.FTP_REMOTE_PATH }}
+      run: |
+        sshpass -p $PASSWORD rsync -avz -e "ssh -p $SERVER_PORT" --delete . $USERNAME@$SERVER_IP:$REMOTE_PATH
+
+    - name: Deployment complete
+      run: echo "Deployment has been completed."
