@@ -1,23 +1,14 @@
 <?php
+include_once('database.php');
+
 // Vérifier si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Connexion à la base de données
-    $servername = "localhost"; // Adresse du serveur MySQL
-    $username = "root"; // Identifiant MySQL
-    $password_db = ""; // Mot de passe MySQL
-    $dbname = "dbb_integration"; // Nom de la base de données
-
     // Création de la connexion
-    $conn = new mysqli($servername, $username, $password_db, $dbname);
-
-    // Vérifier la connexion
-    if ($conn->connect_error) {
-        die("Connexion échouée : " . $conn->connect_error);
-    }
+    $conn = connectToDatabase();
 
     // Préparer la requête SQL pour récupérer le mot de passe crypté
     $sql = "SELECT e.mail, s.password 

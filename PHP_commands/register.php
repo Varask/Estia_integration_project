@@ -1,4 +1,6 @@
 <?php
+include_once('database.php');
+
 // Vérifier si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
@@ -17,19 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Crypter le mot de passe
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Connexion à la base de données
-    $servername = "localhost"; // Adresse du serveur MySQL
-    $username = "root"; // Identifiant MySQL
-    $password_db = ""; // Mot de passe MySQL
-    $dbname = "dbb_integration"; // Nom de la base de données
-
     // Création de la connexion
-    $conn = new mysqli($servername, $username, $password_db, $dbname);
-
-    // Vérifier la connexion
-    if ($conn->connect_error) {
-        die("Connexion échouée : " . $conn->connect_error);
-    }
+    $conn = connectToDatabase();
 
     // Vérifier si l'e-mail existe déjà dans la base de données
     $sql = "SELECT * FROM employee WHERE mail = '$email'";
