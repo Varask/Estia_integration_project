@@ -1,4 +1,4 @@
 <?php
 // Redirige vers la page de connexion
-header("Location: pages/login.html");
+header("Location:./view/loginView.html");
 exit;

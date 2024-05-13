@@ -6,7 +6,7 @@
     grid-row-gap: 2em;
     }
 
-.parent > form{
+form{
     display: flex;
     background-color: #e3e3e3;
     justify-content: center;
@@ -22,19 +22,20 @@
     transition: 0.2s;
 }
 
-.parent > form:hover{
+form:hover{
     background-color: #66666643;
     transition: 0.5s;
 }
 
-.parent > form > input{
-    margin: 0.5em;
+form > input {
+    width: 50%; 
+    margin: auto;
     padding: 0.5em;
     border-radius: 5px;
     border: 1px solid #868686;
-    background-color: ;
+    background-color: #FFFFFF; 
 }
-    
+
 .coloneGauche { grid-area: 1 / 1 / 4 / 2; }
 .item1_col_Droite { grid-area: 1 / 2 / 2 / 3; }
 .item2_col_Droite { grid-area: 2 / 2 / 3 / 3; }
