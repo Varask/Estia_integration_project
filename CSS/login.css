@@ -16,7 +16,6 @@
     min-width: 400px;
     margin: 0 auto;
     height: fit-content;
-    padding: auto;
     border-radius: 5px;
     padding: 1em;
     transition: 0.2s;
@@ -27,14 +26,16 @@
     transition: 0.5s;
 }
 
-.parent > form > input{
+.parent > form > input {
+    width: 80%; 
     margin: 0.5em;
     padding: 0.5em;
     border-radius: 5px;
     border: 1px solid #868686;
-    background-color: ;
+    background-color: #FFFFFF; 
+    box-sizing: border-box; 
 }
-    
+
 .coloneGauche { grid-area: 1 / 1 / 4 / 2; }
 .item1_col_Droite { grid-area: 1 / 2 / 2 / 3; }
 .item2_col_Droite { grid-area: 2 / 2 / 3 / 3; }
