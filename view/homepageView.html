@@ -13,36 +13,7 @@
     <p>Welcome, Lucas Brana</p>
 </div>
 
-<div class="container form">
-    <form action="/chemin/vers/le/script-de-traitement" method="post">
-        <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" required><br><br>
-
-        <label for="type">Type :</label>
-        <select id="type" name="type" required>
-            <option value="">Graphism</option>
-            <option value="Documentation">Documentation</option>
-            <option value="Requierments">Requirements</option>
-            <option value="Development">Development</option>
-        </select><br><br>
-
-        <label for="couleur">Couleur :</label>
-        <input type="color" id="couleur" name="couleur"><br><br>
-
-        <label for="dateDebut">Date de début :</label>
-        <input type="date" id="dateDebut" name="dateDebut" required><br><br>
-
-        <label for="dateFin">Date de fin :</label>
-        <input type="date" id="dateFin" name="dateFin" required><br><br>
-
-        <label for="tempsEstime">Temps estimé (en heures) :</label>
-        <input type="number" id="tempsEstime" name="tempsEstime" min="0" step="0.5" required><br><br>
-
-        <button type="submit">Ajouter un tache </button>
-    </form>
-</div>
-
-<div class="container planning">
+<div class="container" id="planning">
     <h2>Planning</h2>
     <div class="chart">
         <div class="chart-row chart-period">
@@ -83,7 +54,38 @@
     </div>
 </div>
 
-<div class="container tasksViewer">
+<div id="structure">
+<div class="container-form" id="form">
+    <form action="/chemin/vers/le/script-de-traitement" method="post">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required><br><br>
+
+        <label for="type">Type :</label>
+        <select id="type" name="type" required>
+            <option value="">Select a value</option>
+            <option value="Graphism">Graphism</option>
+            <option value="Documentation">Documentation</option>
+            <option value="Requierments">Requirements</option>
+            <option value="Development">Development</option>
+        </select><br><br>
+
+        <label for="couleur">Couleur :</label>
+        <input type="color" id="couleur" name="couleur"><br><br>
+
+        <label for="dateDebut">Date de début :</label>
+        <input type="date" id="dateDebut" name="dateDebut" required><br><br>
+
+        <label for="dateFin">Date de fin :</label>
+        <input type="date" id="dateFin" name="dateFin" required><br><br>
+
+        <label for="tempsEstime">Temps estimé (en heures) :</label>
+        <input type="number" id="tempsEstime" name="tempsEstime" min="0" step="0.5" required><br><br>
+
+        <button type="submit">Ajouter un tache </button>
+    </form>
+</div>
+
+<div class="container tasksViewer" id="tasksViewer">
     <h2>Tasks</h2>
     <table>
         <tr>
@@ -105,6 +107,7 @@
     </table>
     <script src="../JS/TaskRecuperator.js"></script>
        
+</div>
 </div>
 </body>
 </html>
