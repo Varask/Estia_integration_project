@@ -3,32 +3,39 @@ body{
     background-color: #FFFF;
     font-family: 'Poppins', 'Roboto', sans-serif;
     margin: 0;
-    font-size: xx-large;
 }
 
 .header {
     background-color: #a2d2ff;
     padding: 10px 20px;
     text-align: left;
-    size: 50em;
     font-size: 2em;
     padding-left: 10%;
 }
 
-.contenu {
+.header p {
+    margin-left: 20px;
+}
+
+.menu{
     display: flex;
     flex-direction: column;
 }
 
-header p {
-    margin-left: 20%;
-    font-size: xx-small;
-    color: #a2d2ff;
-    text-decoration: #007bff;
+#planning {
+    width: 80%;
+}
+
+#form {
+    width: 70%;
+}
+
+#tasksViewer {
+    width: 30%;
 }
 
 .container {
-    width: 30%;
+    width: 65%;
     margin: auto;
     margin-top: 50px;
     padding: 5em;
@@ -43,15 +50,16 @@ header p {
     border: 1px solid rgba(255, 255, 255, 1);
 }
 
-#PetitCoquin.container {
-    min-width: 80%;
-    size: 80%;
+#structure {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 button {
-    font-size: 2em;
     margin: auto;
-    padding: 8%;
+    padding: 3%;
     margin-bottom: 10%;
     border-radius: 30px;
     border: white;
@@ -60,7 +68,6 @@ button {
     cursor: pointer;
     transition: ease 500ms;
 }
-
 
 button:hover {
     background-color: #a2d2ff;
@@ -180,6 +187,40 @@ li {
  	grid-column: 1/2;  
         background-color: #588BAE;
  }
+/* Task list */
+
+.tasksViewer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.tasksViewer table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tasksViewer th {
+    background-color: #e9ecef;
+    padding: 10px 20px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.tasksViewer td {
+    padding: 10px 20px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.tasksViewer tr:hover {
+    background-color: #f8f9fa;
+}
+
+
+
+
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
