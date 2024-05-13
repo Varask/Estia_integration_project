@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        echo "<script>alert('L\'e-mail existe déjà dans la base de données'); window.location.href='../pages/login.html';</script>";
+        echo "<script>alert('L\'e-mail existe déjà dans la base de données'); window.location.href='../view/loginView.html';</script>";
         exit;
     }
 
@@ -45,15 +45,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql_security = "INSERT INTO security (password) VALUES ('$hashed_password')";
 
     if ($conn->query($sql_employee) === TRUE && $conn->query($sql_security) === TRUE) {
-        echo "<script>alert('Nouveau compte créé avec succès'); window.location.href='../pages/login.html';</script>";
+        echo "<script>alert('Nouveau compte créé avec succès'); window.location.href='../view/loginView.html';</script>";
     } else {
-        echo "<script>alert('Erreur lors de la création du compte : " . addslashes($conn->error) . "'); window.location.href='../pages/login.html';</script>";
+        echo "<script>alert('Erreur lors de la création du compte : " . addslashes($conn->error) . "'); window.location.href='../view/loginView.html';</script>";
     }
 
     // Fermer la connexion
     $conn->close();
 } else {
     // Rediriger vers la page de connexion si le formulaire n'a pas été soumis
-    header("Location: ../pages/login.html");
+    header("Location: ../view/loginView.html");
     exit;
 }
