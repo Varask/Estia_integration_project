@@ -22,21 +22,48 @@ body{
     flex-direction: column;
 }
 
-#planning {
-    width: 80%;
-}
-
 #form {
-    width: 70%;
+    width: 35%;
 }
 
 #tasksViewer {
-    width: 30%;
+    width: 60%;
 }
 
+/* Task list */
+
+.tasksViewer {
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+}
+
+.tasksViewer table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tasksViewer th {
+    background-color: #e9ecef;
+    padding: 10px 20px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.tasksViewer td {
+    padding: 10px 20px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.tasksViewer tr:hover {
+    background-color: #f8f9fa;
+}
+
+
 .container {
-    width: 65%;
-    margin: auto;
+    width: auto;
+    margin: 10px;
     margin-top: 50px;
     padding: 5em;
     display: flex;
@@ -53,8 +80,8 @@ body{
 #structure {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    align-items: normal;
+    justify-content: space-evenly;
 }
 
 button {
@@ -192,7 +219,6 @@ li {
 .tasksViewer {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
 }
 
 .tasksViewer table {
