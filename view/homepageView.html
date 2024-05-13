@@ -15,6 +15,7 @@
 
 <div class="container" id="planning">
     <h2>Planning</h2>
+    <iframe class="calendar" src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Europe%2FParis&bgcolor=%23ffffff&src=ZnIuZnJlbmNoI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23009688"></iframe>
     <div class="chart">
         <div class="chart-row chart-period">
             <div class="chart-row-item">
@@ -70,8 +71,17 @@
             <option value="Development">Development</option>
         </select><br><br>
 
-        <label for="couleur">Couleur :</label>
-        <input type="color" id="couleur" name="couleur"><br><br>
+        <label for="pastel1">Couleur :</label> <br>
+    <input type="radio" id="pastel1" name="couleur" value="#fde2e4">
+    <label for="pastel1" style="background-color: #fde2e4; padding: 10px; border: 1px solid #000;">Pivoine   </label><br>
+    <input type="radio" id="pastel2" name="couleur" value="#accbe1">
+    <label for="pastel2" style="background-color: #accbe1; padding: 10px; border: 1px solid #000;">Myosotis  </label><br>
+    <input type="radio" id="pastel3" name="couleur" value="#9fd8df">
+    <label for="pastel3" style="background-color: #9fd8df; padding: 10px; border: 1px solid #000;">Hortensia </label><br>
+    <input type="radio" id="pastel4" name="couleur" value="#97c1a9">
+    <label for="pastel4" style="background-color: #97c1a9; padding: 10px; border: 1px solid #000;">Eucalyptus</label><br>
+    <input type="radio" id="pastel5" name="couleur" value="#e4cbf8">
+    <label for="pastel5" style="background-color: #e4cbf8; padding: 10px; border: 1px solid #000;">Lotus     </label><br><br>
 
         <label for="dateDebut">Date de début :</label>
         <input type="date" id="dateDebut" name="dateDebut" required><br><br>
@@ -110,5 +120,18 @@
        
 </div>
 </div>
+
+<footer class="footer">
+    <div class="waves">
+      <div class="wave" id="wave1"></div>
+      <div class="wave" id="wave2"></div>
+      <div class="wave" id="wave3"></div>
+      <div class="wave" id="wave4"></div>
+    </div>
+    <p>&copy;2024 Barut Benhamou Brana | All Rights Reserved for ESTIA - Project TAI Limited&copy;</p>
+  </footer>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
 </html>

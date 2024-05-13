@@ -6,7 +6,8 @@ body{
 }
 
 .header {
-    background-color: #a2d2ff;
+    background-color: #3586ff;
+    color: #ffffff;
     padding: 10px 20px;
     text-align: left;
     font-size: 2em;
@@ -22,12 +23,24 @@ body{
     flex-direction: column;
 }
 
+.calendar {
+    border: solid 1px #777;
+    width: 800px;
+    height: 600px;
+    overflow: hidden; /* Pour empêcher le défilement */
+}
+
+#planning {
+    margin-top: 50px;
+}
+
 #form {
     width: 35%;
+
 }
 
 #tasksViewer {
-    width: 60%;
+    width: 65%;
 }
 
 /* Task list */
@@ -60,28 +73,29 @@ body{
     background-color: #f8f9fa;
 }
 
+#structure {
+    display: flex;
+    flex-direction: row;
+    align-items: normal;
+    justify-content: space-evenly;
+    margin-bottom: 50px;
+    margin-top: 10px;
+}
 
 .container {
     width: auto;
     margin: 10px;
-    margin-top: 50px;
-    padding: 5em;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     background: rgba(255, 255, 255, 0.25);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(6.8px);
     -webkit-backdrop-filter: blur(6.8px);
     border: 1px solid rgba(255, 255, 255, 1);
-}
-
-#structure {
-    display: flex;
-    flex-direction: row;
-    align-items: normal;
-    justify-content: space-evenly;
 }
 
 button {
@@ -102,6 +116,22 @@ button:hover {
     color: black;
     border: black 1px;
 }
+
+/*Style boutons du form*/
+/* Styliser l'étiquette associée à chaque bouton radio */
+input[type="radio"] + label {
+    padding: 10px; /* Appliquer un padding autour du texte de l'étiquette */
+    margin: 5px; /* Espacement autour de chaque étiquette */
+    background-color: #f4f4f4; /* Couleur de fond pour visualiser le padding */
+    display: inline-block; /* Assure que le padding est appliqué correctement */
+    border-radius: 5px; /* Arrondir les coins de l'étiquette */
+}
+
+/* Styliser le bouton radio lui-même pour qu'il apparaisse mieux aligné */
+input[type="radio"] {
+    margin-right: 5px; /* Espacer le bouton radio de son étiquette */
+}
+
 
 .financial {
     background-color: #eee;
@@ -259,3 +289,126 @@ li {
     }
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+    
+  .footer {
+    margin-top: 150px;
+    position: relative;
+    width: 100%;
+    background: #3586ff;
+    min-height: 100px;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .social-icon,
+  .menu {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+  }
+  
+  .social-icon__item,
+  .menu__item {
+    list-style: none;
+  }
+  
+  .social-icon__link {
+    font-size: 2rem;
+    color: #fff;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+  }
+  .social-icon__link:hover {
+    transform: translateY(-10px);
+  }
+  
+  .menu__link {
+    font-size: 1.2rem;
+    color: #fff;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+    text-decoration: none;
+    opacity: 0.75;
+    font-weight: 300;
+  }
+  
+  .menu__link:hover {
+    opacity: 1;
+  }
+  
+  .footer p {
+    color: #fff;
+    margin: 15px 0 10px 0;
+    font-size: 1rem;
+    font-weight: 300;
+  }
+  
+  .wave {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url("https://i.ibb.co/wQZVxxk/wave.png");
+    background-size: 1000px 100px;
+  }
+  
+  .wave#wave1 {
+    z-index: 1000;
+    opacity: 1;
+    bottom: 0;
+    animation: animateWaves 4s linear infinite;
+  }
+  
+  .wave#wave2 {
+    z-index: 999;
+    opacity: 0.5;
+    bottom: 10px;
+    animation: animate 4s linear infinite !important;
+  }
+  
+  .wave#wave3 {
+    z-index: 1000;
+    opacity: 0.2;
+    bottom: 15px;
+    animation: animateWaves 3s linear infinite;
+  }
+  
+  .wave#wave4 {
+    z-index: 999;
+    opacity: 0.7;
+    bottom: 20px;
+    animation: animate 3s linear infinite;
+  }
+  
+  @keyframes animateWaves {
+    0% {
+      background-position-x: 1000px;
+    }
+    100% {
+    background-position-x: 0px;
+    }
+  }
+  
+  @keyframes animate {
+    0% {
+      background-position-x: -1000px;
+    }
+    100% {
+    background-position-x: 0px;
+    }
+  }
