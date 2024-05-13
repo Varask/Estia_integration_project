@@ -27,7 +27,7 @@ header p {
 }
 
 .container {
-    width: 30%;
+    width: 65%;
     margin: auto;
     margin-top: 50px;
     padding: 5em;
@@ -42,11 +42,6 @@ header p {
     border: 1px solid rgba(255, 255, 255, 1);
 }
 
-.planning{
-    margin-top: 2em;
-    width: 70%;
-    margin: auto;
-}
 
 button {
     font-size: 2em;
@@ -180,6 +175,40 @@ li {
  	grid-column: 1/2;  
         background-color: #588BAE;
  }
+/* Task list */
+
+.tasksViewer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.tasksViewer table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tasksViewer th {
+    background-color: #e9ecef;
+    padding: 10px 20px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.tasksViewer td {
+    padding: 10px 20px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.tasksViewer tr:hover {
+    background-color: #f8f9fa;
+}
+
+
+
+
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
