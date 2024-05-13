@@ -3,7 +3,6 @@ body{
     background-color: #FFFF;
     font-family: 'Poppins', 'Roboto', sans-serif;
     margin: 0;
-    font-size: xx-large;
 }
 
 .header {
@@ -14,16 +13,25 @@ body{
     padding-left: 10%;
 }
 
+.header p {
+    margin-left: 20px;
+}
+
 .menu{
     display: flex;
     flex-direction: column;
 }
 
-header p {
-    margin-left: 20%;
-    font-size: xx-small;
-    color: #a2d2ff;
-    text-decoration: #007bff;
+#planning {
+    width: 80%;
+}
+
+#form {
+    width: 70%;
+}
+
+#tasksViewer {
+    width: 30%;
 }
 
 .container {
@@ -42,6 +50,12 @@ header p {
     border: 1px solid rgba(255, 255, 255, 1);
 }
 
+#structure {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
 
 button {
     margin: auto;
@@ -54,7 +68,6 @@ button {
     cursor: pointer;
     transition: ease 500ms;
 }
-
 
 button:hover {
     background-color: #a2d2ff;
