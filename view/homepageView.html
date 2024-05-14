@@ -7,11 +7,29 @@
 <title>Dashboard</title>
 </head>
 <body>
+<script>
+    // Vérifier si la session est active
+    if (sessionStorage.getItem('logged_in')) {
+        // Rediriger l'utilisateur vers la page de connexion
+        window.location.href = "../view/loginView.html";
+    }
+</script>
 
 <div class="header">
     <h1>Dashboard</h1>
-    <p>Welcome, Lucas Brana</p>
+    <p>Welcome, <span id="userFullName"></span></p>
 </div>
+
+<script>
+var userFirstName = "<?php echo $userFirstName; ?>";
+var userLastName = "<?php echo $userLastName; ?>";
+
+// Concaténer les variables JavaScript pour former le nom complet de l'utilisateur
+var userFullName = userFirstName + " " + userLastName;
+
+// Insérer le nom complet de l'utilisateur dans la balise <span> avec l'identifiant 'userFullName'
+document.getElementById("userFullName").textContent = userFullName;
+</script>
 
 <div class="container" id="planning">
     <h2>Planning</h2>

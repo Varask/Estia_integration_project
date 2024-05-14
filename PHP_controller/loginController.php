@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include_once('../PHP_model/loginModel.php');
 
 // Vérifier si le formulaire a été soumis
@@ -10,8 +12,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Vérifier s'il y a des résultats
     if ($result) {
+        // Enregistrez l'état de connexion de l'utilisateur dans une variable de session
+        $_SESSION['logged_in'] = true;
+        // Enregistrez l'e-mail de l'utilisateur dans une variable de session
+        $_SESSION['user_email'] = $email;
         // Les informations de connexion sont correctes, rediriger vers la page d'accueil
-        header("Location: ../view/homepageView.html");
+        header("Location: ../PHP_controller/homepageController.php");
         exit;
     } else {
         // Les informations de connexion sont incorrectes, rediriger vers la page de connexion avec un message d'erreur
