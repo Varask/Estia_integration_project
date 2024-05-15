@@ -28,3 +28,16 @@ function getUserInfo($email) {
         return null;
     }
 }
+function addTask($nom, $type, $dateDebut, $dateFin, $couleur, $tempsEstime) {
+    $conn = connectToDatabase();
+
+    // Insérer les données dans la base de données
+    $sql_task = "INSERT INTO tasks (name, id_type, id_state, is_validated, color, date_debut, date_fin, estimated_time, created_at)
+                     VALUES ('$nom', '$type', '1', '0', '$couleur', '$dateDebut', '$dateFin', '$tempsEstime', NOW())";
+
+    if ($conn->query($sql_task) === TRUE) {
+        return "Tâche ajoutée avec succès";
+    } else {
+        return "Erreur lors de l\'ajout de la tâche : " . $conn->error;
+    }
+}

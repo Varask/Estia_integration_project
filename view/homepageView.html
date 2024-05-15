@@ -76,29 +76,29 @@ document.getElementById("userFullName").textContent = userFullName;
 <div id="structure">
 <div class="container" id="form">
     <h2>Add a task</h2>
-    <form action="/chemin/vers/le/script-de-traitement" method="post">
+    <form action="../PHP_controller/homepageController.php" method="post">
         <label for="nom">Nom :</label>
         <input type="text" id="nom" name="nom" required><br><br>
 
         <label for="type">Type :</label>
         <select id="type" name="type" required>
             <option value="">Select a value</option>
-            <option value="Graphism">Graphism</option>
-            <option value="Documentation">Documentation</option>
-            <option value="Requierments">Requirements</option>
-            <option value="Development">Development</option>
+            <option value="1">Graphism</option>
+            <option value="2">Documentation</option>
+            <option value="3">Requirements</option>
+            <option value="4">Development</option>
         </select><br><br>
 
         <label for="pastel1">Couleur :</label> <br>
-    <input type="radio" id="pastel1" name="couleur" value="#fde2e4">
+    <input type="radio" id="pastel1" name="couleur" value="0">
     <label for="pastel1" style="background-color: #fde2e4; padding: 10px; border: 1px solid #000;">Pivoine   </label><br>
-    <input type="radio" id="pastel2" name="couleur" value="#accbe1">
+    <input type="radio" id="pastel2" name="couleur" value="1">
     <label for="pastel2" style="background-color: #accbe1; padding: 10px; border: 1px solid #000;">Myosotis  </label><br>
-    <input type="radio" id="pastel3" name="couleur" value="#9fd8df">
+    <input type="radio" id="pastel3" name="couleur" value="2">
     <label for="pastel3" style="background-color: #9fd8df; padding: 10px; border: 1px solid #000;">Hortensia </label><br>
-    <input type="radio" id="pastel4" name="couleur" value="#97c1a9">
+    <input type="radio" id="pastel4" name="couleur" value="3">
     <label for="pastel4" style="background-color: #97c1a9; padding: 10px; border: 1px solid #000;">Eucalyptus</label><br>
-    <input type="radio" id="pastel5" name="couleur" value="#e4cbf8">
+    <input type="radio" id="pastel5" name="couleur" value="4">
     <label for="pastel5" style="background-color: #e4cbf8; padding: 10px; border: 1px solid #000;">Lotus     </label><br><br>
 
         <label for="dateDebut">Date de début :</label>

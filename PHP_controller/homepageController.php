@@ -19,4 +19,27 @@
         exit;
     }
 
+    // Vérifier si le formulaire a été soumis
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Récupérer les données du formulaire
+        $nom = $_POST['nom'];
+        $type = $_POST['type'];
+        $dateDebut = $_POST['dateDebut'];
+        $dateFin = $_POST['dateFin'];
+        $couleur = $_POST['couleur'];
+        $tempsEstime = $_POST['tempsEstime'];
+
+        // Convertir les dates en timestamps Unix pour la comparaison
+        $timestampDebut = strtotime($dateDebut);
+        $timestampFin = strtotime($dateFin);
+
+        // Vérifier si les dates correspondent
+        if ($timestampDebut < $timestampFin) {
+            $result = addTask($nom, $type, $dateDebut, $dateFin, $couleur, $tempsEstime);
+            echo "<script>alert('$result');</script>";
+        } else {
+            echo "<script>alert('La date de début doit se situer avant la date de fin.');</script>";
+        }
+    }
+
     include_once('../view/homepageView.html');
