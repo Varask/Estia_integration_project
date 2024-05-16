@@ -94,10 +94,13 @@ function getTasks() {
         }
 
     // Préparer la requête SQL pour récupérer les tâches
-    $sql = "SELECT t.id, t.name, ty.name AS type, s.name AS state, t.color, t.date_debut, t.date_fin, t.estimated_time
+    $sql = "SELECT t.id, t.name, ty.name AS type, s.name AS state, t.color, t.date_debut, t.date_fin, t.estimated_time,
+                   e.firstname, e.name AS employee_name
             FROM tasks t
             INNER JOIN types ty ON t.id_type = ty.id
-            INNER JOIN states s ON t.id_state = s.id";
+            INNER JOIN states s ON t.id_state = s.id
+            LEFT JOIN assigned_tasks at ON t.id = at.id_task
+            LEFT JOIN employee e ON at.id_employee = e.id";
 
     // Exécuter la requête SQL
     $result = $conn->query($sql);

@@ -169,6 +169,7 @@ document.getElementById("userFullName").textContent = userFullName;
                         <th>Date de début</th>
                         <th>Date de fin</th>
                         <th>Temps estimé</th>
+                        <th>Assignée à</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -316,11 +317,16 @@ document.getElementById("userFullName").textContent = userFullName;
     function addTaskRow(task) {
         var table = document.getElementById("T1").getElementsByTagName('tbody')[0];
         var newRow = table.insertRow(table.rows.length);
-        var cellNames = ['name', 'type', 'state', 'date_debut', 'date_fin', 'estimated_time'];
-
+        var cellNames = ['name', 'type', 'state', 'date_debut', 'date_fin', 'estimated_time', 'assigned_to'];
+        console.log(cellNames);
         cellNames.forEach(function(cellName) {
             var cell = newRow.insertCell();
-            cell.appendChild(document.createTextNode(task[cellName]));
+            if (cellName === 'assigned_to') {
+                // Combiner firstname et employee_name dans une seule cellule
+                cell.appendChild(document.createTextNode(task.firstname + ' ' + task.employee_name));
+            } else {
+                cell.appendChild(document.createTextNode(task[cellName]));
+            }
         });
     }
 
