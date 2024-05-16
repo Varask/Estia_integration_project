@@ -1,9 +1,34 @@
 console.log("TableManager.js loaded");
 
 //+++++++++++++++++ Définir les options par défaut +++++++++++++++++
-const DEFAULT_TASK_TABLE_OPTION = [
-    "id", "name", "type", "status", "priority", "created_at", "due_date", "assignee"
+const TASK_TABLE_OPTION = [
+    "id",
+    "name",
+    "type",
+    "state",
+    "validated",
+    "assigned_to",
+    "color",
+    "date_debut",
+    "date_fin",
+    "estimated_time",
+    "created_at"
 ]
+const DEFAULT_TASK_TABLE_OPTION = [
+    "id",
+    "name",
+    "type",
+    "state",
+    "validated",
+    "assigned_to",
+    "color",
+    "date_debut",
+    "date_fin",
+    "estimated_time",
+    "created_at"
+]
+
+
 
 const TITLE_ROW = false;
 const DATA_ROW = true;
@@ -21,7 +46,7 @@ class TableManager {
     }
 
     //+++++++++++++++++ Section: Initialisation et peuplement du tableau +++++++++++++++++
-    populateTable() {
+    async populateTable() {
         // Ajouter la ligne de titre
         try {
             this.addTitleRow(this.options);
@@ -29,9 +54,10 @@ class TableManager {
             console.log("Error: TableManager.populateTable() -> " + error);
         }
 
-        // Ajouter une ligne de données initiale
+        // Ajouter les lignes de données
         try {
-            this.updateRow();
+            let tasks = await this.getTasks();
+            tasks.forEach(task => this.addDataRow(task));
         } catch (error) {
             console.log("Error: TableManager.populateTable() -> " + error);
         }
@@ -50,7 +76,7 @@ class TableManager {
         let row = this.table.insertRow(this.rowNumber);
         for (let i = 0; i < this.colNumber; i++) {
             let cell = row.insertCell(i);
-            cell.innerHTML = data[i];
+            cell.innerHTML = data[this.options[i]];
         }
         this.rowNumber++;
     }
@@ -63,20 +89,6 @@ class TableManager {
             row.appendChild(cell);
         }
         this.rowNumber++;
-    }
-
-    updateRow() {
-        try {
-            data = this.getTasks();
-            let rowData = [];
-            this.options.forEach(option => {
-                rowData.push(data[option]);
-            });
-            this.addDataRow(rowData);
-        }
-        catch (error) {
-            console.log("Error: TableManager.updateRow() -> " + error);
-        }
     }
 
     deleteRow(rowIndex) {
@@ -92,48 +104,91 @@ class TableManager {
 
     //+++++++++++++++++ Section: Récupération des tâches via une requête POST +++++++++++++++++
     async getTasks() {
-        // Recuprer les données du post
-        // Mise en forme dans un dict
-        // return dict
+        try {
+            const response = await fetch('getTasks.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const tasks = await response.json();
+            return tasks;
+        } catch (error) {
+            console.error('Error fetching tasks:', error);
+            return [];
+        }
     }
 }
 
 //+++++++++++++++++ Section: Gestion du menu contextuel +++++++++++++++++
-const contextMenu = document.getElementById('contextMenu');
-let currentRowIndex = null;
-let currentColIndex = null;
+window.onload = function() {
+    const contextMenu = document.getElementById('contextMenu');
+    let currentRowIndex = null;
+    let currentColIndex = null;
+    const tableElement = document.getElementById('T1');
 
-document.getElementById('T1').addEventListener('contextmenu', function(event) {
-    event.preventDefault();
-    contextMenu.style.display = 'block';
-    contextMenu.style.left = `${event.pageX}px`;
-    contextMenu.style.top = `${event.pageY}px`;
+    if (tableElement) {
+        tableElement.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+            contextMenu.style.display = 'block';
+            contextMenu.style.left = `${event.pageX}px`;
+            contextMenu.style.top = `${event.pageY}px`;
 
-    const cell = event.target;
-    if (cell.tagName === 'TD' || cell.tagName === 'TH') {
-        currentRowIndex = cell.parentElement.rowIndex;
-        currentColIndex = cell.cellIndex;
+            const cell = event.target;
+            if (cell.tagName === 'TD' || cell.tagName === 'TH') {
+                currentRowIndex = cell.parentElement.rowIndex;
+                currentColIndex = cell.cellIndex;
+            }
+        });
+
+        document.addEventListener('click', function() {
+            try {
+                contextMenu.style.display = 'none';
+            } catch (error) {
+                console.log("Error: document.addEventListener() -> " + error);
+            }
+        });
+
+        document.getElementById('deleteRow').addEventListener('click', function() {
+            try {
+                if (currentRowIndex !== null) {
+                    table.deleteRow(currentRowIndex);
+                    currentRowIndex = null;
+                }
+            }
+            catch (error) {
+                console.log("Error: deleteRow() -> " + error);
+            }
+        });
+
+        document.getElementById('deleteCol').addEventListener('click', function() {
+            try {
+                if (currentColIndex !== null) {
+                    table.deleteCol(currentColIndex);
+                    currentColIndex = null;
+                }
+            }
+            catch (error) {
+                console.log("Error: deleteCol() -> " + error);
+            }
+        });
+
+        contextMenu.addEventListener('click', function(event) {
+            try {
+                event.stopPropagation();
+            } catch (error) {
+                console.log("Error: contextMenu.addEventListener() -> " + error);
+            }
+        });
+    } else {
+        console.error("Element with ID 'T1' not found.");
     }
-});
 
-document.addEventListener('click', function() {
-    contextMenu.style.display = 'none';
-});
-
-document.getElementById('deleteRow').addEventListener('click', function() {
-    if (currentRowIndex !== null) {
-        table.deleteRow(currentRowIndex);
-        currentRowIndex = null;
-    }
-});
-
-document.getElementById('deleteCol').addEventListener('click', function() {
-    if (currentColIndex !== null) {
-        table.deleteCol(currentColIndex);
-        currentColIndex = null;
-    }
-});
-
-contextMenu.addEventListener('click', function(event) {
-    event.stopPropagation();
-});
+    // Initialiser TableManager après que le DOM est complètement chargé
+    let table = new TableManager("T1");
+};
