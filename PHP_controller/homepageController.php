@@ -42,4 +42,7 @@
         }
     }
 
+    // Appelez la fonction pour récupérer les tâches
+    $tasks = getTasks();
+
     include_once('../view/homepageView.html');

@@ -41,3 +41,33 @@ function addTask($nom, $type, $dateDebut, $dateFin, $couleur, $tempsEstime) {
         return "Erreur lors de l\'ajout de la tâche : " . $conn->error;
     }
 }
+function getTasks() {
+    $conn = connectToDatabase();
+
+    // Préparer la requête SQL pour récupérer les tâches
+    $sql = "SELECT t.id, t.name, ty.name AS type, s.name AS state, t.color, t.date_debut, t.date_fin, t.estimated_time
+            FROM tasks t
+            INNER JOIN types ty ON t.id_type = ty.id
+            INNER JOIN states s ON t.id_state = s.id";
+
+    // Exécuter la requête SQL
+    $result = $conn->query($sql);
+
+    // Vérifier s'il y a des résultats
+    if ($result->num_rows > 0) {
+        // Créer un tableau pour stocker les tâches
+        $tasks = array();
+
+        // Parcourir les résultats
+        while ($row = $result->fetch_assoc()) {
+            // Ajouter chaque tâche au tableau
+            $tasks[] = $row;
+        }
+
+        // Retourner le tableau de tâches
+        return $tasks;
+    } else {
+        // Si aucun résultat n'est trouvé, retourner null
+        return null;
+    }
+}
