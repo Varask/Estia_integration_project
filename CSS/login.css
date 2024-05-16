@@ -39,3 +39,50 @@
 .coloneGauche { grid-area: 1 / 1 / 4 / 2; }
 .item1_col_Droite { grid-area: 1 / 2 / 2 / 3; }
 .item2_col_Droite { grid-area: 2 / 2 / 3 / 3; }
+/* Post-IT */
+.post {
+    position: absolute;
+    width: 200px;
+    height: fit-content;
+    background-color: #ffdd80;
+    border: 1px solid #f4d889;
+    border-radius: 0 0 10px 10px;
+    font-size: 0.9em;
+    transition: height 0.8s ease, opacity 0.8s ease;
+}
+
+.post > ul {
+    padding: 0.3em;
+    list-style: none;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+}
+
+.post > div {
+    width: 100%;
+    height: 20px;
+    background-color: #00000017;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.post > div > p {
+    margin: 0.1em;
+    font-size: 0.8em;
+    color: #000000;
+}
+
+.post > div > button {
+    background-color: #ffdd80;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.hidden {
+    max-height: 0;
+    opacity: 0;
+    transition: ease 0.3s;
+}
+
