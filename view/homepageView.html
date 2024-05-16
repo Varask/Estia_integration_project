@@ -313,10 +313,24 @@ document.getElementById("userFullName").textContent = userFullName;
     var tasksJsonString = '<?php echo addslashes($tasks_json); ?>';
     var tasks = JSON.parse(tasksJsonString);
 
+    // Dictionnaire des couleurs en fonction de l'ID
+    var colorMap = {
+        0: '#fde2e4',
+        1: '#accbe1',
+        2: '#9fd8df',
+        3: '#97c1a9',
+        4: '#e4cbf8'
+    };
+
     // Fonction pour créer et ajouter une ligne de tâche au tableau
     function addTaskRow(task) {
         var table = document.getElementById("T1").getElementsByTagName('tbody')[0];
         var newRow = table.insertRow(table.rows.length);
+
+        // Appliquer la couleur de fond en fonction de l'ID de la couleur
+        var color = colorMap[task.color];
+        newRow.style.backgroundColor = color;
+
         var cellNames = ['name', 'type', 'state', 'date_debut', 'date_fin', 'estimated_time', 'assigned_to'];
         console.log(cellNames);
         cellNames.forEach(function(cellName) {
