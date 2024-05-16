@@ -8,6 +8,10 @@ body{
 .header {
     background-color: #3586ff;
     color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px 20px;
     text-align: left;
     font-size: 2em;
@@ -17,6 +21,12 @@ body{
 .header p {
     margin-left: 20px;
 }
+
+.logout {
+  margin-right: 50px;
+  padding: 20px;
+}
+
 
 .menu{
     display: flex;
