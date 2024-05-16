@@ -14,8 +14,12 @@ function verifyConnection($conn) {
 }
 
 function getUserInfo($email) {
-    $conn = null
-    verifyConnection($conn);
+    try {
+            $conn = connectToDatabase();
+        } catch (Exception $e) {
+            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            return null;
+        }
     
     // Préparer la requête SQL pour récupérer le prénom et le nom de l'utilisateur en fonction de son adresse e-mail
     $sql = "SELECT firstname, name FROM employee WHERE mail = '$email'";
@@ -42,8 +46,12 @@ function getUserInfo($email) {
     }
 }
 function addTask($nom, $type, $dateDebut, $dateFin, $couleur, $tempsEstime) {
-    $conn = null
-    verifyConnection($conn);
+    try {
+            $conn = connectToDatabase();
+        } catch (Exception $e) {
+            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            return null;
+        }
 
     // Insérer les données dans la base de données
     $sql_task = "INSERT INTO tasks (name, id_type, id_state, is_validated, color, date_debut, date_fin, estimated_time, created_at)
@@ -56,8 +64,12 @@ function addTask($nom, $type, $dateDebut, $dateFin, $couleur, $tempsEstime) {
     }
 }
 function getTasks() {
-    $conn = null
-    verifyConnection($conn);
+    try {
+            $conn = connectToDatabase();
+        } catch (Exception $e) {
+            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            return null;
+        }
 
     // Préparer la requête SQL pour récupérer les tâches
     $sql = "SELECT t.id, t.name, ty.name AS type, s.name AS state, t.color, t.date_debut, t.date_fin, t.estimated_time
@@ -89,8 +101,12 @@ function getTasks() {
 
 
 function getCoutTotal() {
-    $conn = null
-    verifyConnection($conn);
+    try {
+            $conn = connectToDatabase();
+        } catch (Exception $e) {
+            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            return null;
+        }
     $sql = "SELECT SUM(e.SommeTravailPasse * r.price) AS cout_total
             FROM employee e
             JOIN roles r ON e.id_role = r.id";
@@ -107,8 +123,12 @@ function getCoutTotal() {
 
 
 function getNombreHeuresTotales() {
-    $conn = null
-    verifyConnection($conn);
+    try {
+            $conn = connectToDatabase();
+        } catch (Exception $e) {
+            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            return null;
+        }
     $sql = "SELECT SUM(e.SommeTravailPasse + e.SommeTravailAVenir) AS nombre_heures_totales
             FROM employee e";
     $result = $conn->query($sql);
@@ -124,8 +144,12 @@ function getNombreHeuresTotales() {
 
 
 function getCoutHoraireMoyen() {
-    $conn = null
-    verifyConnection($conn);
+    try {
+            $conn = connectToDatabase();
+        } catch (Exception $e) {
+            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            return null;
+        }
     $sql = "SELECT AVG(r.price) AS cout_horaire
             FROM employee e
             JOIN roles r ON e.id_role = r.id";
@@ -142,8 +166,12 @@ function getCoutHoraireMoyen() {
 
 
 function getListeUtilisateurs() {
-    $conn = null
-    verifyConnection($conn);
+    try {
+            $conn = connectToDatabase();
+        } catch (Exception $e) {
+            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            return null;
+        }
     $sql = "SELECT e.name, e.firstname, (e.SommeTravailPasse + e.SommeTravailAVenir) AS total_heures
             FROM employee e";
     $result = $conn->query($sql);
@@ -162,8 +190,12 @@ function getListeUtilisateurs() {
 
 
 function getNombreTachesPlanifiees() {
-    $conn = null
-    verifyConnection($conn);
+    try {
+            $conn = connectToDatabase();
+        } catch (Exception $e) {
+            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            return null;
+        }
     $sql = "SELECT COUNT(*) AS nombre_taches_planifiees
             FROM tasks
             WHERE id_state = (SELECT id FROM states WHERE name = 'Current')";
@@ -180,8 +212,12 @@ function getNombreTachesPlanifiees() {
 
 
 function getCoutTachesPlanifiees() {
-    $conn = null
-    verifyConnection($conn);
+    try {
+            $conn = connectToDatabase();
+        } catch (Exception $e) {
+            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            return null;
+        }
     $sql = "SELECT SUM(t.estimated_time * r.price) AS cout_taches_planifiees
             FROM tasks t
             JOIN assigned_tasks at ON t.id = at.id_task
@@ -201,8 +237,12 @@ function getCoutTachesPlanifiees() {
 
 
 function getCoutTotalProjet() {
-    $conn = null
-    verifyConnection($conn);
+    try {
+            $conn = connectToDatabase();
+        } catch (Exception $e) {
+            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            return null;
+        }
     $sql = "SELECT 
                 (SELECT SUM(e.SommeTravailPasse * r.price) 
                  FROM employee e
@@ -226,8 +266,12 @@ function getCoutTotalProjet() {
 
 
 function getNombreHeuresPlanifiees() {
-    $conn = null
-    verifyConnection($conn);
+    try {
+            $conn = connectToDatabase();
+        } catch (Exception $e) {
+            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            return null;
+        }
     $sql = "SELECT SUM(t.estimated_time) AS nombre_heures_planifiees
             FROM tasks t
             WHERE t.id_state = (SELECT id FROM states WHERE name = 'Current')";
@@ -244,8 +288,12 @@ function getNombreHeuresPlanifiees() {
 
 
 function getBilanProjet() {
-    $conn = null
-    verifyConnection($conn);
+    try {
+            $conn = connectToDatabase();
+        } catch (Exception $e) {
+            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            return null;
+        }
     $CoutTotal = getCoutTotal($conn);
     $NombreHeuresTotales = getNombreHeuresTotales($conn);
     $CoutHoraireMoyen = getCoutHoraireMoyen($conn);
