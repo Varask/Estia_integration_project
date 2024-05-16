@@ -66,23 +66,17 @@ class TableManager {
     }
 
     updateRow() {
-        let data = {
-            "id": "1",
-            "name": "Task 1",
-            "type": "Bug",
-            "status": "Open",
-            "priority": "High",
-            "created_at": "2021-01-01",
-            "due_date": "2021-01-31",
-            "assignee": "John Doe",
+        try {
+            data = this.getTasks();
+            let rowData = [];
+            this.options.forEach(option => {
+                rowData.push(data[option]);
+            });
+            this.addDataRow(rowData);
         }
-
-        let rowData = [];
-        this.options.forEach(option => {
-            rowData.push(data[option]);
-        });
-
-        this.addDataRow(rowData);
+        catch (error) {
+            console.log("Error: TableManager.updateRow() -> " + error);
+        }
     }
 
     deleteRow(rowIndex) {
@@ -98,25 +92,9 @@ class TableManager {
 
     //+++++++++++++++++ Section: Récupération des tâches via une requête POST +++++++++++++++++
     async getTasks() {
-        try {
-            const response = await fetch('YOUR_API_ENDPOINT_URL', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ /* Add any required request body here */ })
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-
-            const tasks = await response.json();
-            return tasks;
-        } catch (error) {
-            console.error('Error fetching tasks:', error);
-            return [];
-        }
+        // Recuprer les données du post
+        // Mise en forme dans un dict
+        // return dict
     }
 }
 

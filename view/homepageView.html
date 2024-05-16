@@ -120,22 +120,21 @@ document.getElementById("userFullName").textContent = userFullName;
     </form>
 </div>
 
-<section class="container">
+<section class="container" id="TaskViewer">
     <h2> Tasks </h2>
     <div class="TableGrid">
+        <!-- Contextual Menu -->
+        <div id="contextMenu">
+            <ul>
+                <li onclick="NewRow()">Add Row</li>
+                <li onclick="NewCol()">Add Column</li>
+                <li onclick="DelRow()">Delete Row</li>
+                <li onclick="DelCol()">Delete Column</li>
+            </ul>
+        </div>
         <div class="Table">
             <table id="T1">
-                <!-- Contextual Menu -->
-                <div id="contextMenu">
-                    <ul>
-                        <li onclick="NewRow()">Add Row</li>
-                        <li onclick="NewCol()">Add Column</li>
-                        <li onclick="DelRow()">Delete Row</li>
-                        <li onclick="DelCol()">Delete Column</li>
-                    </ul>
-                </div>
-                <!-- Table -->
-
+                
 
             </table>
         </div>
@@ -224,6 +223,9 @@ document.getElementById("userFullName").textContent = userFullName;
   </footer>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  <script src="../JS/testTableManager.js"></script>
+  <script src="../JS/TableManager.js"></script>
+  <script>
+    let table = new TableManager("T1");
+  </script>
 </body>
 </html>
