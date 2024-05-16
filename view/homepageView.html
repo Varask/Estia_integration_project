@@ -83,12 +83,12 @@
         </div>
     </div>
 
-    <div id="structure">
-        <div class="container" id="form">
-            <h2>Add a task</h2>
-            <form action="../PHP_controller/homepageController.php" method="post">
-                <label for="nom">Nom :</label>
-                <input type="text" id="nom" name="nom" required><br><br>
+<div id="structure">
+<div class="container" id="form">
+    <h2>Ajouter une tâche</h2>
+    <form action="../PHP_controller/homepageController.php" method="post">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required><br><br>
 
                 <label for="priority">Priorité :</label>
                 <select id="priority" name="priority" required>
@@ -138,21 +138,21 @@
             </form>
         </div>
 
-        <section class="container" id="TaskViewer">
-            <h2> Tasks </h2>
-            <div class="TableGrid">
-                <!-- Contextual Menu -->
-                <div id="contextMenu">
-                    <ul>
-                        <li onclick="NewRow()">Add Row</li>
-                        <li onclick="NewCol()">Add Column</li>
-                        <li onclick="DelRow()">Delete Row</li>
-                        <li onclick="DelCol()">Delete Column</li>
-                    </ul>
-                </div>
-                <div class="Table">
-                    <table id="T1">
-
+<section class="container" id="TaskViewer">
+    <h2> Tâches </h2>
+    <div class="TableGrid">
+        <!-- Contextual Menu -->
+        <div id="contextMenu">
+            <ul>
+                <li onclick="NewRow()">Add Row</li>
+                <li onclick="NewCol()">Add Column</li>
+                <li onclick="DelRow()">Delete Row</li>
+                <li onclick="DelCol()">Delete Column</li>
+            </ul>
+        </div>
+        <div class="Table">
+            <table id="T1">
+                
 
                     </table>
                 </div>
