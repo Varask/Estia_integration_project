@@ -42,9 +42,10 @@
         }
     }
 
+    $users = getUsers();
     // Appelez la fonction pour récupérer les tâches
     $tasks = getTasks();
-
+    
     // Convertir les tâches en format JSON pour les passer à la vue HTML via JavaScript
     $tasks_json = json_encode($tasks);
 

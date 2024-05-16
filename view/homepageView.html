@@ -104,9 +104,20 @@ document.getElementById("userFullName").textContent = userFullName;
             <option value="4">Developement</option>
         </select><br><br>
 
-        <label for="Assignee">Assigné a:</label>
-        <select id="Assignee" name="type" required>
-            <!--TODO: Récupérer les données des utilisateurs depuis l'attribut data-users -->
+        <label for="assignee">Assigné a:</label>
+        <select id="assignee" name="assignee" required>
+            <option value="">Selectionnez une valeur</option>
+            <script>
+                var users = '<?php echo json_encode($users); ?>';
+                var users = JSON.parse(users);
+                console.log(users);
+                users.forEach(function(user) {
+                    var option = document.createElement("option");
+                    option.value = user.id;
+                    option.text = user.firstname + " " + user.name;
+                    document.getElementById("assignee").appendChild(option);
+                });
+            </script>
         </select><br><br>
 
 

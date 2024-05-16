@@ -315,3 +315,25 @@ function getBilanProjet() {
     );
 
 }
+
+
+function getUsers(){
+    // the goal of this function is to get users name and ids
+    try {
+        $conn = connectToDatabase();
+    } catch (Exception $e) {
+        echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+        return null;
+    }
+
+    $sql = "SELECT id, name, firstname FROM employee";
+
+    $result = $conn->query($sql);
+    $users = array();
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $users[] = $row;
+        }
+    }
+    return $users;
+}

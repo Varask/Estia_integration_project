@@ -24,3 +24,33 @@ function registerUser($name, $firstName, $email, $password) {
         return "Erreur lors de la création du compte : " . $conn->error;
     }
 }
+
+
+function getLastTaskId() {
+    $conn = connectToDatabase();
+
+    $sql = "SELECT MAX(id_employee) AS id FROM employee";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['id'];
+    } else {
+        return "Erreur lors de la récupération de l'ID de l'employé : " . $conn->error;
+    }
+}
+
+
+function addAssignee($lastId, $assignee_id) {
+    $conn = connectToDatabase();
+    try {
+        $conn->begin_transaction();
+        $sql = "INSERT INTO `assigned_tasks` (id_task, id_employee) VALUES ('$lastId', '$assignee_id')";
+        $conn->query($sql);
+        $conn->commit();
+        return "Assignation de tâche réussie";
+    } catch (Exception $e) {
+        $conn->rollback();
+        return "Erreur lors de l'assignation de tâche : " . $e->getMessage();
+    }   
+}
