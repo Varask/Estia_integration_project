@@ -156,29 +156,6 @@ document.getElementById("userFullName").textContent = userFullName;
                 <tbody>
                 </tbody>
             </table>
-        
-            <script>
-                // Récupérer les données JSON des tâches depuis l'attribut data-tasks
-                var tasksJsonString = '<?php echo addslashes($tasks_json); ?>';
-                var tasks = JSON.parse(tasksJsonString);
-
-                // Fonction pour créer et ajouter une ligne de tâche au tableau
-                function addTaskRow(task) {
-                    var table = document.getElementById("T1").getElementsByTagName('tbody')[0];
-                    var newRow = table.insertRow(table.rows.length);
-                    var cellNames = ['name', 'type', 'state', 'date_debut', 'date_fin', 'estimated_time'];
-
-                    cellNames.forEach(function(cellName) {
-                        var cell = newRow.insertCell();
-                        cell.appendChild(document.createTextNode(task[cellName]));
-                    });
-                }
-
-                // Ajouter chaque tâche au tableau
-                tasks.forEach(function(task) {
-                    addTaskRow(task);
-                });
-            </script>
         </div>
         <div class="AddColumn" style="display: none;"> +</div>
         <div class="AddRow" style="display: none;"> + </div>
@@ -256,19 +233,16 @@ document.getElementById("userFullName").textContent = userFullName;
 
 <div class="structureNext">
   <div class="container" id="validate">
-      <h2>Valider la tâche</h2>
+      <h2>Modifier l'état de la tâche</h2>
       <form>
           <div class="form-group">
               <label for="tache-selection">Sélectionner la tâche</label>
               <select id="tache-selection" name="tache-selection">
-                  <option value="1">ID: 1 - Tâche 1</option>
-                  <option value="2">ID: 2 - Tâche 2</option>
-                  <option value="3">ID: 3 - Tâche 3</option>
               </select>
           </div>
           <div class="form-group">
               <label for="etat">État de la tâche</label>
-              <input type="text" id="etat" name="etat" value="Terminée par: Guillaume Fleuve le 32/02/2024" readonly>
+              <input type="text" id="etat" name="etat" value="Validated" readonly>
           </div>
           <div class="form-group">
               <label for="valide">Tâche valide?</label>
@@ -282,7 +256,8 @@ document.getElementById("userFullName").textContent = userFullName;
               <textarea id="commentaire" name="commentaire" required></textarea>
           </div>
           <div class="validate-button">
-              <button type="submit" class="btn">Valider</button>
+              <button type="submit" id="state-button" class="btn"></button>
+              <button type="button" id="state-button2" class="btn" style="display: none;"></button>
           </div>
       </form>
   </div>
@@ -325,5 +300,99 @@ document.getElementById("userFullName").textContent = userFullName;
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="../JS/TableManager.js"></script>
+<script>
+    // Récupérer les données JSON des tâches depuis l'attribut data-tasks
+    var tasksJsonString = '<?php echo addslashes($tasks_json); ?>';
+    var tasks = JSON.parse(tasksJsonString);
+
+    // Fonction pour créer et ajouter une ligne de tâche au tableau
+    function addTaskRow(task) {
+        var table = document.getElementById("T1").getElementsByTagName('tbody')[0];
+        var newRow = table.insertRow(table.rows.length);
+        var cellNames = ['name', 'type', 'state', 'date_debut', 'date_fin', 'estimated_time'];
+
+        cellNames.forEach(function(cellName) {
+            var cell = newRow.insertCell();
+            cell.appendChild(document.createTextNode(task[cellName]));
+        });
+    }
+
+    // Ajouter chaque tâche au tableau
+    tasks.forEach(function(task) {
+        addTaskRow(task);
+    });
+
+    // Remplir le menu déroulant avec les noms des tâches
+    function addTaskOption(task) {
+            var select = document.getElementById("tache-selection");
+            var option = document.createElement("option");
+            option.value = task.id;  // Utiliser l'ID de la tâche comme valeur
+            option.text = task.name; // Utiliser le nom de la tâche comme texte
+            select.add(option);
+    }
+
+    // Ajouter chaque tâche au menu déroulant
+    tasks.forEach(function(task) {
+        addTaskOption(task);
+    });
+
+    // Mettre à jour l'état de la tâche sélectionnée
+    document.getElementById("tache-selection").addEventListener("change", function() {
+        var selectedTaskId = this.value;
+        var selectedTask = tasks.find(task => task.id == selectedTaskId);
+        if (selectedTask) {
+            document.getElementById("etat").value = selectedTask.state;
+
+            // Changer le texte du bouton si l'état est "On hold"
+            var validateBtn = document.getElementById("state-button");
+            var validateBtn2 = document.getElementById("state-button2");
+            if (selectedTask.state === "On hold") {
+                validateBtn.style.display = "inline";
+                validateBtn.textContent = "Rouvrir";
+                validateBtn2.style.display = "none";
+            } else if (selectedTask.state === "Current") {
+                validateBtn.style.display = "inline";
+                validateBtn.textContent = "Mettre en attente";
+                validateBtn2.style.display = "inline";
+                validateBtn2.textContent = "Valider";
+            } else if (selectedTask.state === "Validated") {
+                validateBtn.style.display = "inline";
+                validateBtn.textContent = "Rouvrir";
+                validateBtn2.style.display = "inline";
+                validateBtn2.textContent = "Fermer";
+            } else if (selectedTask.state === "Closed") {
+                validateBtn.style.display = "none";
+                validateBtn2.style.display = "none";
+            }
+        }
+    });
+
+    // Initialiser l'état avec la première tâche
+    if (tasks.length > 0) {
+        var initialTask = tasks[0];
+        document.getElementById("etat").value = tasks[0].state;
+
+        var validateBtn = document.getElementById("state-button");
+        var validateBtn2 = document.getElementById("state-button2");
+        if (initialTask.state === "On hold") {
+            validateBtn.style.display = "inline";
+            validateBtn.textContent = "Rouvrir";
+            validateBtn2.style.display = "none";
+        } else if (initialTask.state === "Current") {
+            validateBtn.style.display = "inline";
+            validateBtn.textContent = "Mettre en attente";
+            validateBtn2.style.display = "inline";
+            validateBtn2.textContent = "Valider";
+        } else if (initialTask.state === "Validated") {
+            validateBtn.style.display = "inline";
+            validateBtn.textContent = "Rouvrir";
+            validateBtn2.style.display = "inline";
+            validateBtn2.textContent = "Fermer";
+        } else if (initialTask.state === "Closed") {
+            validateBtn.style.display = "none";
+            validateBtn2.style.display = "none";
+        }
+    }
+</script>
 </body>
 </html>
