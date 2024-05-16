@@ -14,6 +14,12 @@
   <link rel="stylesheet" href="../CSS/login.css">
 
   <title>Login</title>
+  <script>
+    function showAlert(event) {
+        event.preventDefault(); // Empêche l'envoi normal du formulaire
+        alert("Bientôt disponible !");
+    }
+  </script>
 </head>
 
 <body class="verticalCenter">
@@ -64,7 +70,7 @@
     </div>
 
     <div class="item2_col_Droite">
-      <form id="forget-form">
+      <form id="forget-form" onsubmit="showAlert(event)">
         <h2>Forgot Password?</h2>
         <div class="form-group">
           <label for="email">E-mail <span>*</span></label>
@@ -88,18 +94,23 @@
     <ul>
       <li>Project Manager</li>
           <ul>
-            <li>Project Manager</li>
-            <li>Project Manager</li>
+            <li>Email: pm@example.com</li>
+            <li>Mdp: PM_securePass123</li>
           </ul>
-      <li>Project Manager</li>
+      <li>Project Owner</li>
           <ul>
-            <li>Project Manager</li>
-            <li>Project Manager</li>
+            <li>Email: po@example.com</li>
+            <li>Mdp: PO_securePass123</li>
           </ul>
-      <li>Project Manager</li>
+      <li>Developer</li>
           <ul>
-            <li>Project Manager</li>
-            <li>Project Manager</li>
+            <li>Email: dev@example.com</li>
+            <li>Mdp: Dev_securePass123</li>
+          </ul>
+      <li>Intern</li>
+          <ul>
+            <li>Email: intern@example.com</li>
+            <li>Mdp: Intern_securePass123</li>
           </ul>
     </ul>
 
