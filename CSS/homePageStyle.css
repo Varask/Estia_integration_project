@@ -161,7 +161,6 @@ td {
 input {
   display: inline-block;
   width: auto;
-  white-space: wrap;
   min-height: 40px;
   line-height: 20px;
 }
@@ -169,7 +168,6 @@ input {
 select {
   display: inline-block;
   width: auto;
-  white-space: wrap;
   min-height: 40px;
   line-height: 20px;
 }
