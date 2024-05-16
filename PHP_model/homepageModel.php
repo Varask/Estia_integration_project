@@ -1,8 +1,19 @@
 <?php
 include_once('databaseModel.php');
 
-function getUserInfo($email) {
-    $conn = connectToDatabase();
+function verifyConnection($conn) {
+    if ($conn == null) {
+        try {
+            $conn = connectToDatabase();
+        } catch (Exception $e) {
+            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            return null;
+        }
+    }
+}
+
+function getUserInfo($email, $conn = null) {
+    verifyConnection($conn);
     
     // Préparer la requête SQL pour récupérer le prénom et le nom de l'utilisateur en fonction de son adresse e-mail
     $sql = "SELECT firstname, name FROM employee WHERE mail = '$email'";
@@ -28,8 +39,8 @@ function getUserInfo($email) {
         return null;
     }
 }
-function addTask($nom, $type, $dateDebut, $dateFin, $couleur, $tempsEstime) {
-    $conn = connectToDatabase();
+function addTask($nom, $type, $dateDebut, $dateFin, $couleur, $tempsEstime, $conn = null) {
+    verifyConnection($conn);
 
     // Insérer les données dans la base de données
     $sql_task = "INSERT INTO tasks (name, id_type, id_state, is_validated, color, date_debut, date_fin, estimated_time, created_at)
@@ -41,8 +52,8 @@ function addTask($nom, $type, $dateDebut, $dateFin, $couleur, $tempsEstime) {
         return "Erreur lors de l\'ajout de la tâche : " . $conn->error;
     }
 }
-function getTasks() {
-    $conn = connectToDatabase();
+function getTasks($conn = null) {
+    verifyConnection($conn);
 
     // Préparer la requête SQL pour récupérer les tâches
     $sql = "SELECT t.id, t.name, ty.name AS type, s.name AS state, t.color, t.date_debut, t.date_fin, t.estimated_time
@@ -68,6 +79,153 @@ function getTasks() {
         return $tasks;
     } else {
         // Si aucun résultat n'est trouvé, retourner null
+        return null;
+    }
+}
+
+
+function getCoutTotal($conn = null) {
+    verifyConnection($conn);
+    $sql = "SELECT SUM(e.SommeTravailPasse * r.price) AS cout_total
+            FROM employee e
+            JOIN roles r ON e.id_role = r.id";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['cout_total'];
+    }
+    else {
+        print_r("Erreur lors de la récupération du coût total : " . $conn->error);
+        return null;
+    }
+}
+
+
+function getNombreHeuresTotales($conn = null) {
+    verifyConnection($conn);
+    $sql = "SELECT SUM(e.SommeTravailPasse + e.SommeTravailAVenir) AS nombre_heures_totales
+            FROM employee e";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['nombre_heures_totales'];
+    }
+    else {
+        print_r("Erreur lors de la récupération du Nb Heure Totale : " . $conn->error);
+        return null;
+    }
+}
+
+
+function getCoutHoraireMoyen($conn = null) {
+    verifyConnection($conn);
+    $sql = "SELECT AVG(r.price) AS cout_horaire
+            FROM employee e
+            JOIN roles r ON e.id_role = r.id";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['cout_horaire'];
+    }
+    else {
+        print_r("Erreur lors de la récupération du Horaire Moyen : " . $conn->error);
+        return null;
+    }
+}
+
+
+function getListeUtilisateurs($conn = null) {
+    verifyConnection($conn);
+    $sql = "SELECT e.name, e.firstname, (e.SommeTravailPasse + e.SommeTravailAVenir) AS total_heures
+            FROM employee e";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $users = array();
+        while ($row = $result->fetch_assoc()) {
+            $users[] = $row;
+        }
+        return $users;
+    }
+    else {
+        print_r("Erreur lors de la récupération des Utilisateurs : " . $conn->error);
+        return null;
+    }
+}
+
+
+function getNombreTachesPlanifiees($conn = null) {
+    verifyConnection($conn);
+    $sql = "SELECT COUNT(*) AS nombre_taches_planifiees
+            FROM tasks
+            WHERE id_state = (SELECT id FROM states WHERE name = 'Current')";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['nombre_taches_planifiees'];
+    }
+    else {
+        print_r("Erreur lors de la récupération du Taches Planifiées : " . $conn->error);
+        return null;
+    }
+}
+
+
+function getCoutTachesPlanifiees($conn = null) {
+    verifyConnection($conn);
+    $sql = "SELECT SUM(t.estimated_time * r.price) AS cout_taches_planifiees
+            FROM tasks t
+            JOIN assigned_tasks at ON t.id = at.id_task
+            JOIN employee e ON at.id_employee = e.id
+            JOIN roles r ON e.id_role = r.id
+            WHERE t.id_state = (SELECT id FROM states WHERE name = 'Current')";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['cout_taches_planifiees'];
+    }
+    else {
+        print_r("Erreur lors de la récupération du Couts Taches Planifiées: " . $conn->error);
+        return null;
+    }
+}
+
+
+function getCoutTotalProjet($conn = null) {
+    verifyConnection($conn);
+    $sql = "SELECT 
+                (SELECT SUM(e.SommeTravailPasse * r.price) 
+                 FROM employee e
+                 JOIN roles r ON e.id_role = r.id) + 
+                (SELECT SUM(t.estimated_time * r.price) 
+                 FROM tasks t
+                 JOIN assigned_tasks at ON t.id = at.id_task
+                 JOIN employee e ON at.id_employee = e.id
+                 JOIN roles r ON e.id_role = r.id
+                 WHERE t.id_state = (SELECT id FROM states WHERE name = 'Current')) AS cout_total_projet";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['cout_total_projet'];
+    }
+    else {
+        print_r("Erreur lors de la récupération du coût total Projet : " . $conn->error);
+        return null;
+    }
+}
+
+
+function getNombreHeuresPlanifiees($conn = null) {
+    verifyConnection($conn);
+    $sql = "SELECT SUM(t.estimated_time) AS nombre_heures_planifiees
+            FROM tasks t
+            WHERE t.id_state = (SELECT id FROM states WHERE name = 'Current')";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['nombre_heures_planifiees'];
+    }
+    else {
+        print_r("Erreur lors de la récupération Nombre Heures Planifiees : " . $conn->error);
         return null;
     }
 }
