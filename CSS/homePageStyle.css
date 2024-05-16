@@ -67,6 +67,38 @@ body{
     margin-top: 10px;
 }
 
+.structureNext {
+  display: flex;
+  flex-direction: row;
+}
+
+#validate {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#history {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.task-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.task-details p {
+  margin: 10px;
+}
+
 .container {
     width: auto;
     margin: 10px;
@@ -78,8 +110,6 @@ body{
     background: rgba(255, 255, 255, 0.25);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(6.8px);
-    -webkit-backdrop-filter: blur(6.8px);
     border: 1px solid rgba(255, 255, 255, 1);
 }
 
@@ -110,13 +140,6 @@ td {
   margin: auto;
 }
 
-.validate {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
-
 .validate-button {
   display: flex;
   justify-content: center;
@@ -136,6 +159,14 @@ td {
 }
 
 input {
+  display: inline-block;
+  width: auto;
+  white-space: wrap;
+  min-height: 40px;
+  line-height: 20px;
+}
+
+select {
   display: inline-block;
   width: auto;
   white-space: wrap;
@@ -177,12 +208,6 @@ input[type="radio"] {
     margin-right: 5px; /* Espacer le bouton radio de son étiquette */
 }
 
-
-.financial {
-    background-color: #eee;
-    color: #555;
-}
-
 .toDo {
     background-color: #eee;
     color: #555;
@@ -213,7 +238,7 @@ input[type="radio"] {
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
+/*
 .chart { 
 	display: grid;
 
@@ -289,37 +314,8 @@ li {
  	grid-column: 1/2;  
         background-color: #588BAE;
  }
-/* Task list */
 
-.tasksViewer {
-    display: flex;
-    flex-direction: column;
-}
-
-.tasksViewer table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.tasksViewer th {
-    background-color: #e9ecef;
-    padding: 10px 20px;
-    text-align: left;
-    border-bottom: 1px solid #dee2e6;
-}
-
-.tasksViewer td {
-    padding: 10px 20px;
-    border-bottom: 1px solid #dee2e6;
-}
-
-.tasksViewer tr:hover {
-    background-color: #f8f9fa;
-}
-
-
-
+*/
 
 
 
