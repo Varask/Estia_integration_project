@@ -303,5 +303,15 @@ function getBilanProjet() {
     $CoutTotalProjet = getCoutTotalProjet();
     $NombreHeuresPlanifiees = getNombreHeuresPlanifiees();
 
-    
+    return array(
+        'CoutTotal' => $CoutTotal,
+        'NombreHeuresTotales' => $NombreHeuresTotales,
+        'CoutHoraireMoyen' => $CoutHoraireMoyen,
+        'ListeUtilisateurs' => $ListeUtilisateurs,
+        'NombreTachesPlanifiees' => $NombreTachesPlanifiees,
+        'CoutTachesPlanifiees' => $CoutTachesPlanifiees,
+        'CoutTotalProjet' => $CoutTotalProjet,
+        'NombreHeuresPlanifiees' => $NombreHeuresPlanifiees
+    );
+
 }
