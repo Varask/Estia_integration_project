@@ -24,6 +24,7 @@
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
+    color: white;
     }
 
 
@@ -35,7 +36,7 @@
     }
 
 .TableGrid th {
-    background-color: aquamarine;
+    background-color: blue;
     }
 
 .TableGrid td {
@@ -59,7 +60,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: aquamarine;
+    background-color: blue;
     transition: background-color 0.5s ease;
     max-width: 20px;
     border-radius: 0 10px 10px 0;
@@ -77,7 +78,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: aquamarine;
+    background-color: 3586ff;
     max-height: 20px;
     border-radius: 0 0 10px 10px;
     }
