@@ -110,6 +110,39 @@ td {
   margin: auto;
 }
 
+.validate {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.validate-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group {
+  padding: 30px;
+}
+
+input {
+  display: inline-block;
+  width: auto;
+  white-space: wrap;
+  min-height: 40px;
+  line-height: 20px;
+}
+
 button {
     margin: auto;
     padding: 3%;
