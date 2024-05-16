@@ -24,6 +24,7 @@
         // Récupérer les données du formulaire
         $nom = $_POST['nom'];
         $type = $_POST['type'];
+        $assignee = $_POST['Assignee'];
         $dateDebut = $_POST['dateDebut'];
         $dateFin = $_POST['dateFin'];
         $couleur = $_POST['couleur'];
@@ -35,11 +36,19 @@
 
         // Vérifier si les dates correspondent
         if ($timestampDebut < $timestampFin) {
-            $result = addTask($nom, $type, $dateDebut, $dateFin, $couleur, $tempsEstime);
+            $result = addTask($nom, $type, $assignee, $dateDebut, $dateFin, $couleur, $tempsEstime);
             echo "<script>alert('$result');</script>";
         } else {
             echo "<script>alert('La date de début doit se situer avant la date de fin.');</script>";
         }
     }
+
+    // Appelez la fonction pour récupérer les tâches
+    $tasks = getTasks();
+    $assignees = getAssignees();
+
+    // Convertir les tâches en format JSON pour les passer à la vue HTML via JavaScript
+    $tasks_json = json_encode($tasks);
+    $assignees_json = json_encode($assignees);
 
     include_once('../view/homepageView.html');
