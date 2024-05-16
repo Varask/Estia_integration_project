@@ -44,6 +44,12 @@ body{
     overflow: hidden; /* Pour empêcher le défilement */
 }
 
+.chart {
+  display: none;
+  visibility: hidden;
+  height: 0px;
+}
+
 #planning {
     margin-top: 50px;
 }
@@ -77,6 +83,10 @@ body{
     border: 1px solid rgba(255, 255, 255, 1);
 }
 
+.container h2 {
+  margin-bottom: 20px;
+}
+
 .financialTable {
   width: 100%;
   display: flex;
@@ -98,6 +108,39 @@ td {
 
 .budget h2 {
   margin: auto;
+}
+
+.validate {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.validate-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group {
+  padding: 30px;
+}
+
+input {
+  display: inline-block;
+  width: auto;
+  white-space: wrap;
+  min-height: 40px;
+  line-height: 20px;
 }
 
 button {
