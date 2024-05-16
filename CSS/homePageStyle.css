@@ -67,6 +67,38 @@ body{
     margin-top: 10px;
 }
 
+.structureNext {
+  display: flex;
+  flex-direction: row;
+}
+
+#validate {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#history {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.task-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.task-details p {
+  margin: 10px;
+}
+
 .container {
     width: auto;
     margin: 10px;
@@ -108,13 +140,6 @@ td {
   margin: auto;
 }
 
-.validate {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
-
 .validate-button {
   display: flex;
   justify-content: center;
@@ -134,6 +159,14 @@ td {
 }
 
 input {
+  display: inline-block;
+  width: auto;
+  white-space: wrap;
+  min-height: 40px;
+  line-height: 20px;
+}
+
+select {
   display: inline-block;
   width: auto;
   white-space: wrap;
@@ -173,12 +206,6 @@ input[type="radio"] + label {
 /* Styliser le bouton radio lui-même pour qu'il apparaisse mieux aligné */
 input[type="radio"] {
     margin-right: 5px; /* Espacer le bouton radio de son étiquette */
-}
-
-
-.financial {
-    background-color: #eee;
-    color: #555;
 }
 
 .toDo {

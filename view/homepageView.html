@@ -1,87 +1,83 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../CSS/homePageStyle.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/dataTable.css">
-    <title>Dashboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="../CSS/homePageStyle.css">
+<link rel="stylesheet" type="text/css" href="../CSS/dataTable.css">
+<title>Dashboard</title>
 </head>
-
 <body>
-    <script>
-        // Vérifier si la session est active
-        if (sessionStorage.getItem('logged_in')) {
-            // Rediriger l'utilisateur vers la page de connexion
-            window.location.href = "../view/loginView.html";
-        }
-    </script>
+<script>
+    // Vérifier si la session est active
+    if (sessionStorage.getItem('logged_in')) {
+        // Rediriger l'utilisateur vers la page de connexion
+        window.location.href = "../view/loginView.html";
+    }
+</script>
 
-    <div class="header">
-        <div class="title">
-            <h1>Dashboard</h1>
-            <p>Welcome, <span id="userFullName"></span></p>
-        </div>
-        <div class="logout">
-            <button type="submit" onclick="window.location.href='../PHP_controller/logoutController.php';">Log
-                Out</button>
-        </div>
+<div class="header">
+    <div class="title">
+    <h1>Dashboard</h1>
+    <p>Welcome, <span id="userFullName"></span></p>
     </div>
+    <div class="logout">
+    <button type="submit" onclick="window.location.href='../PHP_controller/logoutController.php';">Log Out</button>    
+    </div>
+</div>
 
-    <script>
-        var userFirstName = "<?php echo $userFirstName; ?>";
-        var userLastName = "<?php echo $userLastName; ?>";
+<script>
+var userFirstName = "<?php echo $userFirstName; ?>";
+var userLastName = "<?php echo $userLastName; ?>";
 
-        // Concaténer les variables JavaScript pour former le nom complet de l'utilisateur
-        var userFullName = userFirstName + " " + userLastName;
+// Concaténer les variables JavaScript pour former le nom complet de l'utilisateur
+var userFullName = userFirstName + " " + userLastName;
 
-        // Insérer le nom complet de l'utilisateur dans la balise <span> avec l'identifiant 'userFullName'
-        document.getElementById("userFullName").textContent = userFullName;
-    </script>
+// Insérer le nom complet de l'utilisateur dans la balise <span> avec l'identifiant 'userFullName'
+document.getElementById("userFullName").textContent = userFullName;
+</script>
 
-    <div class="container" id="planning">
-        <h2>Planning</h2>
-        <iframe class="calendar"
-            src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Europe%2FParis&bgcolor=%23ffffff&src=ZnIuZnJlbmNoI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23009688"></iframe>
-        <div class="chart">
-            <div class="chart-row chart-period">
-                <div class="chart-row-item">
+<div class="container" id="planning">
+    <h2>Planning</h2>
+    <iframe class="calendar" src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Europe%2FParis&bgcolor=%23ffffff&src=ZnIuZnJlbmNoI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23009688"></iframe>
+    <div class="chart">
+        <div class="chart-row chart-period">
+            <div class="chart-row-item">
                 </div><span>January</span><span>February</span><span>March</span>
                 <span>April</span><span>May</span><span>June</span><span>July</span>
                 <span>August</span><span>September</span><span>October</span>
                 <span>November</span><span>December</span>
             </div>
-            <div class="chart-row chart-lines">
+            <div class="chart-row chart-lines"> 
                 <span></span><span></span><span></span>
                 <span></span><span></span><span></span>
                 <span></span><span></span><span></span>
-                <span></span><span></span> <span></span>
+                <span></span><span></span>	<span></span>    
             </div>
-            <div class="chart-row">
-                <div class="chart-row-item">1</div>
-                <ul class="chart-row-bars">
+            <div class="chart-row">  
+                <div class="chart-row-item">1</div> 
+                <ul class="chart-row-bars">    
                     <li class="chart-li-one">Planning</li>
                 </ul>
-                <div class="chart-row-item">2</div>
-                <ul class="chart-row-bars">
+                <div class="chart-row-item">2</div> 
+                <ul class="chart-row-bars">    
                     <li class="chart-li-one">Exercute</li>
                 </ul>
-                <div class="chart-row-item">3</div>
-                <ul class="chart-row-bars">
+                <div class="chart-row-item">3</div> 
+                <ul class="chart-row-bars">    
                     <li class="chart-li-one">Exercute</li>
                 </ul>
-                <div class="chart-row-item">4</div>
-                <ul class="chart-row-bars">
+                <div class="chart-row-item">4</div> 
+                <ul class="chart-row-bars">    
                     <li class="chart-li-one">Exercute</li>
                 </ul>
-                <div class="chart-row-item">5</div>
-                <ul class="chart-row-bars">
+                <div class="chart-row-item">5</div> 
+                <ul class="chart-row-bars">    
                     <li class="chart-li-one">Exercute</li>
-                </ul>
+                </ul>    
             </div>
-        </div>
     </div>
+</div>
 
 <div id="structure">
 <div class="container" id="form">
@@ -90,53 +86,48 @@
         <label for="nom">Nom :</label>
         <input type="text" id="nom" name="nom" required><br><br>
 
-                <label for="priority">Priorité :</label>
-                <select id="priority" name="priority" required>
-                    <option value="">Selectionnez une priorité</option>
-                    <option value="1">Basse</option>
-                    <option value="2">Moyenne</option>
-                    <option value="3">Haute</option>
-                    <option value="4">Digne d'un partiel de dev web</option>
-                </select><br><br>
+        <label for="priority">Priorité :</label>
+        <select id="priority" name="priority" required>
+            <option value="">Selectionnez une priorité</option>
+            <option value="1">Basse</option>
+            <option value="2">Moyenne</option>
+            <option value="3">Haute</option>
+            <option value="4">Digne d'un partiel de dev web</option>
+        </select><br><br>
 
-                <label for="type">Type :</label>
-                <select id="type" name="type" required>
-                    <option value="">Selectionnez une valeur</option>
-                    <option value="1">Graphisme</option>
-                    <option value="2">Documentation</option>
-                    <option value="3">Requirements</option>
-                    <option value="4">Developement</option>
-                </select><br><br>
+        <label for="type">Type :</label>
+        <select id="type" name="type" required>
+            <option value="">Selectionnez une valeur</option>
+            <option value="1">Graphisme</option>
+            <option value="2">Documentation</option>
+            <option value="3">Requirements</option>
+            <option value="4">Developement</option>
+        </select><br><br>
 
-                <label for="pastel1">Couleur :</label> <br>
-                <input type="radio" id="pastel1" name="couleur" value="0">
-                <label for="pastel1" style="background-color: #fde2e4; padding: 10px; border: 1px solid #000;">Pivoine
-                </label><br>
-                <input type="radio" id="pastel2" name="couleur" value="1">
-                <label for="pastel2" style="background-color: #accbe1; padding: 10px; border: 1px solid #000;">Myosotis
-                </label><br>
-                <input type="radio" id="pastel3" name="couleur" value="2">
-                <label for="pastel3" style="background-color: #9fd8df; padding: 10px; border: 1px solid #000;">Hortensia
-                </label><br>
-                <input type="radio" id="pastel4" name="couleur" value="3">
-                <label for="pastel4"
-                    style="background-color: #97c1a9; padding: 10px; border: 1px solid #000;">Eucalyptus</label><br>
-                <input type="radio" id="pastel5" name="couleur" value="4">
-                <label for="pastel5" style="background-color: #e4cbf8; padding: 10px; border: 1px solid #000;">Lotus
-                </label><br><br>
+        <label for="pastel1">Couleur :</label> <br>
+    <input type="radio" id="pastel1" name="couleur" value="0">
+    <label for="pastel1" style="background-color: #fde2e4; padding: 10px; border: 1px solid #000;">Pivoine   </label><br>
+    <input type="radio" id="pastel2" name="couleur" value="1">
+    <label for="pastel2" style="background-color: #accbe1; padding: 10px; border: 1px solid #000;">Myosotis  </label><br>
+    <input type="radio" id="pastel3" name="couleur" value="2">
+    <label for="pastel3" style="background-color: #9fd8df; padding: 10px; border: 1px solid #000;">Hortensia </label><br>
+    <input type="radio" id="pastel4" name="couleur" value="3">
+    <label for="pastel4" style="background-color: #97c1a9; padding: 10px; border: 1px solid #000;">Eucalyptus</label><br>
+    <input type="radio" id="pastel5" name="couleur" value="4">
+    <label for="pastel5" style="background-color: #e4cbf8; padding: 10px; border: 1px solid #000;">Lotus     </label><br><br>
 
-                <label for="dateDebut">Date de début :</label>
-                <input type="date" id="dateDebut" name="dateDebut" required><br><br>
+        <label for="dateDebut">Date de début :</label>
+        <input type="date" id="dateDebut" name="dateDebut" required><br><br>
 
-                <label for="dateFin">Date de fin :</label>
-                <input type="date" id="dateFin" name="dateFin" required><br><br>
+        <label for="dateFin">Date de fin :</label>
+        <input type="date" id="dateFin" name="dateFin" required><br><br>
 
-                <label for="tempsEstime">Temps estimé (en heures) :</label>
-                <input type="number" id="tempsEstime" name="tempsEstime" min="0" step="0.5" required><br><br>
+        <label for="tempsEstime">Temps estimé (en heures) :</label>
+        <input type="number" id="tempsEstime" name="tempsEstime" min="0" step="0.5" required><br><br>
 
-                <button type="submit">Ajouter un tache </button>
-            </form>
-        </div>
+        <button type="submit">Ajouter un tache </button>
+    </form>
+</div>
 
 <section class="container" id="TaskViewer">
     <h2> Tâches </h2>
@@ -154,131 +145,157 @@
             <table id="T1">
                 
 
-                    </table>
-                </div>
-                <div class="AddColumn"> +</div>
-                <div class="AddRow"> + </div>
-            </div>
-        </section>
-    </div>
-
-    <div class="container" id="financial">
-        <h2>Prévisionel budgétaire</h2>
-        <div class="financialTable">
-            <div class="budget">
-                <h2>Actuel</h2>
-                <table>
-                    <tr>
-                        <th>Coût total</th>
-                        <td>8000€</td>
-                    </tr>
-                    <tr>
-                        <th>Nombre heures totales</th>
-                        <td>8</td>
-                    </tr>
-                    <tr>
-                        <th>Coût horaire</th>
-                        <td>1000€/h</td>
-                    </tr>
-                    <tr>
-                        <th>Guillaume Fleuve</th>
-                        <td>1h</td>
-                    </tr>
-                    <tr>
-                        <th>Yvol Tousles</th>
-                        <td>499h</td>
-                    </tr>
-                    <tr>
-                        <th>Vivy Leclerc</th>
-                        <td>500h</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="budget">
-                <h2>Futur</h2>
-                <table>
-                    <tr>
-                        <th>Tâches planifiées</th>
-                        <td>12</td>
-                    </tr>
-                    <tr>
-                        <th>Coût tâches planifiées</th>
-                        <td>1200€</td>
-                    </tr>
-                    <tr>
-                        <th>Coût total projet</th>
-                        <td>9200€</td>
-                    </tr>
-                    <tr>
-                        <th>Nombre d'heures planifiées</th>
-                        <td>1.2h</td>
-                    </tr>
-                    <tr>
-                        <th>Guillaume Fleuve</th>
-                        <td>0h</td>
-                    </tr>
-                    <tr>
-                        <th>Yvol Tousles</th>
-                        <td>0.2h</td>
-                    </tr>
-                    <tr>
-                        <th>Vivy Leclerc</th>
-                        <td>1h</td>
-                    </tr>
-                </table>
-            </div>
+            </table>
         </div>
+        <div class="AddColumn"> +</div>
+        <div class="AddRow"> + </div>
     </div>
+</section>
+</div>
 
-    <div class="container" id="validate">
-        <h2>Valider la tâche</h2>
-        <form>
-            <div class="form-group">
-                <label for="tache-selection">Sélectionner la tâche</label>
-                <select id="tache-selection" name="tache-selection">
-                    <option value="1">ID: 1 - Tâche 1</option>
-                    <option value="2">ID: 2 - Tâche 2</option>
-                    <option value="3">ID: 3 - Tâche 3</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="etat">État de la tâche</label>
-                <input type="text" id="etat" name="etat" value="Terminée par: Guillaume Fleuve le 32/02/2024" readonly>
-            </div>
-            <div class="form-group">
-                <label for="valide">Tâche valide?</label>
-                <select id="valide" name="valide">
-                    <option value="oui">Oui</option>
-                    <option value="non">Non</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="commentaire">Commentaire <span style="color: red;">*</span></label>
-                <textarea id="commentaire" name="commentaire" required></textarea>
-            </div>
-            <div class="validate-button">
-                <button type="submit" class="btn">Valider</button>
-            </div>
-        </form>
+<div class="container" id="financial">
+    <h2>Prévisionel budgétaire</h2>
+    <div class="financialTable">
+    <div class="budget">
+        <h2>Actuel</h2>
+        <table>
+          <tr>
+            <th>Coût total</th>
+            <td>8000€</td>
+          </tr>
+          <tr>
+            <th>Nombre heures totales</th>
+            <td>8</td>
+          </tr>
+          <tr>
+            <th>Coût horaire</th>
+            <td>1000€/h</td>
+          </tr>
+          <tr>
+            <th>Guillaume Fleuve</th>
+            <td>1h</td>
+          </tr>
+          <tr>
+            <th>Yvol Tousles</th>
+            <td>499h</td>
+          </tr>
+          <tr>
+            <th>Vivy Leclerc</th>
+            <td>500h</td>
+          </tr>
+        </table>
+      </div>
+      <div class="budget">
+        <h2>Futur</h2>
+        <table>
+          <tr>
+            <th>Tâches planifiées</th>
+            <td>12</td>
+          </tr>
+          <tr>
+            <th>Coût tâches planifiées</th>
+            <td>1200€</td>
+          </tr>
+          <tr>
+            <th>Coût total projet</th>
+            <td>9200€</td>
+          </tr>
+          <tr>
+            <th>Nombre d'heures planifiées</th>
+            <td>1.2h</td>
+          </tr>
+          <tr>
+            <th>Guillaume Fleuve</th>
+            <td>0h</td>
+          </tr>
+          <tr>
+            <th>Yvol Tousles</th>
+            <td>0.2h</td>
+          </tr>
+          <tr>
+            <th>Vivy Leclerc</th>
+            <td>1h</td>
+          </tr>
+        </table>
+      </div>
     </div>
+</div>
 
+<div class="structureNext">
+  <div class="container" id="validate">
+      <h2>Valider la tâche</h2>
+      <form>
+          <div class="form-group">
+              <label for="tache-selection">Sélectionner la tâche</label>
+              <select id="tache-selection" name="tache-selection">
+                  <option value="1">ID: 1 - Tâche 1</option>
+                  <option value="2">ID: 2 - Tâche 2</option>
+                  <option value="3">ID: 3 - Tâche 3</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="etat">État de la tâche</label>
+              <input type="text" id="etat" name="etat" value="Terminée par: Guillaume Fleuve le 32/02/2024" readonly>
+          </div>
+          <div class="form-group">
+              <label for="valide">Tâche valide?</label>
+              <select id="valide" name="valide">
+                  <option value="oui">Oui</option>
+                  <option value="non">Non</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="commentaire">Commentaire <span style="color: red;">*</span></label>
+              <textarea id="commentaire" name="commentaire" required></textarea>
+          </div>
+          <div class="validate-button">
+              <button type="submit" class="btn">Valider</button>
+          </div>
+      </form>
+  </div>
+
+  <div class="container" id="history">
+      <h2>Historique des tâches</h2>
+      <div class="form-group">
+          <label for="tache-selection">Tâches</label>
+          <select id="tache-selection-2" onchange="updateTaskDetails()">
+              <option value="1" data-name="Tâche 1" data-id_type="2" data-id_state="3" data-is_validated="1" data-color="4" data-date_debut="2024-01-01" data-date_fin="2024-01-10" data-estimated_time="5" data-created_at="2024-05-16">ID: 1 - Tâche 1</option>
+              <option value="2" data-name="Tâche 2" data-id_type="3" data-id_state="2" data-is_validated="0" data-color="5" data-date_debut="2024-02-01" data-date_fin="2024-02-10" data-estimated_time="10" data-created_at="2024-05-16">ID: 2 - Tâche 2</option>
+              <option value="3" data-name="Tâche 3" data-id_type="1" data-id_state="1" data-is_validated="1" data-color="2" data-date_debut="2024-03-01" data-date_fin="2024-03-10" data-estimated_time="15" data-created_at="2024-05-16">ID: 3 - Tâche 3</option>
+          </select>
+      </div>
+      <div class="task-details">
+          <h3>Détails de la Tâche</h3>
+          <p><strong>ID :</strong> <span id="task-id"></span></p>
+          <p><strong>Nom :</strong> <span id="task-name"></span></p>
+          <p><strong>Type ID :</strong> <span id="task-id_type"></span></p>
+          <p><strong>État ID :</strong> <span id="task-id_state"></span></p>
+          <p><strong>Validée :</strong> <span id="task-is_validated"></span></p>
+          <p><strong>Couleur :</strong> <span id="task-color"></span></p>
+          <p><strong>Date de début :</strong> <span id="task-date_debut"></span></p>
+          <p><strong>Date de fin :</strong> <span id="task-date_fin"></span></p>
+          <p><strong>Temps estimé :</strong> <span id="task-estimated_time"></span></p>
+          <p><strong>Créé le :</strong> <span id="task-created_at"></span></p>
+      </div>
+  </div>
+</div>
+
+<footer class="footer">
+    <div class="waves">
+    <div class="wave" id="wave1"></div>
+    <div class="wave" id="wave2"></div>
+    <div class="wave" id="wave3"></div>
+    <div class="wave" id="wave4"></div>
     </div>
-
-    <footer class="footer">
-        <div class="waves">
-            <div class="wave" id="wave1"></div>
-            <div class="wave" id="wave2"></div>
-            <div class="wave" id="wave3"></div>
-            <div class="wave" id="wave4"></div>
-        </div>
-        <p>&copy;2024 Barut Benhamou Brana | All Rights Reserved for ESTIA - Project TAI Limited&copy;</p>
-    </footer>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="../JS/TableManager.js"></script>
-    <script>
-            let table = new TableManager("T1");
-    </script>
+    <p>&copy;2024 Barut Benhamou Brana | All Rights Reserved for ESTIA - Project TAI Limited&copy;</p>
+</footer>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="../JS/TableManager.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let table = new TableManager("T1");
+    });
+</script>
 </body>
-
 </html>
