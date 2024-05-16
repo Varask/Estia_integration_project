@@ -143,12 +143,45 @@ document.getElementById("userFullName").textContent = userFullName;
         </div>
         <div class="Table">
             <table id="T1">
-                
-
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Type</th>
+                        <th>État</th>
+                        <th>Date de début</th>
+                        <th>Date de fin</th>
+                        <th>Temps estimé</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
             </table>
+        
+            <script>
+                // Récupérer les données JSON des tâches depuis l'attribut data-tasks
+                var tasksJsonString = '<?php echo addslashes($tasks_json); ?>';
+                var tasks = JSON.parse(tasksJsonString);
+
+                // Fonction pour créer et ajouter une ligne de tâche au tableau
+                function addTaskRow(task) {
+                    var table = document.getElementById("T1").getElementsByTagName('tbody')[0];
+                    var newRow = table.insertRow(table.rows.length);
+                    var cellNames = ['name', 'type', 'state', 'date_debut', 'date_fin', 'estimated_time'];
+
+                    cellNames.forEach(function(cellName) {
+                        var cell = newRow.insertCell();
+                        cell.appendChild(document.createTextNode(task[cellName]));
+                    });
+                }
+
+                // Ajouter chaque tâche au tableau
+                tasks.forEach(function(task) {
+                    addTaskRow(task);
+                });
+            </script>
         </div>
-        <div class="AddColumn"> +</div>
-        <div class="AddRow"> + </div>
+        <div class="AddColumn" style="display: none;"> +</div>
+        <div class="AddRow" style="display: none;"> + </div>
     </div>
 </section>
 </div>
@@ -267,10 +300,5 @@ document.getElementById("userFullName").textContent = userFullName;
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="../JS/TableManager.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        let table = new TableManager("T1");
-    });
-</script>
 </body>
 </html>
