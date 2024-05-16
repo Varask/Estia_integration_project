@@ -8,6 +8,10 @@ body{
 .header {
     background-color: #3586ff;
     color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px 20px;
     text-align: left;
     font-size: 2em;
@@ -17,6 +21,16 @@ body{
 .header p {
     margin-left: 20px;
 }
+
+.logout {
+  margin-right: 50px;
+}
+
+.logout button {
+  padding: 20px;
+  font-size: x-large;
+}
+
 
 .menu{
     display: flex;
@@ -44,7 +58,6 @@ body{
     flex-direction: row;
     align-items: normal;
     justify-content: space-evenly;
-    margin-bottom: 50px;
     margin-top: 10px;
 }
 
@@ -62,6 +75,29 @@ body{
     backdrop-filter: blur(6.8px);
     -webkit-backdrop-filter: blur(6.8px);
     border: 1px solid rgba(255, 255, 255, 1);
+}
+
+.financialTable {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+td {
+  color: #3586ff;
+  padding: 20px;
+  padding-left: 50px;
+}
+
+.budget {
+  margin: 50px;
+  align-items: center;
+}
+
+.budget h2 {
+  margin: auto;
 }
 
 button {
@@ -263,7 +299,7 @@ li {
   }
     
   .footer {
-    margin-top: 150px;
+    margin-top: 250px;
     position: relative;
     width: 100%;
     background: #3586ff;

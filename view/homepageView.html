@@ -17,8 +17,13 @@
 </script>
 
 <div class="header">
+    <div class="title">
     <h1>Dashboard</h1>
     <p>Welcome, <span id="userFullName"></span></p>
+    </div>
+    <div class="logout">
+    <button type="submit" onclick="window.location.href='../PHP_controller/logoutController.php';">Log Out</button>    
+    </div>
 </div>
 
 <script>
@@ -138,6 +143,74 @@ document.getElementById("userFullName").textContent = userFullName;
         <div class="AddRow"> + </div>
     </div>
 </section>
+</div>
+
+<div class="container" id="financial">
+    <h2>Prévisionel budgétaire</h2>
+    <div class="financialTable">
+    <div class="budget">
+        <h2>Actuel</h2>
+        <table>
+          <tr>
+            <th>Coût total</th>
+            <td>8000€</td>
+          </tr>
+          <tr>
+            <th>Nombre heures totales</th>
+            <td>8</td>
+          </tr>
+          <tr>
+            <th>Coût horaire</th>
+            <td>1000€/h</td>
+          </tr>
+          <tr>
+            <th>Guillaume Fleuve</th>
+            <td>1h</td>
+          </tr>
+          <tr>
+            <th>Yvol Tousles</th>
+            <td>499h</td>
+          </tr>
+          <tr>
+            <th>Vivy Leclerc</th>
+            <td>500h</td>
+          </tr>
+        </table>
+      </div>
+      <div class="budget">
+        <h2>Futur</h2>
+        <table>
+          <tr>
+            <th>Tâches planifiées</th>
+            <td>12</td>
+          </tr>
+          <tr>
+            <th>Coût tâches planifiées</th>
+            <td>1200€</td>
+          </tr>
+          <tr>
+            <th>Coût total projet</th>
+            <td>9200€</td>
+          </tr>
+          <tr>
+            <th>Nombre d'heures planifiées</th>
+            <td>1.2h</td>
+          </tr>
+          <tr>
+            <th>Guillaume Fleuve</th>
+            <td>0h</td>
+          </tr>
+          <tr>
+            <th>Yvol Tousles</th>
+            <td>0.2h</td>
+          </tr>
+          <tr>
+            <th>Vivy Leclerc</th>
+            <td>1h</td>
+          </tr>
+        </table>
+      </div>
+    </div>
 </div>
 
 <footer class="footer">
