@@ -6,7 +6,7 @@ function connectToDatabase() {
         $servername = "localhost"; // Adresse du serveur MySQL
         $username = "root"; // Identifiant MySQL
         $password_db = ""; // Mot de passe MySQL
-        $dbname = "dbb_integration"; // Nom de la base de données
+        $dbname = "tai_app_2023_2024_starfish"; // Nom de la base de données
     } else {
         // Connexion sur le serveur
         $servername = "localhost"; // Adresse du serveur MySQL

@@ -104,17 +104,36 @@ document.getElementById("userFullName").textContent = userFullName;
             <option value="4">Developement</option>
         </select><br><br>
 
+        <label for="Assignee">Assigné a:</label>
+        <select id="Assignee" name="type" required>
+            <!--TODO: Récupérer les données des utilisateurs depuis l'attribut data-users -->
+        </select><br><br>
+
+
         <label for="pastel1">Couleur :</label> <br>
-    <input type="radio" id="pastel1" name="couleur" value="0">
-    <label for="pastel1" style="background-color: #fde2e4; padding: 10px; border: 1px solid #000;">Pivoine   </label><br>
-    <input type="radio" id="pastel2" name="couleur" value="1">
-    <label for="pastel2" style="background-color: #accbe1; padding: 10px; border: 1px solid #000;">Myosotis  </label><br>
-    <input type="radio" id="pastel3" name="couleur" value="2">
-    <label for="pastel3" style="background-color: #9fd8df; padding: 10px; border: 1px solid #000;">Hortensia </label><br>
-    <input type="radio" id="pastel4" name="couleur" value="3">
-    <label for="pastel4" style="background-color: #97c1a9; padding: 10px; border: 1px solid #000;">Eucalyptus</label><br>
-    <input type="radio" id="pastel5" name="couleur" value="4">
-    <label for="pastel5" style="background-color: #e4cbf8; padding: 10px; border: 1px solid #000;">Lotus     </label><br><br>
+        <div class="colorSelector">
+            <div>
+                <input type="radio" id="pastel1" name="couleur" value="0">
+                <label for="pastel1" style="background-color: #fde2e4; padding: 10px; border: 1px solid #000;">Pivoine   </label><br>
+            </div>
+            <div>
+                <input type="radio" id="pastel2" name="couleur" value="1">
+                <label for="pastel2" style="background-color: #accbe1; padding: 10px; border: 1px solid #000;">Myosotis  </label><br>
+            </div>
+            <div>
+                <input type="radio" id="pastel3" name="couleur" value="2">
+                <label for="pastel3" style="background-color: #9fd8df; padding: 10px; border: 1px solid #000;">Hortensia </label><br>
+            </div>
+            <div>
+                <input type="radio" id="pastel4" name="couleur" value="3">
+                <label for="pastel4" style="background-color: #97c1a9; padding: 10px; border: 1px solid #000;">Eucalyptus</label><br>
+            </div>
+            <div>
+                <input type="radio" id="pastel5" name="couleur" value="4">
+                <label for="pastel5" style="background-color: #e4cbf8; padding: 10px; border: 1px solid #000;">Lotus     </label><br><br>
+            </div>
+        </div>
+        
 
         <label for="dateDebut">Date de début :</label>
         <input type="date" id="dateDebut" name="dateDebut" required><br><br>
