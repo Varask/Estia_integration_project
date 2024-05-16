@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="../CSS/homePageStyle.css">
+<link rel="stylesheet" type="text/css" href="../CSS/dataTable.css">
 <title>Dashboard</title>
 </head>
 <body>
@@ -114,29 +115,29 @@ document.getElementById("userFullName").textContent = userFullName;
     </form>
 </div>
 
-<div class="container tasksViewer" id="tasksViewer">
-    <h2>Tasks</h2>
-    <table>
-        <tr>
-            <th>Task</th>
-            <th>Deadline</th>
-            <th>Progress</th>
-            <th>State</th>
-            <th>Assignee</th>
-        </tr>
+<section class="container">
+    <h2> Tasks </h2>
+    <div class="TableGrid">
+        <div class="Table">
+            <table id="T1">
+                <!-- Contextual Menu -->
+                <div id="contextMenu">
+                    <ul>
+                        <li onclick="NewRow()">Add Row</li>
+                        <li onclick="NewCol()">Add Column</li>
+                        <li onclick="DelRow()">Delete Row</li>
+                        <li onclick="DelCol()">Delete Column</li>
+                    </ul>
+                </div>
+                <!-- Table -->
 
-        <tr>
-            <td>Task 1</td>
-            <td>01/01/2021</td>
-            <td>50%</td>
-            <td>Done</td>
-            <td>Lucas Brana</td>
-        </tr>
 
-    </table>
-    <script src="../JS/TaskRecuperator.js"></script>
-       
-</div>
+            </table>
+        </div>
+        <div class="AddColumn"> +</div>
+        <div class="AddRow"> + </div>
+    </div>
+</section>
 </div>
 
 <footer class="footer">
@@ -150,6 +151,6 @@ document.getElementById("userFullName").textContent = userFullName;
   </footer>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
+  <script src="../JS/testTableManager.js"></script>
 </body>
 </html>
