@@ -49,7 +49,7 @@ class TableManager {
     async populateTable() {
         // Ajouter la ligne de titre
         try {
-            this.addTitleRow(this.options);
+            this.addRow(TITLE_ROW,[]);
         } catch (error) {
             console.log("Error: TableManager.populateTable() -> " + error);
         }
@@ -135,60 +135,18 @@ window.onload = function() {
     if (tableElement) {
         tableElement.addEventListener('contextmenu', function(event) {
             event.preventDefault();
+            currentRowIndex = event.target.parentNode.rowIndex;
+            currentColIndex = event.target.cellIndex;
             contextMenu.style.display = 'block';
-            contextMenu.style.left = `${event.pageX}px`;
-            contextMenu.style.top = `${event.pageY}px`;
-
-            const cell = event.target;
-            if (cell.tagName === 'TD' || cell.tagName === 'TH') {
-                currentRowIndex = cell.parentElement.rowIndex;
-                currentColIndex = cell.cellIndex;
-            }
+            contextMenu.style.left = event.pageX + 'px';
+            contextMenu.style.top = event.pageY + 'px';
         });
 
         document.addEventListener('click', function() {
-            try {
-                contextMenu.style.display = 'none';
-            } catch (error) {
-                console.log("Error: document.addEventListener() -> " + error);
-            }
-        });
-
-        document.getElementById('deleteRow').addEventListener('click', function() {
-            try {
-                if (currentRowIndex !== null) {
-                    table.deleteRow(currentRowIndex);
-                    currentRowIndex = null;
-                }
-            }
-            catch (error) {
-                console.log("Error: deleteRow() -> " + error);
-            }
-        });
-
-        document.getElementById('deleteCol').addEventListener('click', function() {
-            try {
-                if (currentColIndex !== null) {
-                    table.deleteCol(currentColIndex);
-                    currentColIndex = null;
-                }
-            }
-            catch (error) {
-                console.log("Error: deleteCol() -> " + error);
-            }
-        });
-
-        contextMenu.addEventListener('click', function(event) {
-            try {
-                event.stopPropagation();
-            } catch (error) {
-                console.log("Error: contextMenu.addEventListener() -> " + error);
-            }
+            contextMenu.style.display = 'none';
         });
     } else {
         console.error("Element with ID 'T1' not found.");
     }
 
-    // Initialiser TableManager après que le DOM est complètement chargé
-    let table = new TableManager("T1");
 };
