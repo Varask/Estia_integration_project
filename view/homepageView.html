@@ -105,8 +105,7 @@ document.getElementById("userFullName").textContent = userFullName;
         </select><br><br>
 
         <label for="Assignee">Assigné a:</label>
-        <select id="Assignee" name="type" required>
-            <!--TODO: Récupérer les données des utilisateurs depuis l'attribut data-users -->
+        <select id="Assignee" name="Assignee" required>
         </select><br><br>
 
 
@@ -328,6 +327,24 @@ document.getElementById("userFullName").textContent = userFullName;
     // Ajouter chaque tâche au tableau
     tasks.forEach(function(task) {
         addTaskRow(task);
+    });
+
+    // Récupérer les données JSON des assignés depuis l'attribut data-tasks
+    var assigneesJsonString = '<?php echo addslashes($assignees_json); ?>';
+    var assignees = JSON.parse(assigneesJsonString);
+
+    // Remplir le menu déroulant avec les noms des salariés
+    function addAssignee(assignee) {
+            var select = document.getElementById("Assignee");
+            var option = document.createElement("option");
+            option.value = assignee.id;  // Utiliser l'ID du salarié comme valeur
+            option.text = assignee.firstname + " " + assignee.name; // Utiliser le nom du salarié comme texte
+            select.add(option);
+    }
+
+    // Ajouter chaque tâche au menu déroulant
+    assignees.forEach(function(assignee) {
+        addAssignee(assignee);
     });
 
     // Remplir le menu déroulant avec les noms des tâches

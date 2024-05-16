@@ -45,22 +45,44 @@ function getUserInfo($email) {
         return null;
     }
 }
-function addTask($nom, $type, $dateDebut, $dateFin, $couleur, $tempsEstime) {
+function addTask($nom, $type, $assignee, $dateDebut, $dateFin, $couleur, $tempsEstime) {
+    $conn = connectToDatabase();
+    
+    // Débuter une transaction
+    $conn->begin_transaction();
+
     try {
-            $conn = connectToDatabase();
-        } catch (Exception $e) {
-            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
-            return null;
-        }
+        // Insérer la nouvelle tâche dans la table `tasks`
+        $sql_task = "INSERT INTO tasks (name, id_type, id_state, is_validated, color, date_debut, date_fin, estimated_time, created_at)
+                        VALUES (?, ?, '2', '0', ?, ?, ?, ?, NOW())";
 
-    // Insérer les données dans la base de données
-    $sql_task = "INSERT INTO tasks (name, id_type, id_state, is_validated, color, date_debut, date_fin, estimated_time, created_at)
-                     VALUES ('$nom', '$type', '2', '0', '$couleur', '$dateDebut', '$dateFin', '$tempsEstime', NOW())";
+        $stmt = $conn->prepare($sql_task);
+        $stmt->bind_param("ssssss", $nom, $type, $couleur, $dateDebut, $dateFin, $tempsEstime);
+        $stmt->execute();
 
-    if ($conn->query($sql_task) === TRUE) {
-        return "Tâche ajoutée avec succès";
-    } else {
-        return "Erreur lors de l\'ajout de la tâche : " . $conn->error;
+        // Récupérer l'ID de la tâche nouvellement créée
+        $task_id = $stmt->insert_id;
+
+        // Insérer dans la table `assigned_tasks`
+        $sql_assigned_tasks = "INSERT INTO assigned_tasks (id_task, id_employee) VALUES (?, ?)";
+
+        $stmt = $conn->prepare($sql_assigned_tasks);
+        $stmt->bind_param("ii", $task_id, $assignee);
+        $stmt->execute();
+
+        // Valider la transaction
+        $conn->commit();
+
+        return "Tâche ajoutée et assignée avec succès";
+    } catch (Exception $e) {
+        // En cas d'erreur, annuler la transaction
+        $conn->rollback();
+
+        return "Erreur lors de l'ajout de la tâche ou de l'assignation : " . $e->getMessage();
+    } finally {
+        // Fermer le statement et la connexion
+        $stmt->close();
+        $conn->close();
     }
 }
 function getTasks() {
@@ -93,6 +115,40 @@ function getTasks() {
 
         // Retourner le tableau de tâches
         return $tasks;
+    } else {
+        // Si aucun résultat n'est trouvé, retourner null
+        return null;
+    }
+}
+
+function getAssignees() {
+    try {
+            $conn = connectToDatabase();
+        } catch (Exception $e) {
+            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            return null;
+        }
+
+    // Préparer la requête SQL pour récupérer les tâches
+    $sql = "SELECT e.id, e.name, e.firstname
+            FROM employee e";
+
+    // Exécuter la requête SQL
+    $result = $conn->query($sql);
+
+    // Vérifier s'il y a des résultats
+    if ($result->num_rows > 0) {
+        // Créer un tableau pour stocker les tâches
+        $assignees = array();
+
+        // Parcourir les résultats
+        while ($row = $result->fetch_assoc()) {
+            // Ajouter chaque tâche au tableau
+            $assignees[] = $row;
+        }
+
+        // Retourner le tableau de tâches
+        return $assignees;
     } else {
         // Si aucun résultat n'est trouvé, retourner null
         return null;
