@@ -294,14 +294,14 @@ function getBilanProjet() {
             echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
             return null;
         }
-    $CoutTotal = getCoutTotal($conn);
-    $NombreHeuresTotales = getNombreHeuresTotales($conn);
-    $CoutHoraireMoyen = getCoutHoraireMoyen($conn);
-    $ListeUtilisateurs = getListeUtilisateurs($conn);
-    $NombreTachesPlanifiees = getNombreTachesPlanifiees($conn);
-    $CoutTachesPlanifiees = getCoutTachesPlanifiees($conn);
-    $CoutTotalProjet = getCoutTotalProjet($conn);
-    $NombreHeuresPlanifiees = getNombreHeuresPlanifiees($conn);
+    $CoutTotal = getCoutTotal();
+    $NombreHeuresTotales = getNombreHeuresTotales();
+    $CoutHoraireMoyen = getCoutHoraireMoyen();
+    $ListeUtilisateurs = getListeUtilisateurs();
+    $NombreTachesPlanifiees = getNombreTachesPlanifiees();
+    $CoutTachesPlanifiees = getCoutTachesPlanifiees();
+    $CoutTotalProjet = getCoutTotalProjet();
+    $NombreHeuresPlanifiees = getNombreHeuresPlanifiees();
 
     
 }
