@@ -1,6 +1,7 @@
 <?php
 include_once('databaseModel.php');
 
+
 function verifyConnection($conn) {
     if ($conn == null) {
         try {
@@ -12,7 +13,8 @@ function verifyConnection($conn) {
     }
 }
 
-function getUserInfo($email, $conn = null) {
+function getUserInfo($email) {
+    $conn = null
     verifyConnection($conn);
     
     // Préparer la requête SQL pour récupérer le prénom et le nom de l'utilisateur en fonction de son adresse e-mail
@@ -39,7 +41,8 @@ function getUserInfo($email, $conn = null) {
         return null;
     }
 }
-function addTask($nom, $type, $dateDebut, $dateFin, $couleur, $tempsEstime, $conn = null) {
+function addTask($nom, $type, $dateDebut, $dateFin, $couleur, $tempsEstime) {
+    $conn = null
     verifyConnection($conn);
 
     // Insérer les données dans la base de données
@@ -52,7 +55,8 @@ function addTask($nom, $type, $dateDebut, $dateFin, $couleur, $tempsEstime, $con
         return "Erreur lors de l\'ajout de la tâche : " . $conn->error;
     }
 }
-function getTasks($conn = null) {
+function getTasks() {
+    $conn = null
     verifyConnection($conn);
 
     // Préparer la requête SQL pour récupérer les tâches
@@ -84,7 +88,8 @@ function getTasks($conn = null) {
 }
 
 
-function getCoutTotal($conn = null) {
+function getCoutTotal() {
+    $conn = null
     verifyConnection($conn);
     $sql = "SELECT SUM(e.SommeTravailPasse * r.price) AS cout_total
             FROM employee e
@@ -101,7 +106,8 @@ function getCoutTotal($conn = null) {
 }
 
 
-function getNombreHeuresTotales($conn = null) {
+function getNombreHeuresTotales() {
+    $conn = null
     verifyConnection($conn);
     $sql = "SELECT SUM(e.SommeTravailPasse + e.SommeTravailAVenir) AS nombre_heures_totales
             FROM employee e";
@@ -117,7 +123,8 @@ function getNombreHeuresTotales($conn = null) {
 }
 
 
-function getCoutHoraireMoyen($conn = null) {
+function getCoutHoraireMoyen() {
+    $conn = null
     verifyConnection($conn);
     $sql = "SELECT AVG(r.price) AS cout_horaire
             FROM employee e
@@ -134,7 +141,8 @@ function getCoutHoraireMoyen($conn = null) {
 }
 
 
-function getListeUtilisateurs($conn = null) {
+function getListeUtilisateurs() {
+    $conn = null
     verifyConnection($conn);
     $sql = "SELECT e.name, e.firstname, (e.SommeTravailPasse + e.SommeTravailAVenir) AS total_heures
             FROM employee e";
@@ -153,7 +161,8 @@ function getListeUtilisateurs($conn = null) {
 }
 
 
-function getNombreTachesPlanifiees($conn = null) {
+function getNombreTachesPlanifiees() {
+    $conn = null
     verifyConnection($conn);
     $sql = "SELECT COUNT(*) AS nombre_taches_planifiees
             FROM tasks
@@ -170,7 +179,8 @@ function getNombreTachesPlanifiees($conn = null) {
 }
 
 
-function getCoutTachesPlanifiees($conn = null) {
+function getCoutTachesPlanifiees() {
+    $conn = null
     verifyConnection($conn);
     $sql = "SELECT SUM(t.estimated_time * r.price) AS cout_taches_planifiees
             FROM tasks t
@@ -190,7 +200,8 @@ function getCoutTachesPlanifiees($conn = null) {
 }
 
 
-function getCoutTotalProjet($conn = null) {
+function getCoutTotalProjet() {
+    $conn = null
     verifyConnection($conn);
     $sql = "SELECT 
                 (SELECT SUM(e.SommeTravailPasse * r.price) 
@@ -214,7 +225,8 @@ function getCoutTotalProjet($conn = null) {
 }
 
 
-function getNombreHeuresPlanifiees($conn = null) {
+function getNombreHeuresPlanifiees() {
+    $conn = null
     verifyConnection($conn);
     $sql = "SELECT SUM(t.estimated_time) AS nombre_heures_planifiees
             FROM tasks t
@@ -228,4 +240,20 @@ function getNombreHeuresPlanifiees($conn = null) {
         print_r("Erreur lors de la récupération Nombre Heures Planifiees : " . $conn->error);
         return null;
     }
+}
+
+
+function getBilanProjet() {
+    $conn = null
+    verifyConnection($conn);
+    $CoutTotal = getCoutTotal($conn);
+    $NombreHeuresTotales = getNombreHeuresTotales($conn);
+    $CoutHoraireMoyen = getCoutHoraireMoyen($conn);
+    $ListeUtilisateurs = getListeUtilisateurs($conn);
+    $NombreTachesPlanifiees = getNombreTachesPlanifiees($conn);
+    $CoutTachesPlanifiees = getCoutTachesPlanifiees($conn);
+    $CoutTotalProjet = getCoutTotalProjet($conn);
+    $NombreHeuresPlanifiees = getNombreHeuresPlanifiees($conn);
+
+    
 }
