@@ -441,6 +441,11 @@ document.getElementById("userFullName").textContent = userFullName;
         }
     }
 
+    var colorVerMap = {
+        0: '#ff001e',
+        1: '#11ff00'
+    };
+
     // Mettre à jour l'état de la tâche sélectionnée
     document.getElementById("tache-selection-2").addEventListener("change", function() {
         var selectedTaskId = this.value;
@@ -450,7 +455,9 @@ document.getElementById("userFullName").textContent = userFullName;
             document.getElementById("task-name").value = selectedTask.name;
             document.getElementById("task-id_type").value = selectedTask.type;
             document.getElementById("task-id_state").value = selectedTask.state;
-            document.getElementById("task-is_validated").value = selectedTask.is_validated;
+            is_validated = document.getElementById("task-is_validated");
+            var colorval = colorVerMap[selectedTask.is_validated];
+            is_validated.style.backgroundColor = colorval;
             // Appliquer la couleur de fond en fonction de l'ID de la couleur
             taskColor = document.getElementById("task-color");
             var color = colorMap[selectedTask.color];
@@ -469,7 +476,9 @@ document.getElementById("userFullName").textContent = userFullName;
         document.getElementById("task-name").value = initialTask.name;
         document.getElementById("task-id_type").value = initialTask.type;
         document.getElementById("task-id_state").value = initialTask.state;
-        document.getElementById("task-is_validated").value = initialTask.is_validated;
+        is_validated = document.getElementById("task-is_validated");
+        var colorval = colorVerMap[initialTask.is_validated];
+        is_validated.style.backgroundColor = colorval;
         // Appliquer la couleur de fond en fonction de l'ID de la couleur
         taskColor = document.getElementById("task-color");
         var color = colorMap[initialTask.color];
