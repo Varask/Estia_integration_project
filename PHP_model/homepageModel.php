@@ -22,7 +22,10 @@ function getUserInfo($email) {
         }
     
     // Préparer la requête SQL pour récupérer le prénom et le nom de l'utilisateur en fonction de son adresse e-mail
-    $sql = "SELECT firstname, name FROM employee WHERE mail = '$email'";
+    $sql = "SELECT e.firstname, e.name, r.name AS role
+            FROM employee e
+            INNER JOIN roles r ON e.id_role = r.id
+            WHERE mail = '$email'";
     
     // Exécuter la requête SQL
     $result = $conn->query($sql);
@@ -35,7 +38,8 @@ function getUserInfo($email) {
         // Récupérer le prénom et le nom de l'utilisateur
         $userInfo = array(
             'firstname' => $row['firstname'],
-            'name' => $row['name']
+            'name' => $row['name'],
+            'role' => $row['role']
         );
 
         // Retourner les informations de l'utilisateur

@@ -13,6 +13,7 @@
 
         $userFirstName = $userInfo['firstname'];
         $userLastName = $userInfo['name'];
+        $role = $userInfo['role'];
     } else {
         // Rediriger l'utilisateur vers la page de connexion s'il n'est pas connecté
         header("Location: ../view/loginView.html");

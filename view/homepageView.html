@@ -29,9 +29,10 @@
 <script>
 var userFirstName = "<?php echo $userFirstName; ?>";
 var userLastName = "<?php echo $userLastName; ?>";
+var role = "<?php echo $role; ?>";
 
 // Concaténer les variables JavaScript pour former le nom complet de l'utilisateur
-var userFullName = userFirstName + " " + userLastName;
+var userFullName = userFirstName + " " + userLastName + " (" + role + ")";
 
 // Insérer le nom complet de l'utilisateur dans la balise <span> avec l'identifiant 'userFullName'
 document.getElementById("userFullName").textContent = userFullName;
