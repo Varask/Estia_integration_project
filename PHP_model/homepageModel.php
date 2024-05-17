@@ -374,3 +374,49 @@ function getBilanProjet() {
     );
 
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $buttonContent = $_POST['buttonContent'];
+    $taskId = $_POST['taskId'];
+    try {
+        $conn = connectToDatabase();
+        
+        // Préparer la requête SQL pour mettre à jour l'état de la tâche en fonction du bouton cliqué
+        switch ($buttonContent) {
+            case 'Mettre en attente':
+                $newStateId = 3; // ID de l'état 'On hold'
+                $valide = 0;
+                break;
+            case 'Valider':
+                $newStateId = 1; // ID de l'état 'Validated'
+                $valide = 1;
+                break;
+            case 'Rouvrir':
+                $newStateId = 2; // ID de l'état 'Current'
+                $valide = 0;
+                break;
+            case 'Fermer':
+                $newStateId = 4; // ID de l'état 'Closed'
+                $valide = 1;
+                break;
+            default:
+                // Traitez le cas par défaut ici si nécessaire
+                break;
+        }
+        // Exécuter la requête SQL pour mettre à jour l'état de la tâche
+        $sql = "UPDATE tasks SET id_state = ?, is_validated = ? WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("iii", $newStateId, $valide, $taskId);
+        $stmt->execute();
+        
+        // Fermer la connexion et le statement
+        $stmt->close();
+        $conn->close();
+        
+        // Envoyer la réponse
+        echo "L'état de la tâche a été mis à jour avec succès.";
+    } catch (Exception $e) {
+        // En cas d'erreur, afficher un message d'erreur
+        echo "Erreur lors de la mise à jour de l'état de la tâche : " . $e->getMessage();
+    }
+}

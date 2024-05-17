@@ -72,14 +72,17 @@ tasks.forEach(function(task) {
     addTaskOption(task);
 });
 
+var taskId;
+
 // Mettre à jour l'état de la tâche sélectionnée
 document.getElementById("tache-selection").addEventListener("change", function() {
     var selectedTaskId = this.value;
     var selectedTask = tasks.find(task => task.id == selectedTaskId);
+    taskId = selectedTaskId;
     if (selectedTask) {
         document.getElementById("etat").value = selectedTask.state;
 
-        // Changer le texte du bouton si l'état est "On hold"
+        // Changer le texte du bouton en fonction de l'état de la tâche
         var validateBtn = document.getElementById("state-button");
         var validateBtn2 = document.getElementById("state-button2");
         if (selectedTask.state === "On hold") {
@@ -106,6 +109,7 @@ document.getElementById("tache-selection").addEventListener("change", function()
 // Initialiser l'état avec la première tâche
 if (tasks.length > 0) {
     var initialTask = tasks[0];
+    taskId = tasks[0].id;
     document.getElementById("etat").value = initialTask.state;
 
     var validateBtn = document.getElementById("state-button");
@@ -129,6 +133,32 @@ if (tasks.length > 0) {
         validateBtn2.style.display = "none";
     }
 }
+
+// Fonction pour envoyer les données au fichier PHP
+function sendDataToPHP(buttonContent, taskId) {
+    fetch('../PHP_model/homepageModel.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `buttonContent=${encodeURIComponent(buttonContent)}&taskId=${encodeURIComponent(taskId)}`
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data);
+        window.location.reload();
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// Ajoutez des écouteurs d'événements aux boutons
+document.getElementById("state-button").addEventListener("click", function() {
+    sendDataToPHP(this.textContent, taskId);
+});
+
+document.getElementById("state-button2").addEventListener("click", function() {
+    sendDataToPHP(this.textContent, taskId);
+});
 
 var colorVerMap = {
     0: '#ff001e',

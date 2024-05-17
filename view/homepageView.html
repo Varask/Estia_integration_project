@@ -255,7 +255,7 @@ document.getElementById("userFullName").textContent = userFullName;
               <input type="text" id="etat" name="etat" value="Validated" readonly>
           </div>
           <div class="validate-button">
-              <button type="submit" id="state-button" class="btn">Valider</button>
+              <button type="button" id="state-button" class="btn">Valider</button>
               <button type="button" id="state-button2" class="btn" style="display: none;">Valider</button>
           </div>
       </form>
@@ -265,7 +265,7 @@ document.getElementById("userFullName").textContent = userFullName;
       <h2>Historique des tâches</h2>
       <div class="form-group">
           <label for="tache-selection">Tâches</label>
-          <select id="tache-selection-2" onchange="updateTaskDetails()">
+          <select id="tache-selection-2">
           </select>
       </div>
       <div class="task-details">
