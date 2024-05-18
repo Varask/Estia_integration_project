@@ -36,6 +36,22 @@ var userFullName = userFirstName + " " + userLastName + " (" + role + ")";
 
 // Insérer le nom complet de l'utilisateur dans la balise <span> avec l'identifiant 'userFullName'
 document.getElementById("userFullName").textContent = userFullName;
+
+function adjustContentBasedOnRole(role) {
+    var restrictedContent = "Accessible uniquement pour les Project Manager et les Project Owner";
+    var restrictedDivs = ['form', 'financial', 'validate'];
+
+    if (role === 'Developer' || role === 'Intern' || role === 'New') {
+        restrictedDivs.forEach(function(divId) {
+            var div = document.getElementById(divId);
+            div.innerHTML = "<h2>" + div.querySelector('h2').textContent + "</h2><p>" + restrictedContent + "</p>";
+        });
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    adjustContentBasedOnRole(role);
+});
 </script>
 
 <div class="container" id="planning">
@@ -53,7 +69,7 @@ document.getElementById("userFullName").textContent = userFullName;
                 <span></span><span></span><span></span>
                 <span></span><span></span><span></span>
                 <span></span><span></span><span></span>
-                <span></span><span></span>	<span></span>    
+                <span></span><span></span>    <span></span>    
             </div>
             <div class="chart-row">  
                 <div class="chart-row-item">1</div> 
