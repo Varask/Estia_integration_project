@@ -38,7 +38,7 @@
         // Vérifier si les dates correspondent
         if ($timestampDebut < $timestampFin) {
             $result = addTask($nom, $type, $assignee, $dateDebut, $dateFin, $couleur, $tempsEstime);
-            echo "<script>alert('$result');</script>";
+            echo "<script>alert('$result'); window.location.href='../PHP_controller/homepageController.php';</script>";
         } else {
             echo "<script>alert('La date de début doit se situer avant la date de fin.');</script>";
         }
