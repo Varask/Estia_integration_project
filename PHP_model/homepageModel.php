@@ -49,6 +49,7 @@ function getUserInfo($email) {
         return null;
     }
 }
+
 function addTask($nom, $type, $assignee, $dateDebut, $dateFin, $couleur, $tempsEstime) {
     $conn = connectToDatabase();
     
@@ -89,6 +90,7 @@ function addTask($nom, $type, $assignee, $dateDebut, $dateFin, $couleur, $tempsE
         $conn->close();
     }
 }
+
 function getTasks() {
     try {
             $conn = connectToDatabase();
@@ -378,6 +380,262 @@ function getBilanProjet() {
     );
 
 }
+
+
+/* 
+
+
+Table employee{
+  id integer [primary key]
+  name varchar
+  firstname varchar
+  email varchar 
+  id_role integer [not null]
+  SommeTravailPasse DECIMAL(10, 2)
+  SommeTravailAVenir DECIMAL(10, 2)
+  created_at timestamp
+}
+
+Table Roles {
+  id integer [primary key]
+  name varchar 
+  price decimal
+}
+
+Table Tasks{
+  id integer [primary key]
+  name varchar
+  id_type integer 
+  id_state integer
+  is_validated bool
+  color int
+  date_debut date
+  date_fin date
+  estimated_time int
+  created_at timestamp
+}
+
+Table Types{
+  id integer  [primary key]
+  name varchar
+}
+
+Table States{
+  id integer [primary key]
+  name varchar
+}
+
+Table Assigned_Tasks{
+  id_task integer
+  id_employee integer
+}
+
+Table Security{
+  id_employee int
+  password varchar 
+}
+
+
+Ref: "Roles"."id" < "employee"."id_role"
+
+Ref: "Tasks"."id" < "Assigned_Tasks"."id_task"
+
+Ref: "Assigned_Tasks"."id_employee" < "employee"."id"
+
+Ref: "Tasks"."id_state" < "States"."id"
+
+Ref: "Tasks"."id_type" < "Types"."id"
+
+Ref: "Security"."id_employee" < "employee"."id"
+
+*/
+
+function calculateTotalCost() {
+    try {
+        $conn = connectToDatabase();
+    } catch (Exception $e) {
+        echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+        return null;
+    }
+    $sql = "SELECT SUM(e.SommeTravailPasse * r.price) AS total_cost
+            FROM employee e
+            JOIN roles r ON e.id_role = r.id";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['total_cost'];
+    } else {
+        print_r("Erreur lors du calcul du coût total : " . $conn->error);
+        return null;
+    }
+}
+
+
+function calculateTotalHours() {
+    try {
+        $conn = connectToDatabase();
+    } catch (Exception $e) {
+        echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+        return null;
+    }
+    $sql = "SELECT SUM(e.SommeTravailPasse + e.SommeTravailAVenir) AS total_hours
+            FROM employee e";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['total_hours'];
+    } else {
+        print_r("Erreur lors du calcul du nombre total d'heures : " . $conn->error);
+        return null;
+    }
+}
+
+function calculateAverageHourlyCost() {
+    try {
+        $conn = connectToDatabase();
+    } catch (Exception $e) {
+        echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+        return null;
+    }
+    $sql = "SELECT AVG(r.price) AS average_hourly_cost
+            FROM employee e
+            JOIN roles r ON e.id_role = r.id";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['average_hourly_cost'];
+    } else {
+        print_r("Erreur lors du calcul du coût horaire moyen : " . $conn->error);
+        return null;
+    }
+}
+
+function getActualUsers_Name_Price(){ 
+    try {
+        $conn = connectToDatabase();
+    } catch (Exception $e) {
+        echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+        return null;
+    }
+    $sql = "SELECT e.name, e.firstname, (e.SommeTravailPasse + e.SommeTravailAVenir) * r.price AS total_cost
+            FROM employee e
+            JOIN roles r ON e.id_role = r.id";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $users = array();
+        while ($row = $result->fetch_assoc()) {
+            $users[] = $row;
+        }
+        return $users;
+    } else {
+        print_r("Erreur lors de la récupération des utilisateurs : " . $conn->error);
+        return null;
+    }
+}
+
+function getNumberOfPlannedTasks() {
+    try {
+        $conn = connectToDatabase();
+    } catch (Exception $e) {
+        echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+        return null;
+    }
+    $sql = "SELECT COUNT(*) AS number_of_planned_tasks
+            FROM tasks
+            WHERE id_state = (SELECT id FROM states WHERE name = 'Current')";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['number_of_planned_tasks'];
+    } else {
+        print_r("Erreur lors de la récupération du nombre de tâches planifiées : " . $conn->error);
+        return null;
+    }
+}
+
+function getPlannedTasksCost() {
+    try {
+        $conn = connectToDatabase();
+    } catch (Exception $e) {
+        echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+        return null;
+    }
+    $sql = "SELECT SUM(t.estimated_time * r.price) AS planned_tasks_cost
+            FROM tasks t
+            JOIN assigned_tasks at ON t.id = at.id_task
+            JOIN employee e ON at.id_employee = e.id
+            JOIN roles r ON e.id_role = r.id
+            WHERE t.id_state = (SELECT id FROM states WHERE name = 'Current')";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['planned_tasks_cost'];
+    } else {
+        print_r("Erreur lors de la récupération du coût des tâches planifiées : " . $conn->error);
+        return null;
+    }
+}
+
+function getPlannedHours(){
+    try {
+        $conn = connectToDatabase();
+    } catch (Exception $e) {
+        echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+        return null;
+    }
+    $sql = "SELECT SUM(t.estimated_time) AS planned_hours
+            FROM tasks t
+            WHERE t.id_state = (SELECT id FROM states WHERE name = 'Current')";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['planned_hours'];
+    } else {
+        print_r("Erreur lors de la récupération du nombre d'heures planifiées : " . $conn->error);
+        return null;
+    }
+}
+
+function getTotalProjectCost() {
+    try {
+        $conn = connectToDatabase();
+    } catch (Exception $e) {
+        echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+        return null;
+    }
+    $totalCost = calculateTotalCost();
+    $plannedTasksCost = getPlannedTasksCost();
+    return $totalCost + $plannedTasksCost;
+}
+
+
+function getProjectReport(){
+    $totalCost = calculateTotalCost();
+    $totalHours = calculateTotalHours();
+    $averageHourlyCost = calculateAverageHourlyCost();
+    $actualUsers = getActualUsers_Name_Price();
+    $numberOfPlannedTasks = getNumberOfPlannedTasks();
+    $plannedTasksCost = getPlannedTasksCost();
+    $totalProjectCost = getTotalProjectCost();
+    $plannedHours = getPlannedHours();
+    return array(
+        'totalCost' => $totalCost,
+        'totalHours' => $totalHours,
+        'averageHourlyCost' => $averageHourlyCost,
+        'actualUsers' => $actualUsers,
+        'numberOfPlannedTasks' => $numberOfPlannedTasks,
+        'plannedTasksCost' => $plannedTasksCost,
+        'totalProjectCost' => $totalProjectCost,
+        'plannedHours' => $plannedHours
+    );
+}
+
+
+
+
+
+
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $buttonContent = $_POST['buttonContent'];

@@ -52,4 +52,8 @@
     $tasks_json = json_encode($tasks);
     $assignees_json = json_encode($assignees);
 
+    // rapport 
+    $rapport = getProjectReport();
+    $rapport_json = json_encode($rapport);
+
     include_once('../view/homepageView.html');

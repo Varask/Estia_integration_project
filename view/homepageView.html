@@ -213,13 +213,14 @@ document.getElementById("userFullName").textContent = userFullName;
             <td id="plannedTaskCost">8000€</td>
           </tr>
           <tr>
-            <th>Coût total projet</th>
-            <td id="totalCost">8000€</td>
-          </tr>
-          <tr>
             <th>Nombre d'heures planifiées</th>
             <td id="plannedHours">8h</td>
           </tr>
+          <tr>
+            <th>Coût total projet</th>
+            <td id="totalCost">8000€</td>
+          </tr>
+          
           <!-- Cout futur des Personne-->
             <!--
                 <tr>
@@ -289,10 +290,16 @@ document.getElementById("userFullName").textContent = userFullName;
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="../JS_controller/TableManager.js"></script>
+
+<script src="../JS_controller/script.js"></script>
+
 <script>
     var tasksJsonString = '<?php echo addslashes($tasks_json); ?>';
     var assigneesJsonString = '<?php echo addslashes($assignees_json); ?>';
 </script>
-<script src="../JS_controller/script.js"></script>
+
+<script>
+    var projectReport = "<?php echo $projectReport_json; ?>";
+</script>
 </body>
 </html>

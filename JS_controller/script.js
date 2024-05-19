@@ -207,3 +207,23 @@ if (tasks.length > 0) {
     document.getElementById("task-estimated_time").value = initialTask.estimated_time + "h";
     document.getElementById("task-created_at").value = initialTask.created_at;
 }
+
+// Fonction afficher le rapport
+
+function updateFinancialData(report) {
+    document.getElementById('totalCost').innerText = report.totalCost + '€';
+    document.getElementById('totalHours').innerText = report.totalHours + 'h';
+    document.getElementById('hourlyCost').innerText = report.averageHourlyCost + '€';
+    document.getElementById('plannedTask').innerText = report.numberOfPlannedTasks;
+    document.getElementById('plannedTaskCost').innerText = report.plannedTasksCost + '€';
+    document.getElementById('plannedHours').innerText = report.plannedHours + 'h';
+    document.getElementById('totalProjectCost').innerText = report.totalProjectCost + '€';
+
+    // Populate actual users
+    var actualUsersHtml = '';
+    report.actualUsers.forEach(function(user) {
+        actualUsersHtml += '<tr><th>' + user.name + '</th><td>' + user.price + '€</td></tr>';
+    });
+    document.getElementById('actualUsers').innerHTML = actualUsersHtml;
+}
+
