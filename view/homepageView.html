@@ -299,7 +299,10 @@ document.getElementById("userFullName").textContent = userFullName;
 </script>
 
 <script>
-    var projectReport = "<?php echo $projectReport_json; ?>";
+    //$rapport_json
+    var report = '<?php echo addslashes($rapport_json); ?>';
+    updateFinancialData(report);
+    
 </script>
 </body>
 </html>
