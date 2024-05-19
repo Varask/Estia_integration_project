@@ -125,6 +125,10 @@ body{
   align-items: center;
 }
 
+.fc-title {
+  color: #3586ff;
+}
+
 td {
   color: #3586ff;
   padding: 20px;

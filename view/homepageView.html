@@ -5,16 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="../CSS/homePageStyle.css">
 <link rel="stylesheet" type="text/css" href="../CSS/dataTable.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css">
 <title>Dashboard</title>
 </head>
 <body>
-<script>
-    // Vérifier si la session est active
-    if (sessionStorage.getItem('logged_in')) {
-        // Rediriger l'utilisateur vers la page de connexion
-        window.location.href = "../view/loginView.html";
-    }
-</script>
 
 <div class="header">
     <div class="title">
@@ -31,11 +26,11 @@ var userFirstName = "<?php echo $userFirstName; ?>";
 var userLastName = "<?php echo $userLastName; ?>";
 var role = "<?php echo $role; ?>";
 
-// Concaténer les variables JavaScript pour former le nom complet de l'utilisateur
 var userFullName = userFirstName + " " + userLastName + " (" + role + ")";
-
-// Insérer le nom complet de l'utilisateur dans la balise <span> avec l'identifiant 'userFullName'
-document.getElementById("userFullName").textContent = userFullName;
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("userFullName").textContent = userFullName;
+    adjustContentBasedOnRole(role);
+});
 
 function adjustContentBasedOnRole(role) {
     var restrictedContent = "Accessible uniquement pour les Project Manager et les Project Owner";
@@ -44,56 +39,17 @@ function adjustContentBasedOnRole(role) {
     if (role === 'Developer' || role === 'Intern' || role === 'New') {
         restrictedDivs.forEach(function(divId) {
             var div = document.getElementById(divId);
-            div.innerHTML = "<h2>" + div.querySelector('h2').textContent + "</h2><p>" + restrictedContent + "</p>";
+            if (div) {
+                div.innerHTML = "<h2>" + div.querySelector('h2').textContent + "</h2><p>" + restrictedContent + "</p>";
+            }
         });
     }
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-    adjustContentBasedOnRole(role);
-});
 </script>
 
 <div class="container" id="planning">
     <h2>Planning</h2>
-    <iframe class="calendar" src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Europe%2FParis&bgcolor=%23ffffff&src=ZnIuZnJlbmNoI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23009688"></iframe>
-    <div class="chart">
-        <div class="chart-row chart-period">
-            <div class="chart-row-item">
-                </div><span>January</span><span>February</span><span>March</span>
-                <span>April</span><span>May</span><span>June</span><span>July</span>
-                <span>August</span><span>September</span><span>October</span>
-                <span>November</span><span>December</span>
-            </div>
-            <div class="chart-row chart-lines"> 
-                <span></span><span></span><span></span>
-                <span></span><span></span><span></span>
-                <span></span><span></span><span></span>
-                <span></span><span></span>    <span></span>    
-            </div>
-            <div class="chart-row">  
-                <div class="chart-row-item">1</div> 
-                <ul class="chart-row-bars">    
-                    <li class="chart-li-one">Planning</li>
-                </ul>
-                <div class="chart-row-item">2</div> 
-                <ul class="chart-row-bars">    
-                    <li class="chart-li-one">Exercute</li>
-                </ul>
-                <div class="chart-row-item">3</div> 
-                <ul class="chart-row-bars">    
-                    <li class="chart-li-one">Exercute</li>
-                </ul>
-                <div class="chart-row-item">4</div> 
-                <ul class="chart-row-bars">    
-                    <li class="chart-li-one">Exercute</li>
-                </ul>
-                <div class="chart-row-item">5</div> 
-                <ul class="chart-row-bars">    
-                    <li class="chart-li-one">Exercute</li>
-                </ul>    
-            </div>
-    </div>
+    <div id="calendar"></div>
 </div>
 
 <div id="structure">
@@ -112,24 +68,23 @@ document.addEventListener("DOMContentLoaded", function() {
             <option value="4">Developement</option>
         </select><br><br>
 
-        <label for="Assignee">Assigné a:</label>
+        <label for="Assignee">Assigné à:</label>
         <select id="Assignee" name="Assignee">
         </select><br><br>
-
 
         <label for="pastel1">Couleur :</label> <br>
         <div class="colorSelector">
             <div>
                 <input type="radio" id="pastel1" name="couleur" value="0">
-                <label for="pastel1" style="background-color: #fde2e4; padding: 10px; border: 1px solid #000;">Pivoine   </label><br>
+                <label for="pastel1" style="background-color: #fde2e4; padding: 10px; border: 1px solid #000;">Pivoine</label><br>
             </div>
             <div>
                 <input type="radio" id="pastel2" name="couleur" value="1">
-                <label for="pastel2" style="background-color: #accbe1; padding: 10px; border: 1px solid #000;">Myosotis  </label><br>
+                <label for="pastel2" style="background-color: #accbe1; padding: 10px; border: 1px solid #000;">Myosotis</label><br>
             </div>
             <div>
                 <input type="radio" id="pastel3" name="couleur" value="2">
-                <label for="pastel3" style="background-color: #9fd8df; padding: 10px; border: 1px solid #000;">Hortensia </label><br>
+                <label for="pastel3" style="background-color: #9fd8df; padding: 10px; border: 1px solid #000;">Hortensia</label><br>
             </div>
             <div>
                 <input type="radio" id="pastel4" name="couleur" value="3">
@@ -137,10 +92,9 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>
             <div>
                 <input type="radio" id="pastel5" name="couleur" value="4">
-                <label for="pastel5" style="background-color: #e4cbf8; padding: 10px; border: 1px solid #000;">Lotus     </label><br><br>
+                <label for="pastel5" style="background-color: #e4cbf8; padding: 10px; border: 1px solid #000;">Lotus</label><br><br>
             </div>
         </div>
-        
 
         <label for="dateDebut">Date de début :</label>
         <input type="date" id="dateDebut" name="dateDebut" required><br><br>
@@ -151,14 +105,13 @@ document.addEventListener("DOMContentLoaded", function() {
         <label for="tempsEstime">Temps estimé (en heures) :</label>
         <input type="number" id="tempsEstime" name="tempsEstime" min="0" step="0.5" required><br><br>
 
-        <button type="submit">Ajouter un tache </button>
+        <button type="submit">Ajouter un tache</button>
     </form>
 </div>
 
 <section class="container" id="TaskViewer">
-    <h2> Tâches </h2>
+    <h2>Tâches</h2>
     <div class="TableGrid">
-        <!-- Contextual Menu -->
         <div id="contextMenu">
             <ul>
                 <li onclick="NewRow()">Add Row</li>
@@ -312,10 +265,60 @@ document.addEventListener("DOMContentLoaded", function() {
 </footer>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Moment.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<!-- FullCalendar -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+<!-- qTip -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
 <script src="../JS_controller/TableManager.js"></script>
 <script>
     var tasksJsonString = '<?php echo addslashes($tasks_json); ?>';
     var assigneesJsonString = '<?php echo addslashes($assignees_json); ?>';
+
+    document.addEventListener("DOMContentLoaded", function() {
+    adjustContentBasedOnRole(role);
+    
+    var tasks = JSON.parse(tasksJsonString);
+
+    var colorMap = {
+        0: '#fde2e4',
+        1: '#accbe1',
+        2: '#9fd8df',
+        3: '#97c1a9',
+        4: '#e4cbf8'
+    };
+
+    $('#calendar').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        editable: false,
+        events: tasks.map(task => ({
+            title: task.name,
+            start: task.date_debut,
+            end: task.date_fin,
+            backgroundColor: colorMap[task.color], // Appliquez la couleur ici
+            description: `Assigned to: ${task.firstname} ${task.employee_name}, Estimated time: ${task.estimated_time} hours`
+        })),
+        eventRender: function(event, element) {
+            element.qtip({
+                content: event.description,
+                position: {
+                    my: 'bottom center',
+                    at: 'top center'
+                },
+                style: {
+                    classes: 'qtip-blue qtip-shadow'
+                }
+            });
+        }
+    });
+    });
 </script>
 <script src="../JS_controller/script.js"></script>
 </body>
