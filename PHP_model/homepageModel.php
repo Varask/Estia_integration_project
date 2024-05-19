@@ -379,7 +379,7 @@ function getBilanProjet() {
 
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitTaskStateForm'])) {
     $buttonContent = $_POST['buttonContent'];
     $taskId = $_POST['taskId'];
     try {

@@ -141,7 +141,7 @@ function sendDataToPHP(buttonContent, taskId) {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `buttonContent=${encodeURIComponent(buttonContent)}&taskId=${encodeURIComponent(taskId)}`
+        body: `buttonContent=${encodeURIComponent(buttonContent)}&taskId=${encodeURIComponent(taskId)}&submitTaskStateForm=true`
     })
     .then(response => response.text())
     .then(data => {

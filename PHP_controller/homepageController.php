@@ -21,7 +21,7 @@
     }
 
     // Vérifier si le formulaire a été soumis
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submitTaskForm'])) {
         // Récupérer les données du formulaire
         $nom = $_POST['nom'];
         $type = $_POST['type'];
