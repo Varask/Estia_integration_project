@@ -207,3 +207,45 @@ if (tasks.length > 0) {
     document.getElementById("task-estimated_time").value = initialTask.estimated_time + "h";
     document.getElementById("task-created_at").value = initialTask.created_at;
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+adjustContentBasedOnRole(role);
+
+var tasks = JSON.parse(tasksJsonString);
+
+var colorMap = {
+    0: '#fde2e4',
+    1: '#accbe1',
+    2: '#9fd8df',
+    3: '#97c1a9',
+    4: '#e4cbf8'
+};
+
+$('#calendar').fullCalendar({
+    header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+    },
+    editable: false,
+    events: tasks.map(task => ({
+        title: task.name,
+        start: task.date_debut,
+        end: task.date_fin,
+        backgroundColor: colorMap[task.color], // Appliquez la couleur ici
+        description: `Assigned to: ${task.firstname} ${task.employee_name}, Estimated time: ${task.estimated_time} hours`
+    })),
+    eventRender: function(event, element) {
+        element.qtip({
+            content: event.description,
+            position: {
+                my: 'bottom center',
+                at: 'top center'
+            },
+            style: {
+                classes: 'qtip-blue qtip-shadow'
+            }
+        });
+    }
+});
+});
