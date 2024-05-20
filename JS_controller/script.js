@@ -1,5 +1,7 @@
 // Récupérer les données JSON des tâches depuis l'attribut data-tasks
+var tasksJsonString = document.getElementById('tasksJsonString').innerText;
 var tasks = JSON.parse(tasksJsonString);
+
 
 // Dictionnaire des couleurs en fonction de l'ID
 var colorMap = {
@@ -211,19 +213,37 @@ if (tasks.length > 0) {
 // Fonction afficher le rapport
 
 function updateFinancialData(report) {
-    document.getElementById('totalCost').innerText = report.totalCost + '€';
-    document.getElementById('totalHours').innerText = report.totalHours + 'h';
-    document.getElementById('hourlyCost').innerText = report.averageHourlyCost + '€';
-    document.getElementById('plannedTask').innerText = report.numberOfPlannedTasks;
-    document.getElementById('plannedTaskCost').innerText = report.plannedTasksCost + '€';
-    document.getElementById('plannedHours').innerText = report.plannedHours + 'h';
-    document.getElementById('totalProjectCost').innerText = report.totalProjectCost + '€';
+    console.log(report);
+    
+    if (document.getElementById('totalCost')) {
+        document.getElementById('totalCost').innerText = (report.totalCost !== null && report.totalCost !== undefined) ? report.totalCost + '€' : '0€';
+    }
+    if (document.getElementById('totalHours')) {
+        document.getElementById('totalHours').innerText = (report.totalHours !== null && report.totalHours !== undefined) ? report.totalHours + 'h' : '0h';
+    }
+    if (document.getElementById('hourlyCost')) {
+        document.getElementById('hourlyCost').innerText = (report.averageHourlyCost !== null && report.averageHourlyCost !== undefined) ? report.averageHourlyCost + '€' : '0€';
+    }
+    if (document.getElementById('plannedTask')) {
+        document.getElementById('plannedTask').innerText = (report.numberOfPlannedTasks !== null && report.numberOfPlannedTasks !== undefined) ? report.numberOfPlannedTasks : '0';
+    }
+    if (document.getElementById('plannedTaskCost')) {
+        document.getElementById('plannedTaskCost').innerText = (report.plannedTasksCost !== null && report.plannedTasksCost !== undefined) ? report.plannedTasksCost + '€' : '0€';
+    }
+    if (document.getElementById('plannedHours')) {
+        document.getElementById('plannedHours').innerText = (report.plannedHours !== null && report.plannedHours !== undefined) ? report.plannedHours + 'h' : '0h';
+    }
+    if (document.getElementById('totalProjectCost')) {
+        document.getElementById('totalProjectCost').innerText = (report.totalProjectCost !== null && report.totalProjectCost !== undefined) ? report.totalProjectCost + '€' : '0€';
+    }
 
     // Populate actual users
     var actualUsersHtml = '';
     report.actualUsers.forEach(function(user) {
-        actualUsersHtml += '<tr><th>' + user.name + '</th><td>' + user.price + '€</td></tr>';
+        actualUsersHtml += '<tr><th>' + user.name + '</th><td>' + (user.price !== null && user.price !== undefined ? user.price : '0') + '€</td></tr>';
     });
-    document.getElementById('actualUsers').innerHTML = actualUsersHtml;
+    if (document.getElementById('actualUsers')) {
+        document.getElementById('actualUsers').innerHTML = actualUsersHtml;
+    }
 }
 
