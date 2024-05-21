@@ -48,9 +48,13 @@
     // Appelez la fonction pour récupérer les tâches
     $tasks = getTasks();
     $assignees = getAssignees();
+    $roles = getRoles();
+    $assigned = getAssignedTo();
 
     // Convertir les tâches en format JSON pour les passer à la vue HTML via JavaScript
     $tasks_json = json_encode($tasks);
     $assignees_json = json_encode($assignees);
+    $roles_json = json_encode($roles);
+    $assigned_json = json_encode($assigned);
 
     include_once('../view/homepageView.html');

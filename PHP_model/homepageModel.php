@@ -163,6 +163,73 @@ function getAssignees() {
     }
 }
 
+function getRoles() {
+    try {
+            $conn = connectToDatabase();
+        } catch (Exception $e) {
+            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            return null;
+        }
+
+    // Préparer la requête SQL pour récupérer les tâches
+    $sql = "SELECT r.id, r.name, r.price
+            FROM roles r";
+
+    // Exécuter la requête SQL
+    $result = $conn->query($sql);
+
+    // Vérifier s'il y a des résultats
+    if ($result->num_rows > 0) {
+        // Créer un tableau pour stocker les tâches
+        $roles = array();
+
+        // Parcourir les résultats
+        while ($row = $result->fetch_assoc()) {
+            // Ajouter chaque tâche au tableau
+            $roles[] = $row;
+        }
+
+        // Retourner le tableau de tâches
+        return $roles;
+    } else {
+        // Si aucun résultat n'est trouvé, retourner null
+        return null;
+    }
+}
+
+function getAssignedTo() {
+    try {
+            $conn = connectToDatabase();
+        } catch (Exception $e) {
+            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            return null;
+        }
+
+    // Préparer la requête SQL pour récupérer les tâches
+    $sql = "SELECT at.id_task, at.id_employee
+            FROM assigned_tasks at";
+
+    // Exécuter la requête SQL
+    $result = $conn->query($sql);
+
+    // Vérifier s'il y a des résultats
+    if ($result->num_rows > 0) {
+        // Créer un tableau pour stocker les tâches
+        $assigned = array();
+
+        // Parcourir les résultats
+        while ($row = $result->fetch_assoc()) {
+            // Ajouter chaque tâche au tableau
+            $assigned[] = $row;
+        }
+
+        // Retourner le tableau de tâches
+        return $assigned;
+    } else {
+        // Si aucun résultat n'est trouvé, retourner null
+        return null;
+    }
+}
 
 function getCoutTotal() {
     try {

@@ -209,43 +209,106 @@ if (tasks.length > 0) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-adjustContentBasedOnRole(role);
+    adjustContentBasedOnRole(role);
+    updateBudgetForecast();
 
-var tasks = JSON.parse(tasksJsonString);
+    var tasks = JSON.parse(tasksJsonString);
 
-var colorMap = {
-    0: '#fde2e4',
-    1: '#accbe1',
-    2: '#9fd8df',
-    3: '#97c1a9',
-    4: '#e4cbf8'
-};
+    var colorMap = {
+        0: '#fde2e4',
+        1: '#accbe1',
+        2: '#9fd8df',
+        3: '#97c1a9',
+        4: '#e4cbf8'
+    };
 
-$('#calendar').fullCalendar({
-    header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay'
-    },
-    editable: false,
-    events: tasks.map(task => ({
-        title: task.name,
-        start: task.date_debut,
-        end: task.date_fin,
-        backgroundColor: colorMap[task.color], // Appliquez la couleur ici
-        description: `Assigned to: ${task.firstname} ${task.employee_name}, Estimated time: ${task.estimated_time} hours`
-    })),
-    eventRender: function(event, element) {
-        element.qtip({
-            content: event.description,
-            position: {
-                my: 'bottom center',
-                at: 'top center'
-            },
-            style: {
-                classes: 'qtip-blue qtip-shadow'
+    $('#calendar').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        editable: false,
+        events: tasks.map(task => ({
+            title: task.name,
+            start: task.date_debut,
+            end: task.date_fin,
+            backgroundColor: colorMap[task.color], // Appliquez la couleur ici
+            description: `Assigned to: ${task.firstname} ${task.employee_name}, Estimated time: ${task.estimated_time} hours`
+        })),
+        eventRender: function(event, element) {
+            element.qtip({
+                content: event.description,
+                position: {
+                    my: 'bottom center',
+                    at: 'top center'
+                },
+                style: {
+                    classes: 'qtip-blue qtip-shadow'
+                }
+            });
+        }
+    });
+});
+
+function updateBudgetForecast() {
+    var tasks = JSON.parse(tasksJsonString);
+    var assignees = JSON.parse(assigneesJsonString);
+    var roles = JSON.parse(rolesJsonString);
+    var assigned = JSON.parse(assignedJsonString);
+    var today = new Date();
+    
+    var actualCosts = calculateCosts(tasks, assigned, assignees, roles, task => new Date(task.date_debut) <= today);
+    var futureCosts = calculateCosts(tasks, assigned, assignees, roles, task => new Date(task.date_debut) > today);
+    
+    // Mettre à jour les valeurs actuelles
+    document.getElementById("totalCost").textContent = actualCosts.totalCost + "€";
+    document.getElementById("totalHours").textContent = actualCosts.totalHours + "h";
+    document.getElementById("hourlyCost").textContent = actualCosts.hourlyCost + "€";
+    document.getElementById("actualUsers").textContent = actualCosts.users.join(", ");
+    
+    // Mettre à jour les valeurs futures
+    document.getElementById("plannedTaskCost").textContent = futureCosts.totalCost + "€";
+    document.getElementById("plannedHours").textContent = futureCosts.totalHours + "h";
+    document.getElementById("totalProjectCost").textContent = futureCosts.totalCost + actualCosts.totalCost + "€";
+    document.getElementById("futureUsers").textContent = futureCosts.users.join(", ");
+}
+
+function calculateCosts(tasks, assigned, assignees, roles, filterFunction) {
+    var filteredTasks = tasks.filter(filterFunction);
+    var totalCost = 0;
+    var totalHours = 0;
+    var hourlyCost = 0;
+    var users = new Set();
+
+    var roleMap = roles.reduce((map, role) => {
+        map[role.id] = parseFloat(role.price);
+        return map;
+    }, {});
+
+    filteredTasks.forEach(task => {
+        var taskAssignees = assigned.filter(assignment => assignment.id_task === task.id);
+        console.log(taskAssignees)
+        var taskCost = 0;
+
+        taskAssignees.forEach(assignment => {
+            var assignee = assignees.find(assignee => assignee.id === assignment.id_employee);
+            if (assignee) {
+                var assigneeRolePrice = roleMap[assignee.id_roles];
+                taskCost += assigneeRolePrice * task.estimated_time;
+                hourlyCost += assigneeRolePrice; // Correction ici, car chaque assigné compte pour le coût horaire
+                users.add(`${assignee.firstname} ${assignee.name}`);
             }
         });
-    }
-});
-});
+
+        totalCost += taskCost;
+        totalHours += parseFloat(task.estimated_time);
+    });
+
+    return {
+        totalCost: totalCost,
+        totalHours: totalHours,
+        hourlyCost: (hourlyCost / totalHours) || 0, // Correction du calcul du coût horaire
+        users: Array.from(users)
+    };
+}
