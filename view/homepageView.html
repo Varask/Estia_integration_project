@@ -25,6 +25,7 @@
 var userFirstName = "<?php echo $userFirstName; ?>";
 var userLastName = "<?php echo $userLastName; ?>";
 var role = "<?php echo $role; ?>";
+var price = "<?php echo $price; ?>";
 
 var userFullName = userFirstName + " " + userLastName + " (" + role + ")";
 document.addEventListener("DOMContentLoaded", function() {
@@ -161,18 +162,6 @@ function adjustContentBasedOnRole(role) {
             <th>Coût horaire</th>
             <td>1000€/h</td>
           </tr>
-          <tr>
-            <th>Guillaume Fleuve</th>
-            <td>1h</td>
-          </tr>
-          <tr>
-            <th>Yvol Tousles</th>
-            <td>499h</td>
-          </tr>
-          <tr>
-            <th>Vivy Leclerc</th>
-            <td>500h</td>
-          </tr>
         </table>
       </div>
       <div class="budget">
@@ -193,18 +182,6 @@ function adjustContentBasedOnRole(role) {
           <tr>
             <th>Nombre d'heures planifiées</th>
             <td>1.2h</td>
-          </tr>
-          <tr>
-            <th>Guillaume Fleuve</th>
-            <td>0h</td>
-          </tr>
-          <tr>
-            <th>Yvol Tousles</th>
-            <td>0.2h</td>
-          </tr>
-          <tr>
-            <th>Vivy Leclerc</th>
-            <td>1h</td>
           </tr>
         </table>
       </div>
