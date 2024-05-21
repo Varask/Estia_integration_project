@@ -170,7 +170,6 @@ document.getElementById("tache-selection-2").addEventListener("change", function
     var selectedTaskId = this.value;
     var selectedTask = tasks.find(task => task.id == selectedTaskId);
     if (selectedTask) {
-        document.getElementById("task-id").value = selectedTask.id;
         document.getElementById("task-name").value = selectedTask.name;
         document.getElementById("task-id_type").value = selectedTask.type;
         document.getElementById("task-id_state").value = selectedTask.state;
@@ -191,7 +190,6 @@ document.getElementById("tache-selection-2").addEventListener("change", function
 // Initialiser l'état avec la première tâche
 if (tasks.length > 0) {
     var initialTask = tasks[0];
-    document.getElementById("task-id").value = initialTask.id;
     document.getElementById("task-name").value = initialTask.name;
     document.getElementById("task-id_type").value = initialTask.type;
     document.getElementById("task-id_state").value = initialTask.state;
@@ -258,18 +256,21 @@ function updateBudgetForecast() {
     var assigned = JSON.parse(assignedJsonString);
     var today = new Date();
     
-    var actualCosts = calculateCosts(tasks, assigned, assignees, roles, task => new Date(task.date_debut) <= today);
+    var actualCosts = calculateCosts(tasks, assigned, assignees, roles, task => new Date(task.date_debut) <= today && new Date(task.date_fin) > today);
     var futureCosts = calculateCosts(tasks, assigned, assignees, roles, task => new Date(task.date_debut) > today);
     
     // Mettre à jour les valeurs actuelles
+    document.getElementById("actualTask").textContent = actualCosts.taskNumber;
     document.getElementById("totalCost").textContent = actualCosts.totalCost + "€";
     document.getElementById("totalHours").textContent = actualCosts.totalHours + "h";
     document.getElementById("hourlyCost").textContent = actualCosts.hourlyCost + "€";
     document.getElementById("actualUsers").textContent = actualCosts.users.join(", ");
     
     // Mettre à jour les valeurs futures
+    document.getElementById("plannedTask").textContent = futureCosts.taskNumber;
     document.getElementById("plannedTaskCost").textContent = futureCosts.totalCost + "€";
     document.getElementById("plannedHours").textContent = futureCosts.totalHours + "h";
+    document.getElementById("plannedHourlyCost").textContent = futureCosts.hourlyCost + "€";
     document.getElementById("totalProjectCost").textContent = futureCosts.totalCost + actualCosts.totalCost + "€";
     document.getElementById("futureUsers").textContent = futureCosts.users.join(", ");
 }
@@ -288,15 +289,14 @@ function calculateCosts(tasks, assigned, assignees, roles, filterFunction) {
 
     filteredTasks.forEach(task => {
         var taskAssignees = assigned.filter(assignment => assignment.id_task === task.id);
-        console.log(taskAssignees)
         var taskCost = 0;
 
         taskAssignees.forEach(assignment => {
             var assignee = assignees.find(assignee => assignee.id === assignment.id_employee);
             if (assignee) {
-                var assigneeRolePrice = roleMap[assignee.id_roles];
+                var assigneeRolePrice = roleMap[assignee.id_role];
                 taskCost += assigneeRolePrice * task.estimated_time;
-                hourlyCost += assigneeRolePrice; // Correction ici, car chaque assigné compte pour le coût horaire
+                hourlyCost += assigneeRolePrice;
                 users.add(`${assignee.firstname} ${assignee.name}`);
             }
         });
@@ -306,9 +306,10 @@ function calculateCosts(tasks, assigned, assignees, roles, filterFunction) {
     });
 
     return {
+        taskNumber: filteredTasks.length,
         totalCost: totalCost,
         totalHours: totalHours,
-        hourlyCost: (hourlyCost / totalHours) || 0, // Correction du calcul du coût horaire
+        hourlyCost: hourlyCost,
         users: Array.from(users)
     };
 }

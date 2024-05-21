@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="../CSS/homePageStyle.css">
 <link rel="stylesheet" type="text/css" href="../CSS/dataTable.css">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css">
 <title>Dashboard</title>
 </head>
@@ -69,30 +69,30 @@ function adjustContentBasedOnRole(role) {
             <option value="4">Developement</option>
         </select><br><br>
 
-        <label for="Assignee">Assigné à:</label>
+        <label for="Assignee">Assigner à:</label>
         <select id="Assignee" name="Assignee">
         </select><br><br>
 
         <label for="pastel1">Couleur :</label> <br>
         <div class="colorSelector">
             <div>
-                <input type="radio" id="pastel1" name="couleur" value="0">
+                <input type="radio" id="pastel1" name="couleur" value="0" required>
                 <label for="pastel1" style="background-color: #fde2e4; padding: 10px; border: 1px solid #000;">Pivoine</label><br>
             </div>
             <div>
-                <input type="radio" id="pastel2" name="couleur" value="1">
+                <input type="radio" id="pastel2" name="couleur" value="1" required>
                 <label for="pastel2" style="background-color: #accbe1; padding: 10px; border: 1px solid #000;">Myosotis</label><br>
             </div>
             <div>
-                <input type="radio" id="pastel3" name="couleur" value="2">
+                <input type="radio" id="pastel3" name="couleur" value="2" required>
                 <label for="pastel3" style="background-color: #9fd8df; padding: 10px; border: 1px solid #000;">Hortensia</label><br>
             </div>
             <div>
-                <input type="radio" id="pastel4" name="couleur" value="3">
+                <input type="radio" id="pastel4" name="couleur" value="3" required>
                 <label for="pastel4" style="background-color: #97c1a9; padding: 10px; border: 1px solid #000;">Eucalyptus</label><br>
             </div>
             <div>
-                <input type="radio" id="pastel5" name="couleur" value="4">
+                <input type="radio" id="pastel5" name="couleur" value="4" required>
                 <label for="pastel5" style="background-color: #e4cbf8; padding: 10px; border: 1px solid #000;">Lotus</label><br><br>
             </div>
         </div>
@@ -106,21 +106,13 @@ function adjustContentBasedOnRole(role) {
         <label for="tempsEstime">Temps estimé (en heures) :</label>
         <input type="number" id="tempsEstime" name="tempsEstime" min="0" step="0.5" required><br><br>
 
-        <button type="submit" name="submitTaskForm">Ajouter un tache</button>
+        <button type="submit" name="submitTaskForm">Ajouter une tâche</button>
     </form>
 </div>
 
 <section class="container" id="TaskViewer">
     <h2>Tâches</h2>
     <div class="TableGrid">
-        <div id="contextMenu">
-            <ul>
-                <li onclick="NewRow()">Add Row</li>
-                <li onclick="NewCol()">Add Column</li>
-                <li onclick="DelRow()">Delete Row</li>
-                <li onclick="DelCol()">Delete Column</li>
-            </ul>
-        </div>
         <div class="Table">
             <table id="T1">
                 <thead>
@@ -145,11 +137,15 @@ function adjustContentBasedOnRole(role) {
 </div>
 
 <div class="container" id="financial">
-    <h2>Prévisionel budgétaire</h2>
+    <h2>Prévisionnel budgétaire</h2>
     <div class="financialTable">
     <div class="budget">
         <h2>Actuel</h2>
         <table>
+            <tr>
+                <th>Tâches actuelles</th>
+                <td id="actualTask">12</td>
+            </tr>
             <tr>
                 <th>Coût total</th>
                 <td id="totalCost">8000€</td>
@@ -176,7 +172,7 @@ function adjustContentBasedOnRole(role) {
                 <td id="plannedTask">12</td>
             </tr>
             <tr>
-                <th>Coût tâches planifiées</th>
+                <th>Coût total</th>
                 <td id="plannedTaskCost">8000€</td>
             </tr>
             <tr>
@@ -184,8 +180,8 @@ function adjustContentBasedOnRole(role) {
                 <td id="plannedHours">8h</td>
             </tr>
             <tr>
-                <th>Coût total projet</th>
-                <td id="totalProjectCost">8000€</td>
+                <th>Coût horaire</th>
+                <td id="plannedHourlyCost">8000€</td>
             </tr>
             <tr>
                 <th>Personnes futures</th>
@@ -193,6 +189,14 @@ function adjustContentBasedOnRole(role) {
             </tr>
         </table>
       </div>
+    </div>
+    <div class="budget">
+      <table>
+        <tr>
+            <th>Coût total projet</th>
+            <td id="totalProjectCost">8000€</td>
+        </tr>
+      </table>
     </div>
 </div>
 
@@ -225,16 +229,15 @@ function adjustContentBasedOnRole(role) {
       </div>
       <div class="task-details">
           <h3>Détails de la Tâche</h3>
-          <p><strong>ID :</strong> <input type="text" id="task-id" readonly></p>
           <p><strong>Nom :</strong> <input type="text" id="task-name" readonly></p>
-          <p><strong>Type ID :</strong> <input type="text" id="task-id_type" readonly></p>
-          <p><strong>État ID :</strong> <input type="text" id="task-id_state" readonly></p>
+          <p><strong>Type :</strong> <input type="text" id="task-id_type" readonly></p>
+          <p><strong>État :</strong> <input type="text" id="task-id_state" readonly></p>
           <p><strong>Validée :</strong> <input type="text" id="task-is_validated" readonly></p>
           <p><strong>Couleur :</strong> <input type="text" id="task-color" readonly></p>
           <p><strong>Date de début :</strong> <input type="text" id="task-date_debut" readonly></p>
           <p><strong>Date de fin :</strong> <input type="text" id="task-date_fin" readonly></p>
           <p><strong>Temps estimé :</strong> <input type="text" id="task-estimated_time" readonly></p>
-          <p><strong>Créé le :</strong> <input type="text" id="task-created_at" readonly></p>
+          <p><strong>Créée le :</strong> <input type="text" id="task-created_at" readonly></p>
       </div>
   </div>
 </div>
