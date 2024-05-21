@@ -124,29 +124,3 @@ class TableManager {
         }
     }
 }
-
-//+++++++++++++++++ Section: Gestion du menu contextuel +++++++++++++++++
-window.onload = function() {
-    const contextMenu = document.getElementById('contextMenu');
-    let currentRowIndex = null;
-    let currentColIndex = null;
-    const tableElement = document.getElementById('T1');
-
-    if (tableElement) {
-        tableElement.addEventListener('contextmenu', function(event) {
-            event.preventDefault();
-            currentRowIndex = event.target.parentNode.rowIndex;
-            currentColIndex = event.target.cellIndex;
-            contextMenu.style.display = 'block';
-            contextMenu.style.left = event.pageX + 'px';
-            contextMenu.style.top = event.pageY + 'px';
-        });
-
-        document.addEventListener('click', function() {
-            contextMenu.style.display = 'none';
-        });
-    } else {
-        console.error("Element with ID 'T1' not found.");
-    }
-
-};
