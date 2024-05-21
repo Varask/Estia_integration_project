@@ -208,7 +208,9 @@ if (tasks.length > 0) {
 
 document.addEventListener("DOMContentLoaded", function() {
     adjustContentBasedOnRole(role);
-    updateBudgetForecast();
+    if (role === 'Project Manager' || role === 'Project Owner') {
+        updateBudgetForecast();
+    }
 
     var tasks = JSON.parse(tasksJsonString);
 
