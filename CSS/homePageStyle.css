@@ -37,11 +37,11 @@ body{
     flex-direction: column;
 }
 
-.calendar {
-    border: solid 1px #777;
-    width: 800px;
-    height: 600px;
-    overflow: hidden; /* Pour empêcher le défilement */
+#calendar {
+    max-width: 800px;
+    max-height: 600px;
+    margin: 0 auto; /* Centrer le calendrier */
+    overflow: hidden;
 }
 
 .chart {
