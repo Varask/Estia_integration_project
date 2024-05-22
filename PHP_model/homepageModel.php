@@ -5,7 +5,7 @@ function getUserInfo($email) {
     try {
             $conn = connectToDatabase();
         } catch (Exception $e) {
-            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            echo "Database connection error : " . $e->getMessage();
             return null;
         }
     
@@ -66,12 +66,12 @@ function addTask($nom, $type, $assignee, $dateDebut, $dateFin, $couleur, $tempsE
         // Valider la transaction
         $conn->commit();
 
-        return "Tâche ajoutée et assignée avec succès";
+        return "Task added and assigned successfully";
     } catch (Exception $e) {
         // En cas d'erreur, annuler la transaction
         $conn->rollback();
 
-        return "Erreur lors de l'ajout de la tâche ou de l'assignation : " . $e->getMessage();
+        return "Error adding task or assignment : " . $e->getMessage();
     } finally {
         // Fermer le statement et la connexion
         $stmt->close();
@@ -82,7 +82,7 @@ function getTasks() {
     try {
             $conn = connectToDatabase();
         } catch (Exception $e) {
-            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            echo "Database connection error : " . $e->getMessage();
             return null;
         }
 
@@ -121,7 +121,7 @@ function getAssignees() {
     try {
             $conn = connectToDatabase();
         } catch (Exception $e) {
-            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            echo "Database connection error : " . $e->getMessage();
             return null;
         }
 
@@ -155,7 +155,7 @@ function getRoles() {
     try {
             $conn = connectToDatabase();
         } catch (Exception $e) {
-            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            echo "Database connection error : " . $e->getMessage();
             return null;
         }
 
@@ -189,7 +189,7 @@ function getAssignedTo() {
     try {
             $conn = connectToDatabase();
         } catch (Exception $e) {
-            echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
+            echo "Database connection error : " . $e->getMessage();
             return null;
         }
 
@@ -227,19 +227,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitTaskStateForm']
         
         // Préparer la requête SQL pour mettre à jour l'état de la tâche en fonction du bouton cliqué
         switch ($buttonContent) {
-            case 'Mettre en attente':
+            case 'Put on hold':
                 $newStateId = 3; // ID de l'état 'On hold'
                 $valide = 0;
                 break;
-            case 'Valider':
+            case 'Validate':
                 $newStateId = 1; // ID de l'état 'Validated'
                 $valide = 1;
                 break;
-            case 'Rouvrir':
+            case 'Reopen':
                 $newStateId = 2; // ID de l'état 'Current'
                 $valide = 0;
                 break;
-            case 'Fermer':
+            case 'Close':
                 $newStateId = 4; // ID de l'état 'Closed'
                 $valide = 1;
                 break;
@@ -258,9 +258,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitTaskStateForm']
         $conn->close();
         
         // Envoyer la réponse
-        echo "L'état de la tâche a été mis à jour avec succès.";
+        echo "The task status has been updated successfully.";
     } catch (Exception $e) {
         // En cas d'erreur, afficher un message d'erreur
-        echo "Erreur lors de la mise à jour de l'état de la tâche : " . $e->getMessage();
+        echo "Error updating task status : " . $e->getMessage();
     }
 }

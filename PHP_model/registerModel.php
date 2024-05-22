@@ -8,7 +8,7 @@ function registerUser($name, $firstName, $email, $password) {
     $result = $conn->query($sql_check_email);
 
     if ($result->num_rows > 0) {
-        return "L'e-mail existe déjà dans la base de données";
+        return "The e-mail already exists in the database";
     }
 
     // Crypter le mot de passe
@@ -19,8 +19,8 @@ function registerUser($name, $firstName, $email, $password) {
     $sql_security = "INSERT INTO security (password) VALUES ('$hashed_password')";
 
     if ($conn->query($sql_employee) === TRUE && $conn->query($sql_security) === TRUE) {
-        return "Nouveau compte créé avec succès";
+        return "New account successfully created";
     } else {
-        return "Erreur lors de la création du compte : " . $conn->error;
+        return "Account creation error : " . $conn->error;
     }
 }

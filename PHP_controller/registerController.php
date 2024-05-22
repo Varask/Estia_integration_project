@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Vérifier si les mots de passe correspondent
     if ($password != $password2) {
-        echo "<script>alert('Les mots de passe ne correspondent pas'); window.location.href='../view/loginView.html';</script>";
+        echo "<script>alert('Passwords don\'t match'); window.location.href='../view/loginView.html';</script>";
         exit;
     }
 

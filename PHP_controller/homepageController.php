@@ -41,7 +41,7 @@
             $result = addTask($nom, $type, $assignee, $dateDebut, $dateFin, $couleur, $tempsEstime);
             echo "<script>alert('$result'); window.location.href='../PHP_controller/homepageController.php';</script>";
         } else {
-            echo "<script>alert('La date de début doit se situer avant la date de fin.');</script>";
+            echo "<script>alert('The start date must be before the end date.');</script>";
         }
     }
 

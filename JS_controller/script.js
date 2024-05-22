@@ -87,18 +87,18 @@ document.getElementById("tache-selection").addEventListener("change", function()
         var validateBtn2 = document.getElementById("state-button2");
         if (selectedTask.state === "On hold") {
             validateBtn.style.display = "inline";
-            validateBtn.textContent = "Rouvrir";
+            validateBtn.textContent = "Reopen";
             validateBtn2.style.display = "none";
         } else if (selectedTask.state === "Current") {
             validateBtn.style.display = "inline";
-            validateBtn.textContent = "Mettre en attente";
+            validateBtn.textContent = "Put on hold";
             validateBtn2.style.display = "inline";
-            validateBtn2.textContent = "Valider";
+            validateBtn2.textContent = "Validate";
         } else if (selectedTask.state === "Validated") {
             validateBtn.style.display = "inline";
-            validateBtn.textContent = "Rouvrir";
+            validateBtn.textContent = "Reopen";
             validateBtn2.style.display = "inline";
-            validateBtn2.textContent = "Fermer";
+            validateBtn2.textContent = "Close";
         } else if (selectedTask.state === "Closed") {
             validateBtn.style.display = "none";
             validateBtn2.style.display = "none";
@@ -116,18 +116,18 @@ if (tasks.length > 0) {
     var validateBtn2 = document.getElementById("state-button2");
     if (initialTask.state === "On hold") {
         validateBtn.style.display = "inline";
-        validateBtn.textContent = "Rouvrir";
+        validateBtn.textContent = "Reopen";
         validateBtn2.style.display = "none";
     } else if (initialTask.state === "Current") {
         validateBtn.style.display = "inline";
-        validateBtn.textContent = "Mettre en attente";
+        validateBtn.textContent = "Put on hold";
         validateBtn2.style.display = "inline";
-        validateBtn2.textContent = "Valider";
+        validateBtn2.textContent = "Validate";
     } else if (initialTask.state === "Validated") {
         validateBtn.style.display = "inline";
-        validateBtn.textContent = "Rouvrir";
+        validateBtn.textContent = "Reopen";
         validateBtn2.style.display = "inline";
-        validateBtn2.textContent = "Fermer";
+        validateBtn2.textContent = "Close";
     } else if (initialTask.state === "Closed") {
         validateBtn.style.display = "none";
         validateBtn2.style.display = "none";

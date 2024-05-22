@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     } else {
         // Les informations de connexion sont incorrectes, rediriger vers la page de connexion avec un message d'erreur
-        echo "<script>alert('E-mail ou mot de passe incorrect'); window.location.href='../view/loginView.html';</script>";
+        echo "<script>alert('Incorrect e-mail address or password'); window.location.href='../view/loginView.html';</script>";
         exit;
     }
 } else {

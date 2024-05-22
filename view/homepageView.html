@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function adjustContentBasedOnRole(role) {
-    var restrictedContent = "Accessible uniquement pour les Project Manager et les Project Owner";
+    var restrictedContent = "Accessible only to Project Managers and Project Owners";
     var restrictedDivs = ['form', 'financial', 'validate'];
 
     if (role === 'Developer' || role === 'Intern' || role === 'New') {
@@ -56,25 +56,25 @@ function adjustContentBasedOnRole(role) {
 
 <div id="structure">
 <div class="container" id="form">
-    <h2>Ajouter une tâche</h2>
+    <h2>Add a task</h2>
     <form action="../PHP_controller/homepageController.php" method="post">
-        <label for="nom">Nom :</label>
+        <label for="nom">Name :</label>
         <input type="text" id="nom" name="nom" required><br><br>
 
         <label for="type">Type :</label>
         <select id="type" name="type" required>
-            <option value="">Selectionnez une valeur</option>
-            <option value="1">Graphisme</option>
+            <option value="">Select a value</option>
+            <option value="1">Graphism</option>
             <option value="2">Documentation</option>
             <option value="3">Requirements</option>
-            <option value="4">Developement</option>
+            <option value="4">Development</option>
         </select><br><br>
 
-        <label for="Assignee">Assigner à:</label>
+        <label for="Assignee">Assign to:</label>
         <select id="Assignee" name="Assignee">
         </select><br><br>
 
-        <label for="pastel1">Couleur :</label> <br>
+        <label for="pastel1">Color :</label> <br>
         <div class="colorSelector">
             <div>
                 <input type="radio" id="pastel1" name="couleur" value="0" required>
@@ -98,33 +98,33 @@ function adjustContentBasedOnRole(role) {
             </div>
         </div>
 
-        <label for="dateDebut">Date de début :</label>
+        <label for="dateDebut">Start date :</label>
         <input type="date" id="dateDebut" name="dateDebut" required><br><br>
 
-        <label for="dateFin">Date de fin :</label>
+        <label for="dateFin">End date :</label>
         <input type="date" id="dateFin" name="dateFin" required><br><br>
 
-        <label for="tempsEstime">Temps estimé (en heures) :</label>
+        <label for="tempsEstime">Estimated time (in hours) : </label>
         <input type="number" id="tempsEstime" name="tempsEstime" min="0" step="0.5" required><br><br>
 
-        <button type="submit" name="submitTaskForm">Ajouter une tâche</button>
+        <button type="submit" name="submitTaskForm">Add a task</button>
     </form>
 </div>
 
 <section class="container" id="TaskViewer">
-    <h2>Tâches</h2>
+    <h2>Tasks</h2>
     <div class="TableGrid">
         <div class="Table">
             <table id="T1">
                 <thead>
                     <tr>
-                        <th>Nom</th>
+                        <th>Name</th>
                         <th>Type</th>
-                        <th>État</th>
-                        <th>Date de début</th>
-                        <th>Date de fin</th>
-                        <th>Temps estimé</th>
-                        <th>Assignée à</th>
+                        <th>State</th>
+                        <th>Start date</th>
+                        <th>End date</th>
+                        <th>Estimated time</th>
+                        <th>Assigned to</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -138,54 +138,54 @@ function adjustContentBasedOnRole(role) {
 </div>
 
 <div class="container" id="financial">
-    <h2>Prévisionnel budgétaire</h2>
+    <h2>Budget forecast</h2>
     <div class="financialTable">
     <div class="budget">
-        <h2>Actuel</h2>
+        <h2>Current</h2>
         <table>
             <tr>
-                <th>Tâches actuelles</th>
+                <th>Current tasks</th>
                 <td id="actualTask">12</td>
             </tr>
             <tr>
-                <th>Coût total</th>
+                <th>Total cost</th>
                 <td id="totalCost">8000€</td>
             </tr>
             <tr>
-                <th>Nombre heures totales</th>
+                <th>Total hours</th>
                 <td id="totalHours">8h</td>
             </tr>
             <tr>
-                <th>Coût horaire</th>
+                <th>Hourly cost</th>
                 <td id="hourlyCost">1000€</td>
             </tr>
             <tr>
-                <th>Personnes actuelles</th>
+                <th>Current people</th>
                 <td id="actualUsers"></td>
             </tr>
         </table>
     </div>
     <div class="budget">
-        <h2>Futur</h2>
+        <h2>Future</h2>
         <table>
             <tr>
-                <th>Tâches planifiées</th>
+                <th>Planned tasks</th>
                 <td id="plannedTask">12</td>
             </tr>
             <tr>
-                <th>Coût total</th>
+                <th>Total cost</th>
                 <td id="plannedTaskCost">8000€</td>
             </tr>
             <tr>
-                <th>Nombre d'heures planifiées</th>
+                <th>Planned hours</th>
                 <td id="plannedHours">8h</td>
             </tr>
             <tr>
-                <th>Coût horaire</th>
+                <th>Hourly cost</th>
                 <td id="plannedHourlyCost">8000€</td>
             </tr>
             <tr>
-                <th>Personnes futures</th>
+                <th>Future people</th>
                 <td id="futureUsers"></td>
             </tr>
         </table>
@@ -194,7 +194,7 @@ function adjustContentBasedOnRole(role) {
     <div class="budget">
       <table>
         <tr>
-            <th>Coût total projet</th>
+            <th>Total project cost</th>
             <td id="totalProjectCost">8000€</td>
         </tr>
       </table>
@@ -203,42 +203,42 @@ function adjustContentBasedOnRole(role) {
 
 <div class="structureNext">
   <div class="container" id="validate">
-      <h2>Modifier l'état de la tâche</h2>
+      <h2>Modify task status</h2>
       <form>
           <div class="form-group">
-              <label for="tache-selection">Sélectionner la tâche</label>
+              <label for="tache-selection">Select task</label>
               <select id="tache-selection" name="tache-selection">
               </select>
           </div>
           <div class="form-group">
-              <label for="etat">État de la tâche</label>
+              <label for="etat">Task state</label>
               <input type="text" id="etat" name="etat" value="Validated" readonly>
           </div>
           <div class="validate-button">
-              <button type="button" id="state-button" class="btn">Valider</button>
-              <button type="button" id="state-button2" class="btn" style="display: none;">Valider</button>
+              <button type="button" id="state-button" class="btn">Validate</button>
+              <button type="button" id="state-button2" class="btn" style="display: none;">Validate</button>
           </div>
       </form>
   </div>
 
   <div class="container" id="history">
-      <h2>Historique des tâches</h2>
+      <h2>Task history</h2>
       <div class="form-group">
-          <label for="tache-selection-2">Tâches</label>
+          <label for="tache-selection-2">Tasks</label>
           <select id="tache-selection-2">
           </select>
       </div>
       <div class="task-details">
-          <h3>Détails de la Tâche</h3>
-          <p><strong>Nom :</strong> <input type="text" id="task-name" readonly></p>
+          <h3>Task details</h3>
+          <p><strong>Name :</strong> <input type="text" id="task-name" readonly></p>
           <p><strong>Type :</strong> <input type="text" id="task-id_type" readonly></p>
-          <p><strong>État :</strong> <input type="text" id="task-id_state" readonly></p>
-          <p><strong>Validée :</strong> <input type="text" id="task-is_validated" readonly></p>
-          <p><strong>Couleur :</strong> <input type="text" id="task-color" readonly></p>
-          <p><strong>Date de début :</strong> <input type="text" id="task-date_debut" readonly></p>
-          <p><strong>Date de fin :</strong> <input type="text" id="task-date_fin" readonly></p>
-          <p><strong>Temps estimé :</strong> <input type="text" id="task-estimated_time" readonly></p>
-          <p><strong>Créée le :</strong> <input type="text" id="task-created_at" readonly></p>
+          <p><strong>State :</strong> <input type="text" id="task-id_state" readonly></p>
+          <p><strong>Validated :</strong> <input type="text" id="task-is_validated" readonly></p>
+          <p><strong>Color :</strong> <input type="text" id="task-color" readonly></p>
+          <p><strong>Start date :</strong> <input type="text" id="task-date_debut" readonly></p>
+          <p><strong>End date :</strong> <input type="text" id="task-date_fin" readonly></p>
+          <p><strong>Estimated time :</strong> <input type="text" id="task-estimated_time" readonly></p>
+          <p><strong>Created on :</strong> <input type="text" id="task-created_at" readonly></p>
       </div>
   </div>
 </div>
